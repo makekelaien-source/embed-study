@@ -1,0 +1,2 @@
+# Preserve archived originals exactly for SHA-256 recovery checks.
+00-memory/archive/** -text
