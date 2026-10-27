@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-27",
+  "scope": "Document implementation; not student mastery or hardware validation",
+  "documents_checked": 18,
+  "local_links_checked": 56,
+  "weeks_checked": 44,
+  "schedule_start": [
+    "2026-10-28",
+    "2026-11-03"
+  ],
+  "schedule_end": [
+    "2027-08-25",
+    "2027-08-31"
+  ],
+  "protected_files_checked": 85,
+  "baseline_examples": [
+    {
+      "example": 1,
+      "compile_exit": 0,
+      "output_matches": true
+    },
+    {
+      "example": 2,
+      "compile_exit": 0,
+      "output_matches": true
+    }
+  ],
+  "checks": {
+    "teaching_hook": true,
+    "memory_injection_unchanged": true,
+    "no_fake_acceptance": true,
+    "first_lesson_ready": true,
+    "old_increment_corrected": true,
+    "old_declaration_corrected": true,
+    "still_no_git_init": true
+  },
+  "issues": [],
+  "qa_temp_path": "C:\\Users\\Admin\\AppData\\Local\\Temp\\embed-study-docqa-qma3s81g",
+  "date_normalization": "Normalized all weekly date ranges to full ISO years; rechecked 44 continuous weeks.",
+  "document_sha256": {
+    "AGENTS.md": "267f1d50237518b67be464ad8787882e48994a15ed73cf2bad13ee82ce7ddeb1",
+    "README.md": "5fac1c1d29be574612802ded60db696dd3002068a5067f291882124113407c70",
+    "01-plans/overview-40week-plan.md": "2a6a2fd31e51b3094cebd4bf46131610a3466dad5b4c9f4890053f55f609a7d2",
+    "01-plans/teaching-guide.md": "b7d36047bf03e81a4ad2ccb227525b080380af9bf00071b1efece37f3f9ebe09",
+    "01-plans/weeks-01-12-plan.md": "8a2a02a03a7aaf7a36a374d2b41d816c51fd00483cb558b5380eaf4dfab23557",
+    "00-memory/MEMORY.md": "fc5527408897e05d798173dc4994db74385d2be8aa7e9689955824cb25ce882c",
+    "00-memory/skill-matrix.md": "5fdf7ab6afd380b44e963ce79b59b4144f2570314ceba8d004e615fca79a3074",
+    "02-logs/template-daily-log.md": "3858319892d62994d20844c778a61ab1348ae2c00dd4e7f191e1fc8f372c2696",
+    "01-plans/weeks-13-44-plan.md": "5a19da16108632cba33811d4e9899a6c0e6c4afd903cfde204e860e4c6bfc7b2",
+    "05-projects/realtime-terminal/README.md": "072b45823a427aee8971d4cf8e3cf55e0f2635969edda9c789508389d8f58fe5",
+    "05-projects/realtime-terminal/acceptance.md": "aa8e9c2c2a9425246d3e4bb966ebdc4685e622d0a9fd189fa03cf8a289f576e8",
+    "06-job/portfolio-checklist.md": "4444729d56af56fdd77aff7d976ed4be800666360e2f9fcd84ce321ccce3a7ae",
+    "06-job/job-tracker.md": "7ca7224b04df7837f528ac11a6ac1c959984908b94522dfc8beaa589a2b4e9ef",
+    "04-notes/knowledge-corrections.md": "22b8068371fafdd4c6b60a43043e2514a81d91f25219a7b4f51e70a6ad8995ec",
+    "04-notes/note-d8-baseline.md": "cc6ee9843a0eb86f876250a651e7afb7f7949697a4f9cf1fbaec88515c0f567c",
+    "00-memory/plan-revision-2026-10-27.md": "de76eb483a6187784ebfbd85908ec7392665203698e21061d032336c72c20226",
+    "04-notes/note-d4-switch-for.md": "9cad58674007324e35810d7b9cf04036407a072abfbfd1bd03c2eba45eb4a9fa",
+    "04-notes/note-d7-functions.md": "7901214b3e6b89db601359ee87023219fec36cd30dcffbddbcdfd26f7f8d666d"
+  },
+  "final_static_check": "passed"
+}

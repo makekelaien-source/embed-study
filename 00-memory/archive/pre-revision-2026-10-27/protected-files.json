@@ -1,0 +1,342 @@
+[
+  {
+    "path": "03-code/.vscode/settings.json",
+    "sha256": "625192388e81e152ba65811a72b550248239ced3f529bd9381d410a5bfed0626"
+  },
+  {
+    "path": "03-code/d1-demo.c",
+    "sha256": "56e1145bbd9562658159d57576a2ba13221ecc2fa883911e1cf247bcd1b8b51f"
+  },
+  {
+    "path": "03-code/d1-demo.exe",
+    "sha256": "aaaf7363f1ece445b4966d9c7f914db3dd862c4caaa268e3bf7b1b6756e0ca0a"
+  },
+  {
+    "path": "03-code/d1-ex1-temp.c",
+    "sha256": "eed04f75f5c4a25f96125bf17fc96f215f351d187489918d1c6fc795752fa963"
+  },
+  {
+    "path": "03-code/d1-ex1-temp.exe",
+    "sha256": "3ae1ece269dcc9854dbf2561799163d777393817440bdd8986e70ed66a968c8b"
+  },
+  {
+    "path": "03-code/d1-ex2-intro.c",
+    "sha256": "f136b7f02125c7f5e7eda96c1f9cd1cad38b361d9473bf2e08ca2b193e07dc8c"
+  },
+  {
+    "path": "03-code/d1-ex2-intro.exe",
+    "sha256": "99e5f9633db3507a89e97c45d8ab9e60ac68bff1ee0a006f43442df1d4e1c161"
+  },
+  {
+    "path": "03-code/d1-ex3-triangle.c",
+    "sha256": "542f178196730e8a9d5a0d5728e8ff70b74284401d920c8504ecdcf3fec8ecd1"
+  },
+  {
+    "path": "03-code/d1-ex3-triangle.exe",
+    "sha256": "43bbc3c956457dd56969c905f98307c54a5f775563069a7eb4df6f1c136e8fdf"
+  },
+  {
+    "path": "03-code/d2-demo.c",
+    "sha256": "239bcba91c5627eca14f2bf9c95143afbcc7748c4e2b69a5e8cd733599984a96"
+  },
+  {
+    "path": "03-code/d2-demo.exe",
+    "sha256": "537b36ff066ef3f9b8fcb59856e8dc2c521e3a1668072b903e97fbef36bd8009"
+  },
+  {
+    "path": "03-code/d2-ex1-swap.c",
+    "sha256": "04bc1a9971711b08c408bd326a5e4ef3001bd8633e6323e7215d7220944bc288"
+  },
+  {
+    "path": "03-code/d2-ex1-swap.exe",
+    "sha256": "a5f0332a61fea87c5efe9adde92f9fe09ef449ddd7e124db8d250832c5bc14a3"
+  },
+  {
+    "path": "03-code/d2-ex2-seconds.c",
+    "sha256": "6c5e09a7f86cd4e20d7f249f28fad82fc04037e9c9ae3101e943b07ad27b152d"
+  },
+  {
+    "path": "03-code/d2-ex2-seconds.exe",
+    "sha256": "5b870b10fd1827715b213026bf2f817e2f0d39327fcaed146ca76704f1a0a41c"
+  },
+  {
+    "path": "03-code/d3-demo.c",
+    "sha256": "f740339d3222390323cfc83a6b810c1de76a46f909c8e8b912e67e2a834c2a3d"
+  },
+  {
+    "path": "03-code/d3-demo.exe",
+    "sha256": "84ca1a7db86f5e9a4bdced652e480f6dbf26e9d9d9d6f7a7f3200f6877e78f31"
+  },
+  {
+    "path": "03-code/d3-ex1.c",
+    "sha256": "8eaeba3b8d6e59f3e7c40fc78dc2b72a0d95889aae511608a1717802dfe4dbe3"
+  },
+  {
+    "path": "03-code/d3-ex1.exe",
+    "sha256": "e556f0822483a61d44b5f28fc76ad5ecd9235ad734e7f0d79aa6a487f8cb0ca2"
+  },
+  {
+    "path": "03-code/d3-ex2.c",
+    "sha256": "26abbc293d1112e0321d12a410b2607ab7860e0ffb3d988db12899f2d9ea589f"
+  },
+  {
+    "path": "03-code/d3-ex2.exe",
+    "sha256": "73b75e28028d0a81ab1ced22e75cf50077f5cbf8e06b351d72bcaeff7a6c0f52"
+  },
+  {
+    "path": "03-code/d3-ex3.c",
+    "sha256": "885fc8973b025746beafa6c9a1dfa22a79330cd4da6846b7ee2f7a45b66a4727"
+  },
+  {
+    "path": "03-code/d3-ex3.exe",
+    "sha256": "a7bd3e38d928b013cbd0bb077d3595f88b1ffcab3d03a5376a86ee61882be29d"
+  },
+  {
+    "path": "03-code/d4-demo.c",
+    "sha256": "2ff8f0e573ba26c028e537c4d741397978c3b34256a13a026f1678baf5297d94"
+  },
+  {
+    "path": "03-code/d4-demo.exe",
+    "sha256": "923d71345e8fbe5fe6ed98842afb9f94451e4f4ff8383e1d485ae322688323a2"
+  },
+  {
+    "path": "03-code/d4-ex1.c",
+    "sha256": "776e859792ebd67a04579cc896576f9b8b508b614d993f52e8da8a2a94f3148c"
+  },
+  {
+    "path": "03-code/d4-ex1.exe",
+    "sha256": "438c99f077db96dec81dd1ecfca6cf8a8ecb53ce90b3094e1376fa27e2350d59"
+  },
+  {
+    "path": "03-code/d4-ex2.c",
+    "sha256": "c77b4a4ac2b5b51d52ced54806d0b27d353d2b788b48a01bf912b3efd6b16461"
+  },
+  {
+    "path": "03-code/d4-ex2.exe",
+    "sha256": "cc1b3960a848ebb1ba18f53a5665ddbe4e450999c36befd90406c34fe0fff51b"
+  },
+  {
+    "path": "03-code/d4-ex3.c",
+    "sha256": "195c8d1d07d1d7af10b9750f94da40f4f4805b3a6e5e89de41ce90de8f4a3cf4"
+  },
+  {
+    "path": "03-code/d4-ex3.exe",
+    "sha256": "f548734ff1675c49db9e6c96058e7baca502cff04d5784c9c3e47f53a49fe085"
+  },
+  {
+    "path": "03-code/d4-ex4.c",
+    "sha256": "d7683d1b00d04b93dc8d3d4c2b576620c831c3903645913870bbe8c2a4889d64"
+  },
+  {
+    "path": "03-code/d4-ex4.exe",
+    "sha256": "bfb1ab2c90c23e4cba867de4a69e54cb18e71fb17e32844aefe03263b35f3b14"
+  },
+  {
+    "path": "03-code/d4-ex5.c",
+    "sha256": "3efea340d6ed1eb340b2d7ea8d1c5cd30b43f71a2802e53c660a1cdb01d1aa3a"
+  },
+  {
+    "path": "03-code/d4-ex5.exe",
+    "sha256": "c3b4a760e83fb20270d18d342ad415cb5e45a613038f7adba8f1cb54189e8853"
+  },
+  {
+    "path": "03-code/d5-ex1.c",
+    "sha256": "733d6e0e1d0b92d6bb7c2805f6e035d7a4339ca88891e161cce5ae83be293a24"
+  },
+  {
+    "path": "03-code/d5-ex1.exe",
+    "sha256": "4c3466304a0d68755f4f6ce5c8b3b5dea6a1a4106b23e56ff60f082e8d6efb37"
+  },
+  {
+    "path": "03-code/d5-ex2.c",
+    "sha256": "93a86d36ba8840350326e120ca729e37c83e16bc3807ad410aa410837731e135"
+  },
+  {
+    "path": "03-code/d5-ex2.exe",
+    "sha256": "acb3fcc7019a54b522f960c68d10304b9faf1b5b148381f893016d58028771f8"
+  },
+  {
+    "path": "03-code/d5-ex3.c",
+    "sha256": "12c953835f3a5f5a63d4362f1ea39c1cc5892341dffd9a294a34fd55ad5c8647"
+  },
+  {
+    "path": "03-code/d5-ex3.exe",
+    "sha256": "ead6df56ba26f68d4257fbd5be9bb9e777ffeec2845625c2f32e2764b768410b"
+  },
+  {
+    "path": "03-code/d5-ex4.c",
+    "sha256": "8d16f0513bde9eb2e9e4cd2454a9e46c46e0dee3dce8d46d1faa15e17ce7e70e"
+  },
+  {
+    "path": "03-code/d5-ex4.exe",
+    "sha256": "17916f40f162500ebd474f105d221afca02314162e24adea8a3a8cb01d4d06bd"
+  },
+  {
+    "path": "03-code/d5-final-ans.c",
+    "sha256": "7a1599a6fcff5d909d99328764e5f957186b4356efdf104625da1cfab67801d1"
+  },
+  {
+    "path": "03-code/d5-final-ans.exe",
+    "sha256": "8422a18be52025707bfe51df91ec26a13488cdde5bf3540dd09d38a5309c1fbe"
+  },
+  {
+    "path": "03-code/d5-final.c",
+    "sha256": "d30807d14f8424319327bfd8a0ba14e37ad87cf4912e8afb625ec958cd8ef47f"
+  },
+  {
+    "path": "03-code/d5-final.exe",
+    "sha256": "cb558624130cfd07b3110278367e8c38c0b44183255b93a848d45535145468b1"
+  },
+  {
+    "path": "03-code/d6-guess.c",
+    "sha256": "f1c64026466807ff8e21915f7115d6b9555a4910d1885b403a55a0ff6359c02c"
+  },
+  {
+    "path": "03-code/d6-guess.exe",
+    "sha256": "d811753a5854a387d5a56b561c2af7ce02d8aabbc6f944eb8c3db5d057d987b5"
+  },
+  {
+    "path": "03-code/d6-primes-ans.c",
+    "sha256": "42d51c3f752ec9863770563e7e9966ac85059c1a94e3e44c919321b073ce6b27"
+  },
+  {
+    "path": "03-code/d6-primes-ans.exe",
+    "sha256": "fe0b4c0f04ea742194ced5f823d78c4ebe8f5b15f7d8495a193a4249e6876e51"
+  },
+  {
+    "path": "03-code/d6-primes.c",
+    "sha256": "f41cc6aa76fbb8d7c60576851f7e2a6a1d817adba0b79fb10946ad5aca7f59f7"
+  },
+  {
+    "path": "03-code/d6-primes.exe",
+    "sha256": "58a3ad038b04e04f2cf7da96828fb5f86185ef95e1ca86256fa3e44c5ff724fb"
+  },
+  {
+    "path": "03-code/d7-demo.c",
+    "sha256": "588437fcc5a3f3e400730136fc03a24baeadb4c3dcae06ebf3d31504f9bd09a8"
+  },
+  {
+    "path": "03-code/d7-demo.exe",
+    "sha256": "90c4c22c4674b7c64d445f97c7b5f463252f397192bf59fe95a93ec485c3eb9d"
+  },
+  {
+    "path": "03-code/d7-demo2.c",
+    "sha256": "5d86f7f22a107f14d3b84e80000d9b91f8fc24b3eca3fb9fef1129a46cc9be1a"
+  },
+  {
+    "path": "03-code/d7-demo2.exe",
+    "sha256": "779dca8e6f622d5b0745ac4ed7669616f82402a7ea4cde5ea29a2c71ffec1844"
+  },
+  {
+    "path": "03-code/d7-demo3.c",
+    "sha256": "e620c71068a11f6ab2ab378818c8b5542ec6dfdca5deb85a75539834ed56491a"
+  },
+  {
+    "path": "03-code/d7-demo3.exe",
+    "sha256": "b4c7c06bad825065865054dc0b2bce7f7412250b2ac378ff0f36507bb03552fa"
+  },
+  {
+    "path": "03-code/d7-ex1.c",
+    "sha256": "408e95eaac16cbb098bec5ef7ce10447f269f7d0768e90766f5475c4b383055b"
+  },
+  {
+    "path": "03-code/d7-ex1.exe",
+    "sha256": "7c5c7f8562aa69ecca7cbcba440e64148320c7b1ceae09854620aa5759471827"
+  },
+  {
+    "path": "03-code/d7-ex2.c",
+    "sha256": "272d10c392d75c370eb6c5a092e084ed55892e012083d80a81703c5d4139103a"
+  },
+  {
+    "path": "03-code/d7-ex2.exe",
+    "sha256": "aa1ed3f2000e801081672a506bfd2938d06408945a244b2b1fc24673526ddb0d"
+  },
+  {
+    "path": "03-code/d7-ex3.c",
+    "sha256": "bab29d30fcc5486988fb45fd7a579edfa342c6d9eafeca2d34cded2241e6fdb7"
+  },
+  {
+    "path": "03-code/d7-ex3.exe",
+    "sha256": "72fc0e07e9041f0a9a6fd7b07505c2dc96b566a785265486b4cd113adafe5291"
+  },
+  {
+    "path": "03-code/d7-ex3b.c",
+    "sha256": "6b9f82c2e70fdab353b0ddb36c6238d4f6aee02e4458c8dd86b7d8367ce4ea0f"
+  },
+  {
+    "path": "03-code/d7-ex3b.exe",
+    "sha256": "3301dfdff553212c406695983acd62a4f69403540f6fc04c5ead2a60d44f41b5"
+  },
+  {
+    "path": "03-code/d7-sum.c",
+    "sha256": "9d0e2fab97c76ec3b2f33fead1d66d333d44ea47524215c35156d3555f1c51a9"
+  },
+  {
+    "path": "03-code/d7-sum.exe",
+    "sha256": "94b97cca0eb76938ade40e109b055520b736e6f4b36490a475f9b139c182027e"
+  },
+  {
+    "path": "03-code/example-hello.c",
+    "sha256": "27c961b72bdc4f7d1aafa46a2f8a94ec3c5f47002dfaefa5426b3204440c9954"
+  },
+  {
+    "path": "03-code/go.bat",
+    "sha256": "f6121dab85123d742e6c9e600544307617def6c58573c4216ce0187f8840fac5"
+  },
+  {
+    "path": "03-code/hell.c",
+    "sha256": "f454bda331eb319e98afbeadd67e7cb463521a855d904b3d174b30c3b62ffac3"
+  },
+  {
+    "path": "03-code/hello.c",
+    "sha256": "f454bda331eb319e98afbeadd67e7cb463521a855d904b3d174b30c3b62ffac3"
+  },
+  {
+    "path": "03-code/hello.exe",
+    "sha256": "fba295a3931f2f9adf22e6a20f285ceb492a704e2255578a280daea7e95784b0"
+  },
+  {
+    "path": "02-logs/2026-10-20.md",
+    "sha256": "f5c67d3d4c6fc8181d782b2b165e3a06ff62e25c6f0dcfa44c3dd713668f8eac"
+  },
+  {
+    "path": "02-logs/2026-10-21.md",
+    "sha256": "d1049c71c46cadcebbae4ec0c39c443a19f7df917b314551fe1939abd5369430"
+  },
+  {
+    "path": "02-logs/2026-10-21.pdf",
+    "sha256": "df8cd464519d6534e80a9e41433d21a79a7a6e91b2ba311e43e065101a421fd0"
+  },
+  {
+    "path": "02-logs/2026-10-22.md",
+    "sha256": "c01e85956df140d2903fe19018cc9691c422116b553c142d864a9e01d571f02d"
+  },
+  {
+    "path": "02-logs/2026-10-23.md",
+    "sha256": "66b722821ffba38963050090b03e4545622af094fc0226451c6988c36bbe12b1"
+  },
+  {
+    "path": "02-logs/2026-10-24.md",
+    "sha256": "8eef0ce3bb04315e91688b09248bb6887fd32ca0061b4a82312bcbf301b73e6a"
+  },
+  {
+    "path": "02-logs/2026-10-25.md",
+    "sha256": "2c22cd00c6d0e6add3b81b0f6f868ad8f852f672501cfad4d0415057a519d18a"
+  },
+  {
+    "path": "02-logs/2026-10-26.md",
+    "sha256": "aa2e1ea43b455dcc00be95a824f6a5c099154d724714d93eee0982cb50f1f2ff"
+  },
+  {
+    "path": "02-logs/2026-10-27.md",
+    "sha256": "b46390c66627f17d3ae691d9a8e962e060154aea02962df71c3495440b5effbf"
+  },
+  {
+    "path": "opencode.jsonc",
+    "sha256": "20c5e72a9659d2eeff21e375b57f337e69d5eebee84f900e851d661acf1ddec6"
+  },
+  {
+    "path": "00-memory/summary-2026-10-27.md",
+    "sha256": "68ecb54b8be5596653c252db069270013dfb444e5e889c1d347d9e9fcd914620"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "timezone": "Asia/Shanghai",
+  "policy": "../01-plans/daily-close-rules.md",
+  "timing_enabled_from_next_class": true,
+  "sessions": [
+    {
+      "id": "2026-10-27-existing-class",
+      "date": "2026-10-27",
+      "status": "closed",
+      "started_at": null,
+      "close_observed_at": "2026-10-27T19:50:58+08:00",
+      "effective_minutes": null,
+      "elapsed_minutes": null,
+      "break_minutes": null,
+      "timing_status": "unconfirmed",
+      "segments": [],
+      "reason": "Student ended the day. No verified class start/segment timestamps were captured; do not infer duration from planned hours. Closing observation is an administrative clock sample, not an exact student stop time."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+*.exe
+*.o
+*.obj
+__pycache__/
+*.pyc
+.venv/
+.env

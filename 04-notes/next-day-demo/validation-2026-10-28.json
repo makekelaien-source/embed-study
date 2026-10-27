@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-27",
+  "lesson_for": "2026-10-28",
+  "executor": "teacher",
+  "student_passes_added": 0,
+  "planned_minutes": 300,
+  "checks": [
+    {
+      "demo": "build-demo",
+      "stages": [
+        "preprocess",
+        "compile",
+        "assemble",
+        "link"
+      ],
+      "stdout": "7",
+      "result": "passed"
+    },
+    {
+      "demo": "search-state-demo",
+      "case": "match",
+      "stdout": "0",
+      "result": "passed"
+    },
+    {
+      "demo": "search-state-demo",
+      "case": "not_match",
+      "stdout": "-1",
+      "result": "passed"
+    },
+    {
+      "demo": "python-input-demo",
+      "input": "25",
+      "output_value": "27",
+      "result": "passed"
+    },
+    {
+      "demo": "python-input-demo",
+      "input": "-8",
+      "output_value": "-6",
+      "result": "passed"
+    },
+    {
+      "demo": "python-input-demo",
+      "input": "abc",
+      "result": "expected ValueError observed; recovery not yet taught"
+    }
+  ],
+  "scope": "Minimal teacher examples only; student linear-search implementation not supplied or tested"
+}

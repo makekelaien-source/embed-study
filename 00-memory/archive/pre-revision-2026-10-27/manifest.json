@@ -1,0 +1,42 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "5462e53e1016ccebf197b8b6d1486848202d02640e7ed65924c74ca8f6b7c156",
+    "bytes": 1619
+  },
+  {
+    "path": "00-memory/MEMORY.md",
+    "sha256": "6cac1fbe747fe7427456c897285bbeadf3a56ea15218ead62f2400b6bbe3ab0f",
+    "bytes": 7396
+  },
+  {
+    "path": "01-plans/overview-40week-plan.md",
+    "sha256": "59b4f2ad833174e4ac91bfbdd0d034dda6a6c0308c22a885708f769fd18a3d3a",
+    "bytes": 3286
+  },
+  {
+    "path": "01-plans/weeks-01-12-plan.md",
+    "sha256": "2e89a21093b32bc8f58c432ce8a19cf3175522cd091c3793eae9b9c4d8062640",
+    "bytes": 5794
+  },
+  {
+    "path": "02-logs/template-daily-log.md",
+    "sha256": "70013f79ad5886c2d2a209cd3e2843f8b708f3d40694b416a97ba59e07486a3e",
+    "bytes": 258
+  },
+  {
+    "path": "04-notes/note-d4-switch-for.md",
+    "sha256": "0564a65c08b548f5375baa0476ce62fc54f6ddef00177e21636fef6c6b6532b6",
+    "bytes": 5934
+  },
+  {
+    "path": "04-notes/note-d7-functions.md",
+    "sha256": "2613fa61b2e317ff2526913e09044a91bb464d0fb4e30775b47c986579086238",
+    "bytes": 4646
+  },
+  {
+    "path": "00-memory/summary-2026-10-27.md",
+    "sha256": "68ecb54b8be5596653c252db069270013dfb444e5e889c1d347d9e9fcd914620",
+    "preserve_in_place": true
+  }
+]
