@@ -1,9 +1,234 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
+  "timing_method_update": {
+    "effective_from": "2026-10-28T21:40:39+08:00",
+    "method": "在教学回复开始/结束采样，助手处理/工具/备课等待按可观测区间估算排除；学生独立思考/写作另记。",
+    "precision": "estimated_observed_intervals",
+    "routine_wait_duration_questions": false,
+    "historical_unobserved_intervals": "remain_unconfirmed",
+    "pause_resume_and_long_gap_check": "必要时简短确认是否离开，不反复询问等待分钟"
+  },
+  "teacher_processing_intervals": [
+    {
+      "started_at": "2026-10-28T21:42:47+08:00",
+      "end_sampled_before_reply_at": "2026-10-28T21:44:21+08:00",
+      "observed_seconds": 94,
+      "category": "original_lesson_completion_audit_and_teacher_validation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate_not_exact_model_thinking_time"
+    },
+    {
+      "started_at": "2026-10-28T21:40:39+08:00",
+      "end_sampled_before_reply_at": "2026-10-28T21:41:47+08:00",
+      "observed_seconds": 68,
+      "category": "administrative_timing_method_update",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate_not_exact_model_thinking_time"
+    }
+  ],
   "policy": "../01-plans/daily-close-rules.md",
-  "timing_enabled_from_next_class": true,
+  "timing_enabled_from_next_class": false,
   "sessions": [
+    {
+      "id": "2026-10-28-d2-class-2",
+      "date": "2026-10-28",
+      "label": "D2饭后接续",
+      "status": "active",
+      "started_at": "2026-10-28T18:25:08+08:00",
+      "effective_minutes": 116,
+      "effective_minutes_precision": "approximate_student_report",
+      "effective_minutes_confirmed_through": "2026-10-28T20:57:22+08:00",
+      "effective_time_note": "此前确认101分钟，加20:41:58–20:57:22学生确认一直写题、基本无等待约15分钟，累计约116。下午及19:31–20:00有效分钟未知；20:39–20:41教师准备不计。额外确认区间23分钟已计入总数，勿重复累计。",
+      "additional_confirmed_intervals": [
+        {
+          "started_at": "2026-10-28T20:11:27+08:00",
+          "ended_at": "2026-10-28T20:39:18+08:00",
+          "category": "c_mainline",
+          "effective_minutes": 23,
+          "excluded_minutes_approximate": 5,
+          "source": "学生自报约5分钟等待或离开；其余近似23分钟学习，分段内部不作伪精确分配。"
+        }
+      ],
+      "elapsed_minutes": null,
+      "break_minutes": null,
+      "timing_status": "in_progress",
+      "segments": [
+        {
+          "category": "c_mainline",
+          "topic": "首次故障标记查找：新情境前置与迁移",
+          "started_at": "2026-10-28T18:25:08+08:00",
+          "ended_at": "2026-10-28T18:49:22+08:00",
+          "effective_minutes": 24,
+          "effective_minutes_precision": "approximate_student_report",
+          "confirmed_through": "2026-10-28T18:49:22+08:00",
+          "evidence": "18:25:08–18:38:05窗口12分57秒；学生两次明确确认一直学习写代码，按约13分钟学生确认记录，非精密活动测量。后续未确认时段另计；教师工具准备不另累计学时。",
+          "status": "closed_effective_time_confirmed_approximate"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Python输入：input返回文本与int转换",
+          "started_at": "2026-10-28T18:49:22+08:00",
+          "ended_at": "2026-10-28T19:00:39+08:00",
+          "effective_minutes": 11,
+          "effective_minutes_precision": "approximate_student_report",
+          "status": "closed_effective_time_confirmed_approximate"
+        },
+        {
+          "category": "algorithms",
+          "topic": "线性查找检查元素数量",
+          "started_at": "2026-10-28T19:00:39+08:00",
+          "ended_at": "2026-10-28T19:02:38+08:00",
+          "effective_minutes": 2,
+          "effective_minutes_precision": "approximate_student_report",
+          "status": "closed_effective_time_confirmed_approximate"
+        },
+        {
+          "category": "testing_review",
+          "topic": "数组查找边界静态排错及当日复盘",
+          "started_at": "2026-10-28T19:02:38+08:00",
+          "ended_at": "2026-10-28T19:05:53+08:00",
+          "effective_minutes": 4,
+          "effective_minutes_precision": "approximate_student_report",
+          "status": "closed_effective_time_confirmed_approximate"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "取消过早日终，故障数量统计补强块",
+          "started_at": "2026-10-28T19:05:53+08:00",
+          "ended_at": "2026-10-28T19:31:46+08:00",
+          "effective_minutes": 26,
+          "effective_minutes_precision": "approximate_student_report",
+          "status": "closed_effective_time_confirmed_approximate",
+          "evidence": "学生确认19:05–19:31一直写代码和学习优化；首稿计数、双循环汇总及主动修订、单遍示范，短问/测试/工具不额外累计分钟。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Python if/else与缩进，温度条件分类",
+          "started_at": "2026-10-28T19:31:46+08:00",
+          "ended_at": "2026-10-28T19:52:52+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "学生确认本段在学Python，但等待教师回复时看手机；等待看手机排除，有效主动学习分钟与等待分钟具体未分开，不能把21分06秒全部计入。"
+        },
+        {
+          "category": "computer_fundamentals",
+          "topic": "二进制位权与非负表示范围",
+          "started_at": "2026-10-28T19:52:52+08:00",
+          "ended_at": "2026-10-28T20:00:20+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "有效样本过滤、总和与安全均值综合",
+          "started_at": "2026-10-28T20:00:20+08:00",
+          "ended_at": "2026-10-28T20:20:44+08:00",
+          "effective_minutes": 11,
+          "effective_minutes_precision": "approximate_student_report",
+          "confirmed_through": "2026-10-28T20:11:27+08:00",
+          "evidence": "学生明确一直写题、基本没有等待；窗口11分07秒近似记11分钟，后续修改另计。",
+          "status": "closed_partial_effective_time_confirmed"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "标量故障判断函数与有效统计整合",
+          "started_at": "2026-10-28T20:20:44+08:00",
+          "ended_at": "2026-10-28T20:30:40+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "define宏集中配置样本数与多长度验证",
+          "started_at": "2026-10-28T20:30:40+08:00",
+          "ended_at": "2026-10-28T20:39:18+08:00",
+          "effective_minutes": null,
+          "status": "closed_time_in_additional_confirmed_interval"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "连续故障状态与最长纪录综合",
+          "started_at": "2026-10-28T20:41:58+08:00",
+          "ended_at": "2026-10-28T21:07:32+08:00",
+          "effective_minutes": 15,
+          "effective_minutes_precision": "approximate_student_report",
+          "confirmed_through": "2026-10-28T20:57:22+08:00",
+          "status": "closed_partial_effective_time_confirmed",
+          "evidence": "学生确认20:41–20:57一直写题、基本无等待，窗口15分24秒近似记15分钟；其后未确认。首稿风险与修订后死循环已诊断，当前最终十例通过，详见日志。"
+        },
+        {
+          "category": "computer_fundamentals",
+          "topic": "sizeof类型大小、字节与数值位数区别",
+          "started_at": "2026-10-28T21:07:32+08:00",
+          "ended_at": "2026-10-28T21:16:58+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed"
+        },
+        {
+          "category": "language_tools",
+          "topic": "读取编译警告与错误并定位根因",
+          "started_at": "2026-10-28T21:16:58+08:00",
+          "ended_at": "2026-10-28T21:25:21+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed"
+        },
+        {
+          "category": "testing_review",
+          "topic": "设计能区分错误实现的反例并复盘",
+          "started_at": "2026-10-28T21:25:21+08:00",
+          "ended_at": null,
+          "effective_minutes": null,
+          "status": "active"
+        }
+      ],
+      "reason": "学生明确继续，真实时钟恢复；17:41:42至18:25:08餐休43分26秒排除。教师读取/建空文件不计有效学习。旧初练已收口，本段以新情境短问接续，后续Python/Git等仍按实际推进。"
+    },
+    {
+      "id": "2026-10-28-d2-class-1",
+      "date": "2026-10-28",
+      "label": "D2（学生本次称呼；历史累计Day编号另行保留）",
+      "status": "paused",
+      "started_at": "2026-10-28T14:00:33+08:00",
+      "paused_at": "2026-10-28T17:41:42+08:00",
+      "pause_reason": "学生明确暂停计时，外出吃饭。恢复须重新采时，餐休不计学习。",
+      "wall_elapsed_seconds_at_pause": 13269,
+      "effective_minutes": null,
+      "elapsed_minutes": null,
+      "break_minutes": null,
+      "timing_status": "paused_effective_time_unconfirmed",
+      "segments": [
+        {
+          "category": "computer_fundamentals",
+          "topic": "源码、构建与运行：前置诊断",
+          "started_at": "2026-10-28T14:00:33+08:00",
+          "ended_at": "2026-10-28T14:06:50+08:00",
+          "effective_minutes": null,
+          "elapsed_seconds": 377,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "学生两次预测正确，按指导实跑报告7/7/12；期间含教师工具读取，墙钟不全部算有效学习。"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "线性查找前置、带读与提示后初练",
+          "started_at": "2026-10-28T14:06:50+08:00",
+          "ended_at": "2026-10-28T17:37:11+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "学生提示后完成并报告0/-1。学生随后确认长间隔中忙其他事、没有学习；该中断排除有效学习。具体中断起止及短互动有效分钟未知，保留null，不将14:28至17:37整段算学习。"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "初练收口及基本作用域解释",
+          "started_at": "2026-10-28T17:37:11+08:00",
+          "ended_at": "2026-10-28T17:41:42+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "学生解释循环内初始化重置，并将块作用域规则迁移到if回答正确。窗口含教师记录/等待，不全算有效学习。"
+        }
+      ],
+      "reason": "真实时钟UTC+8采样开课；基础单元已有学生证据，详见当日日志。教师读取与备课不计学生学时，消息间隔不自动折算；超过10分钟无互动需核对。"
+    },
     {
       "id": "2026-10-27-existing-class",
       "date": "2026-10-27",

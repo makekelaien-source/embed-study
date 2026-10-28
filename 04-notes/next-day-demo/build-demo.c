@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    int value = 7;
+    int value = 12;
     printf("%d\n", value);
     return 0;
 }

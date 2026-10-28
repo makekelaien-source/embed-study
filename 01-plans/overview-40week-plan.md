@@ -69,3 +69,7 @@ Wi-Fi/MQTT/OTA、手机App、自制PCB、指定低功耗电流和高功率线圈
 ## 参考入口
 
 [ST开发板](https://www.st.com/en/evaluation-tools/nucleo-f446re.html)、[GCC诊断选项](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html)。版本、价格、职位条件在实际使用时核对；本次仅调整计划，未新增实现/测量或投递。
+
+## 日课与周总结执行入口（10-28更新）
+
+日终根据本计划的当前L里程碑准备下一学习日300分钟连续系统块，预备同主题扩展。每日完整学习册含重点/易错点与源代码，先备份校验再清理独立日课源；每L最后一次课按30h五类/语言预算总结实际和结转，四L阶段评估不取消。详见[daily-close-rules.md](daily-close-rules.md)。内容完成、有效时长、独立程度分别验收，旧未知分钟不补造。
