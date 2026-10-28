@@ -45,7 +45,9 @@ def check_cleanup_path(name):
 
 
 def git(root, *args):
-    p = subprocess.run(["git", *args], cwd=root, capture_output=True, timeout=35)
+    p = subprocess.run(["git", "-c", "http.version=HTTP/1.1", *args], cwd=root,
+                       capture_output=True, timeout=35,
+                       env=os.environ | {"GIT_TERMINAL_PROMPT": "0"})
     if p.returncode:
         raise ValueError(p.stderr.decode("utf-8", errors="replace").strip())
     return p.stdout

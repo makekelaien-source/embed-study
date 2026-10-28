@@ -11,6 +11,14 @@
   },
   "teacher_processing_intervals": [
     {
+      "started_at": "2026-10-28T21:59:51+08:00",
+      "end_sampled_before_reply_at": "2026-10-28T22:25:24+08:00",
+      "category": "learning_workflow_implementation_preparation_archive_and_sync",
+      "count_as_student_learning": false,
+      "precision": "observed_administrative_window",
+      "note": "与行政hold重合时按区间并集排除，不能重复扣或加到学生有效分钟。后续同步仍属开放行政hold。"
+    },
+    {
       "started_at": "2026-10-28T21:42:47+08:00",
       "end_sampled_before_reply_at": "2026-10-28T21:44:21+08:00",
       "observed_seconds": 94,
@@ -34,7 +42,7 @@
       "id": "2026-10-28-d2-class-2",
       "date": "2026-10-28",
       "label": "D2饭后接续",
-      "status": "active",
+      "status": "open_administrative_hold",
       "started_at": "2026-10-28T18:25:08+08:00",
       "effective_minutes": 116,
       "effective_minutes_precision": "approximate_student_report",
@@ -177,12 +185,15 @@
           "category": "testing_review",
           "topic": "设计能区分错误实现的反例并复盘",
           "started_at": "2026-10-28T21:25:21+08:00",
-          "ended_at": null,
+          "ended_at": "2026-10-28T21:37:58+08:00",
           "effective_minutes": null,
-          "status": "active"
+          "status": "closed_effective_time_unconfirmed"
         }
       ],
-      "reason": "学生明确继续，真实时钟恢复；17:41:42至18:25:08餐休43分26秒排除。教师读取/建空文件不计有效学习。旧初练已收口，本段以新情境短问接续，后续Python/Git等仍按实际推进。"
+      "reason": "学生明确继续，真实时钟恢复；17:41:42至18:25:08餐休43分26秒排除。教师读取/建空文件不计有效学习。旧初练已收口，本段以新情境短问接续，后续Python/Git等仍按实际推进。",
+      "classroom_ended": false,
+      "administrative_hold_from": "2026-10-28T21:40:39+08:00",
+      "resuming_learning_requires_clock_sample": true
     },
     {
       "id": "2026-10-28-d2-class-1",
