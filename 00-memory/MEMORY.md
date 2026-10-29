@@ -36,7 +36,7 @@
 ## 文件、归档与环境
 
 - 学生新代码统一03-code_codex，布置前先建ASCII空白文件，已有不覆盖，核心学生写；03-code历史原位保留。
-- 当日日课原件先私有Git快照，再合册、逐件字节/源码校验后清理，公共go/长期记忆计划能力/主项目保留。恢复用01-plans/tools/study_book.py，禁止覆盖已有文件。D3保全/同步最终结果以学习册和忽略的local-sync-state.json为准，当前不得凭文字假定已推送。
+- 当日日课原件先私有Git快照，再合册、逐件字节/源码校验后清理，公共go/长期记忆计划能力/主项目保留。恢复用01-plans/tools/study_book.py，禁止覆盖已有文件。D3原件已推送私有快照3f0c04b6674311227d971934615834f5f4e6e721，20份资料字节校验及恢复验证完成，17份日课独立源已按清单清理，公共go保留。最终合册提交同步结果以忽略的local-sync-state.json与Git为准。
 - 当前Windows/PowerShell，GCC D:/embedded/mingw64/bin/gcc.exe，Python D:/working software/python/python.exe。公共go.bat已设chcp65001及输入/执行字符集UTF-8，实际中文输出已教师验证；VS Code原终端学生重跑反馈未单独确认。
 - 私有仓库makekelaien-source/embed-study，main；日常备份由教师执行，不记学生Git能力。对外同步失败保留原件，禁止强推/重置。
 - 桌面软件操作必须desktop-continuity，先搜专用MCP并观察最终状态；硬件采购、登录、投递学生决定。
