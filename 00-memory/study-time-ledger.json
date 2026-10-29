@@ -33,6 +33,20 @@
       "category": "administrative_timing_method_update",
       "count_as_student_learning": false,
       "precision": "sampled_estimate_not_exact_model_thinking_time"
+    },
+    {
+      "started_at": "2026-10-29T11:58:20+08:00",
+      "end_sampled_before_reply_at": "2026-10-29T11:58:34+08:00",
+      "category": "d3_session_preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-10-29T12:49:37+08:00",
+      "end_sampled_before_reply_at": "2026-10-29T12:50:22+08:00",
+      "category": "terminal_encoding_diagnosis_and_repair",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
     }
   ],
   "policy": "../01-plans/daily-close-rules.md",
@@ -252,6 +266,160 @@
       "timing_status": "unconfirmed",
       "segments": [],
       "reason": "Student ended the day. No verified class start/segment timestamps were captured; do not infer duration from planned hours. Closing observation is an administrative clock sample, not an exact student stop time."
+    },
+    {
+      "id": "2026-10-29-d3-class-1",
+      "date": "2026-10-29",
+      "label": "D3",
+      "status": "paused",
+      "started_at": "2026-10-29T11:58:20+08:00",
+      "effective_minutes": 39,
+      "timing_status": "paused_partial_effective_time_confirmed",
+      "segments": [
+        {
+          "category": "c_mainline",
+          "topic": "温度分类前置H0正确；阶段A独立综合",
+          "started_at": "2026-10-29T11:59:54+08:00",
+          "effective_minutes": 39,
+          "status": "closed_partial_effective_time_confirmed",
+          "evidence": "学生确认本段一直写题；11:59:54至12:40:04墙钟约40分钟，扣教师布题处理约1分钟，暂估39分钟，非精密测量。",
+          "ended_at": "2026-10-29T13:03:47+08:00"
+        },
+        {
+          "category": "computer_fundamentals",
+          "topic": "sizeof真数组整体与元素",
+          "started_at": "2026-10-29T13:03:47+08:00",
+          "effective_minutes": null,
+          "status": "paused_effective_time_unconfirmed",
+          "evidence": "学生H0预测sizeof真数组12、元素4正确；仅当前平台条件题。教师读取/记录等待排除，具体有效分钟未确认。",
+          "ended_at": "2026-10-29T13:07:03+08:00"
+        }
+      ],
+      "reason": "学生明确开始D3；先确认温度报告分类规则，不沿用昨日行政等待计时。",
+      "paused_at": "2026-10-29T13:07:03+08:00",
+      "pause_reason": "学生明确暂停吃饭；恢复时重新采时，餐休排除。"
+    },
+    {
+      "id": "2026-10-29-d3-class-2",
+      "date": "2026-10-29",
+      "label": "D3餐后接续",
+      "status": "paused",
+      "started_at": "2026-10-29T14:00:17+08:00",
+      "effective_minutes": null,
+      "timing_status": "paused_effective_time_unconfirmed",
+      "segments": [
+        {
+          "category": "computer_fundamentals",
+          "topic": "数组值变化与sizeof",
+          "started_at": "2026-10-29T14:00:17+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T14:01:47+08:00"
+        },
+        {
+          "category": "algorithms",
+          "topic": "当前连续数和历史最长逐项跟踪",
+          "started_at": "2026-10-29T14:01:47+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T14:03:29+08:00"
+        },
+        {
+          "category": "testing_review",
+          "topic": "区分当前值误当历史最长的反例设计",
+          "started_at": "2026-10-29T14:03:29+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T14:06:40+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "首次报警下标扩展A与控制流收口",
+          "started_at": "2026-10-29T14:06:40+08:00",
+          "ended_at": "2026-10-29T14:14:09+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "学生独立保存源码有证据，教师布题/读取/测试等待排除，未精确分离。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Python for/range",
+          "started_at": "2026-10-29T14:14:09+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T14:45:21+08:00"
+        },
+        {
+          "category": "testing_review",
+          "topic": "C/Python真实错误与自测文字复盘",
+          "started_at": "2026-10-29T14:45:21+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T14:58:22+08:00"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Python首次高温下标独立迁移",
+          "started_at": "2026-10-29T14:58:22+08:00",
+          "effective_minutes": null,
+          "status": "paused_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T15:15:24+08:00",
+          "note": "学生恢复时确认14:58—15:15中间做其他事，实际学习时长不确定；保持未确认，不计满17分钟。"
+        }
+      ],
+      "reason": "学生明确继续；13:07:03—14:00:17餐休53分14秒排除；读取资料/教师回复等待排除。",
+      "paused_at": "2026-10-29T15:15:24+08:00",
+      "pause_reason": "学生明确暂停学习，未声明日终。恢复重新采时，暂停区间排除。"
+    },
+    {
+      "id": "2026-10-29-d3-class-3",
+      "date": "2026-10-29",
+      "label": "D3晚间恢复",
+      "status": "ended",
+      "started_at": "2026-10-29T19:41:24+08:00",
+      "effective_minutes": null,
+      "timing_status": "ended_partial_effective_time_confirmed",
+      "segments": [
+        {
+          "category": "language_tools",
+          "topic": "Python首次高温下标保存稿测试与修订",
+          "started_at": "2026-10-29T19:41:24+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-29T20:16:22+08:00"
+        },
+        {
+          "category": "language_tools",
+          "topic": "学生明确要求追加Python while新知识",
+          "started_at": "2026-10-29T20:16:22+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "教师准备与两短例验证时间排除，当前预测待答。",
+          "ended_at": "2026-10-29T21:18:06+08:00"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Python while True与break",
+          "started_at": "2026-10-29T21:18:06+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "准备/示例验证等待排除，学生预测待答。",
+          "ended_at": "2026-10-29T21:26:33+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "用户指定最后单元：函数声明/原型",
+          "started_at": "2026-10-29T21:26:33+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "用户明确要求回C并在本单元后结束，教师备课/验证等待排除。",
+          "ended_at": "2026-10-29T21:37:45+08:00"
+        }
+      ],
+      "reason": "学生明确恢复。15:15:24—19:41:24暂停4小时26分钟排除；教师读取/测试等待排除。",
+      "ended_at": "2026-10-29T21:37:45+08:00",
+      "classroom_ended": true,
+      "reason_ended": "用户指定最后一个C单元完成后结束；函数原型小练已通过，21:37:45起全部教师日终工作排除。"
     }
   ]
 }

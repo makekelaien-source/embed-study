@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-30",
+  "teacher_only": true,
+  "student_passes_added": 0,
+  "status": "passed",
+  "minutes": 300,
+  "systems": [
+    "C",
+    "Git",
+    "Review"
+  ],
+  "cases": [
+    {
+      "source": "04-notes/next-day-demo/d4-prototype-demo.c",
+      "executor": "teacher",
+      "command": [
+        "D:/embedded/mingw64/bin/gcc.exe",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "D:\\Apostgraduate\\opencode\\embed-study\\04-notes\\next-day-demo\\d4-prototype-demo.c",
+        "-o",
+        "C:\\Users\\Admin\\AppData\\Local\\Temp\\d4-teacher-adnvmdcm\\d4-prototype-demo.exe"
+      ],
+      "build_exit": 0,
+      "diagnostics": "",
+      "expected": "8",
+      "actual": "8",
+      "run_exit": 0
+    },
+    {
+      "source": "04-notes/next-day-demo/d4-missing-definition-demo.c",
+      "executor": "teacher",
+      "command": [
+        "D:/embedded/mingw64/bin/gcc.exe",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "D:\\Apostgraduate\\opencode\\embed-study\\04-notes\\next-day-demo\\d4-missing-definition-demo.c",
+        "-o",
+        "C:\\Users\\Admin\\AppData\\Local\\Temp\\d4-teacher-adnvmdcm\\d4-missing-definition-demo.exe"
+      ],
+      "build_exit": 1,
+      "diagnostics": "D:/embedded/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: C:\\Users\\Admin\\AppData\\Local\\Temp\\ccu6SOG9.o:d4-missing-definition-demo.c:(.text+0xe): undefined reference to `missing_value'\ncollect2.exe: error: ld returned 1 exit status\n",
+      "expected": "link failure: missing definition",
+      "actual": "undefined reference found",
+      "run_exit": null
+    }
+  ]
+}

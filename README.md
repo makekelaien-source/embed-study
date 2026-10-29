@@ -7,7 +7,7 @@
 新对话接续先读 [今天的长期学习计划与教学交接](00-memory/learning-handoff-2026-10-27.md)。后续由本助手主导备课、授课与复测，默认在学习结束或暂停时留存记录；实际进度以最新记忆、能力表和日志为准。
 
 1. 看 [30学习周＋4假期周＋2机动周总计划](01-plans/overview-40week-plan.md)。
-2. 先读[最新学习册](02-logs/2026-10-28.md)和[当前记忆](00-memory/MEMORY.md)。[下一学习日预案](04-notes/lesson-2026-10-29.md)按300分钟先C后Python；是否开新日以实际课堂状态为准。教师按[教学规范](01-plans/teaching-guide.md)授课，提示/独立/复测分记。
+2. 先读[最新学习册](02-logs/2026-10-29.md)和[当前记忆](00-memory/MEMORY.md)。[下一学习日预案](04-notes/lesson-2026-10-30.md)按300分钟先C后Git工具；是否开新日以实际课堂状态为准。教师按[教学规范](01-plans/teaching-guide.md)授课，提示/独立/复测分记。
 3. 近期用 [L1–12任务](01-plans/weeks-01-12-plan.md)，后续用 [L13–30](01-plans/weeks-13-44-plan.md)。
 4. 面试核心作品是 [多通道实时采集与故障安全控制终端](05-projects/realtime-terminal/README.md)，按 [验收表](05-projects/realtime-terminal/acceptance.md) 留证据。
 5. 教学助手遵循 [AGENTS.md](AGENTS.md)，当前状态见 [MEMORY.md](00-memory/MEMORY.md)，掌握程度见 [能力表](00-memory/skill-matrix.md)。
