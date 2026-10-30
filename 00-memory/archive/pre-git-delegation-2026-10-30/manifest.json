@@ -1,0 +1,38 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "92899b574d4f79409f1994ed5f812a882b6c3671e12045ca4bedb97f3c8333c6"
+  },
+  {
+    "path": "README.md",
+    "sha256": "f2a124dab4c561b4483aae2748c6e19ee68822aaf095ec8c6786f070cdb9f546"
+  },
+  {
+    "path": "01-plans/daily-close-rules.md",
+    "sha256": "cb3d66de0295ac4c97c9048bffade77a670575b1292a3725ba7f4b4f3de7779c"
+  },
+  {
+    "path": "01-plans/teaching-guide.md",
+    "sha256": "3dd3f03046b79627069ae97737bf9ecde8f62a6b5654aa3ac02e255d1db2ec8c"
+  },
+  {
+    "path": "01-plans/overview-40week-plan.md",
+    "sha256": "1e273d42e664c5922825aac1a302b841e46ca5f6ed4095db9199a0243b4c8fdf"
+  },
+  {
+    "path": "01-plans/language-and-tools-plan.md",
+    "sha256": "548afd5249f673608299b05107e5678ea3360e4e09718d1f601c842dd4bba38d"
+  },
+  {
+    "path": "01-plans/weeks-01-12-plan.md",
+    "sha256": "2cf3ef1ce87987f459be838948c77d8bb5bf3693c5f41f6252607d973d60deca"
+  },
+  {
+    "path": "01-plans/rolling-schedule.md",
+    "sha256": "0f982625b0c532415bdda110e7c4f59153b141ab10df71e2b5d40d460eb7894f"
+  },
+  {
+    "path": "04-notes/lesson-2026-10-30.md",
+    "sha256": "943422f7a453b9242affaa924d1848745daaeec041d770063e13cca197d1b451"
+  }
+]

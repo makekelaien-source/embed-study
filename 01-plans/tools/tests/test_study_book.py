@@ -4,6 +4,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -108,6 +109,49 @@ class StudyBookTests(unittest.TestCase):
         self.build()
         with self.assertRaises(ValueError):
             study_book.restore(self.root, self.book, "03-code_codex/practice.py", "../outside.py")
+
+    def github_snapshot(self, metadata, visibility=None):
+        """Only the external GitHub network responses are substituted."""
+        responses = [self.snapshot.encode(), b"https://github.com/example/study.git",
+                     (self.snapshot + " refs/heads/main").encode()]
+        response = subprocess.CompletedProcess([], 0, json.dumps(metadata), "")
+        with patch.object(study_book, "git", side_effect=responses), \
+                patch.object(study_book.subprocess, "run", return_value=response):
+            if visibility is None:
+                return study_book.private_remote_snapshot(self.root, self.snapshot)
+            return study_book.private_remote_snapshot(self.root, self.snapshot, visibility=visibility)
+
+    def test_explicit_public_authorization_accepts_verified_public_snapshot(self):
+        try:
+            self.github_snapshot({"private": False}, visibility="public")
+        except (TypeError, ValueError) as error:
+            self.fail(f"Explicitly authorized public snapshot was rejected: {error}")
+
+    def test_private_remains_the_default_visibility_requirement(self):
+        with self.assertRaises(ValueError):
+            self.github_snapshot({"private": False})
+        self.github_snapshot({"private": True})
+
+    def test_public_authorization_rejects_unknown_or_mismatched_visibility(self):
+        for metadata in ({}, {"private": None}, {"private": True}):
+            with self.subTest(metadata=metadata), self.assertRaises(ValueError):
+                self.github_snapshot(metadata, visibility="public")
+
+    def test_explicit_daily_text_exercise_can_be_archived_and_cleaned(self):
+        self.write("03-code_codex/practice.txt", b"1234")
+        self.git("add", "03-code_codex/practice.txt")
+        self.git("commit", "-m", "Preserve daily text exercise")
+        self.snapshot = self.git("rev-parse", "HEAD").strip()
+        self.git("push", "origin", "main")
+        self.entries.append({"path": "03-code_codex/practice.txt", "group": "Tool practice",
+                             "role": "Student", "cleanup": True})
+        try:
+            self.build()
+        except ValueError as error:
+            self.fail(f"Explicit daily text exercise was rejected: {error}")
+        study_book.clean(self.root, self.book)
+        self.assertFalse((self.root / "03-code_codex/practice.txt").exists())
+        self.assertTrue((self.root / "03-code_codex/go.bat").exists())
 
 
 if __name__ == "__main__":

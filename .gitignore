@@ -13,3 +13,5 @@ venv/
 /03-code/.vscode/
 /04-notes/teacher-build/
 /00-memory/local-sync-state.json
+
+/00-memory/local-close-work.json

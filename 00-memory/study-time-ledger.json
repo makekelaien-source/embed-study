@@ -420,6 +420,133 @@
       "ended_at": "2026-10-29T21:37:45+08:00",
       "classroom_ended": true,
       "reason_ended": "用户指定最后一个C单元完成后结束；函数原型小练已通过，21:37:45起全部教师日终工作排除。"
+    },
+    {
+      "id": "2026-10-30-d4-class-1",
+      "date": "2026-10-30",
+      "label": "D4",
+      "status": "paused",
+      "started_at": "2026-10-30T12:41:48+08:00",
+      "effective_minutes": null,
+      "timing_status": "paused_effective_time_unconfirmed",
+      "segments": [
+        {
+          "category": "c_mainline",
+          "topic": "D4 C库存阶段A/B/C1；条件与赋值、标量函数、首次拒绝下标",
+          "started_at": "2026-10-30T12:41:48+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-30T13:35:50+08:00",
+          "evidence": "A五组，B五组整体加四项接口，C1七组均教师执行通过；A/B有H2/H3提示，C1核心自行完成、漏输出H1。墙钟包含教师工具/回复等待，未完整分离，有效分钟未知，不整段计学习。"
+        }
+      ],
+      "reason": "学生开始D4；12:41:29起课前读取排除，当前发送前采样；有效时长不按消息间隔自动累计。",
+      "paused_at": "2026-10-30T13:35:50+08:00",
+      "pause_reason": "学生明确暂停去上课；暂停区间排除，非日终。恢复重新采时。"
+    },
+    {
+      "id": "2026-10-30-d4-class-2",
+      "date": "2026-10-30",
+      "label": "D4课后恢复",
+      "status": "ended",
+      "started_at": "2026-10-30T18:17:40+08:00",
+      "effective_minutes": null,
+      "timing_status": "ended_effective_time_unconfirmed",
+      "segments": [
+        {
+          "category": "c_mainline",
+          "topic": "历史最低库存：实际状态与拒绝候选区分",
+          "started_at": "2026-10-30T18:17:40+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-30T18:27:08+08:00"
+        },
+        {
+          "category": "computer_fundamentals",
+          "topic": "函数声明定义与编译链接",
+          "started_at": "2026-10-30T18:27:08+08:00",
+          "ended_at": "2026-10-30T18:29:26+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "实际教师-c及链接对照、学生口头预测；教师准备工具等待排除，有效分钟未完整分离。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "操作前后库存状态跟踪",
+          "started_at": "2026-10-30T18:29:26+08:00",
+          "ended_at": "2026-10-30T18:32:31+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "两组跟踪错误及H2补讲，单问保留0正确，完整独立迁移未过。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "归零边界测试设计",
+          "started_at": "2026-10-30T18:32:31+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-30T18:35:44+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "容量上限10扩展",
+          "started_at": "2026-10-30T18:35:44+08:00",
+          "ended_at": "2026-10-30T18:37:50+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Git差异和暂存范围",
+          "started_at": "2026-10-30T18:37:50+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-30T18:47:30+08:00"
+        },
+        {
+          "category": "testing_review",
+          "topic": "文字复盘：判断与状态更新职责",
+          "started_at": "2026-10-30T18:47:30+08:00",
+          "effective_minutes": null,
+          "status": "awaiting_student_response"
+        },
+        {
+          "category": "language_tools",
+          "topic": "GDB暂停/单步/变量",
+          "started_at": "2026-10-30T19:29:31+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "教师读取编译与批处理验证排除；当前才开始学生操作，不记已通过。",
+          "ended_at": "2026-10-30T20:21:28+08:00"
+        }
+      ],
+      "reason": "学生明确继续D4；13:35:50至18:17:08暂停4小时41分18秒排除，18:17:08起教师读取准备排除，当前重新采样。",
+      "administrative_exclusions": [
+        {
+          "started_at": "2026-10-30T19:25:34+08:00",
+          "ended_at": "2026-10-30T19:28:00+08:00",
+          "topic": "全局取消Git教学与计划更新",
+          "effective_minutes": 0,
+          "reason": "教师行政修订，排除；非用户暂停或日终"
+        },
+        {
+          "started_at": "2026-10-30T19:55:53+08:00",
+          "ended_at": "2026-10-30T19:59:46+08:00",
+          "topic": "教师修复PowerShell UTF8缓存与配置验证",
+          "effective_minutes": 0,
+          "reason": "教师工具/环境等待排除，非用户暂停或日终"
+        },
+        {
+          "started_at": "2026-10-30T20:14:17+08:00",
+          "ended_at": "2026-10-30T20:17:40+08:00",
+          "topic": "教师整理学生请求的GDB参考手册和完整命令索引",
+          "effective_minutes": 0,
+          "reason": "资料准备等待，非收课"
+        }
+      ],
+      "ended_at": "2026-10-30T20:21:28+08:00",
+      "classroom_ended": true,
+      "reason_ended": "学生明确结束D4，并要求明天复习断点。20:21:28后全为教师日终工作，排除。"
     }
   ]
 }

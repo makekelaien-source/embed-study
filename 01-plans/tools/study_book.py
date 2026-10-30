@@ -1,4 +1,4 @@
-"""Lossless daily study books. Cleanup requires matching sources and a pushed private snapshot."""
+"""Lossless daily study books. Cleanup requires matching sources and an authorized remote snapshot."""
 import argparse
 import base64
 import hashlib
@@ -40,7 +40,7 @@ def check_cleanup_path(name):
     parts = PurePosixPath(name)
     if parts.parts[0] not in ("03-code_codex", "04-notes"):
         raise ValueError(f"Protected source cannot be cleaned: {name}")
-    if parts.suffix not in (".c", ".py", ".md", ".json") or parts.name == "knowledge-corrections.md":
+    if parts.suffix not in (".c", ".py", ".md", ".json", ".txt") or parts.name == "knowledge-corrections.md":
         raise ValueError(f"Shared/non-lesson file cannot be cleaned: {name}")
 
 
@@ -175,7 +175,9 @@ def verify(root, book):
     return data
 
 
-def private_remote_snapshot(root, snapshot):
+def private_remote_snapshot(root, snapshot, visibility="private"):
+    if visibility not in ("private", "public"):
+        raise ValueError("Explicit expected visibility must be private or public")
     if git(root, "rev-parse", "HEAD").decode().strip() != snapshot:
         raise ValueError("HEAD changed since snapshot; stop cleanup")
     remote = git(root, "remote", "get-url", "origin").decode().strip()
@@ -195,11 +197,14 @@ def private_remote_snapshot(root, snapshot):
     p = subprocess.run(["gh", "api", "repos/" + slug, "--jq", "{private:.private}"],
                        capture_output=True, text=True, timeout=25,
                        env=os.environ | {"GODEBUG": "http2client=0"})
-    if p.returncode or not json.loads(p.stdout).get("private"):
-        raise ValueError("Private GitHub backup could not be verified")
+    if p.returncode:
+        raise ValueError("GitHub backup visibility could not be verified")
+    actual_private = json.loads(p.stdout).get("private")
+    if type(actual_private) is not bool or actual_private != (visibility == "private"):
+        raise ValueError(f"Expected {visibility} GitHub backup could not be verified")
 
 
-def clean(root, book):
+def clean(root, book, visibility="private"):
     root = Path(root).resolve()
     data = verify(root, book)
     snapshot_sources(root, data)
@@ -207,7 +212,7 @@ def clean(root, book):
     for item in selected:
         if digest(safe(root, item["path"]).read_bytes()) != item["sha256"]:
             raise ValueError(f"Source changed; nothing will be cleaned: {item['path']}")
-    private_remote_snapshot(root, data["snapshot_commit"])
+    private_remote_snapshot(root, data["snapshot_commit"], visibility=visibility)
     removed = []
     for item in selected:
         path = safe(root, item["path"])
@@ -241,6 +246,8 @@ def main():
     parser.add_argument("--snapshot")
     parser.add_argument("--source")
     parser.add_argument("--output")
+    parser.add_argument("--visibility", choices=("private", "public"), default="private",
+                        help="Expected authorized GitHub visibility for cleanup")
     args = parser.parse_args()
     if args.action == "build":
         if not all((args.manifest, args.intro, args.date, args.snapshot)):
@@ -253,7 +260,7 @@ def main():
         data = verify(args.root, args.book)
         print(json.dumps({"verified_sources": len(data["sources"]), "snapshot": data["snapshot_commit"]}))
     elif args.action == "clean":
-        print(json.dumps({"removed": clean(args.root, args.book)}, ensure_ascii=False))
+        print(json.dumps({"removed": clean(args.root, args.book, visibility=args.visibility)}, ensure_ascii=False))
     else:
         if not args.source:
             parser.error("restore needs source")

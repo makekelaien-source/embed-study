@@ -1,0 +1,32 @@
+[
+  {
+    "example": "d5-breakpoint-review.c",
+    "output": "total=5\r\n",
+    "debugger": "Breakpoint 1 at 0x14000176a: file 04-notes/next-day-demo/d5-breakpoint-review.c, line 4.\n[New Thread 44240.0x98ec (id 2)]\n\nThread 1 hit Breakpoint 1, add (left=4, right=-2) at 04-notes/next-day-demo/d5-breakpoint-review.c:4\n4\t    return left + right;\n0x00007ff7784117b9 in main () at 04-notes/next-day-demo/d5-breakpoint-review.c:12\n12\t        total = add(total, values[i]);\nValue returned is $1 = 2\n",
+    "exit": 0
+  },
+  {
+    "example": "d5-scanf-result.c",
+    "input": "5\n",
+    "output": "matched=1 number=5\r\n",
+    "exit": 0
+  },
+  {
+    "example": "d5-scanf-result.c",
+    "input": "abc\n",
+    "output": "matched=0 number=123\r\n",
+    "exit": 0
+  },
+  {
+    "example": "d5-scanf-result.c",
+    "input": "",
+    "output": "matched=-1 number=123\r\n",
+    "exit": 0
+  },
+  {
+    "example": "d5-scanf-result.c",
+    "input": "3.5\n",
+    "output": "matched=1 number=3\r\n",
+    "exit": 0
+  }
+]
