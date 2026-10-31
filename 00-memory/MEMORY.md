@@ -40,3 +40,7 @@ Git课程/作业/复测全取消，保存/提交/上传/网络排障由助手执
 新练习03-code_codex；GCC/GDB D:/embedded/mingw64/bin，Python D:/working software/python/python.exe。公共go.bat直接构建运行，新增dbg.bat构建成功后进GDB，保留不清理。桌面应用使用desktop-continuity。PowerShell UTF8工具01-plans/tools/enable-study-utf8.ps1已配；Git直连曾失败，优先系统当前代理单次配置，不永久写死端口。
 
 [日终规则](../01-plans/daily-close-rules.md) · [教学规范](../01-plans/teaching-guide.md) · [总计划](../01-plans/overview-40week-plan.md) · [能力表](skill-matrix.md) · [下一课](../04-notes/lesson-2026-11-01.md)
+
+## D5资料保全结果
+
+原件公开远程快照`a749fa05b8e0616ec19fec67978847e477fff08a`已核对；学习册19份原件全文/字节校验、19份离线恢复、4个学生程序恢复运行通过，17份日课独立源已按清单清理。公共dbg、长期资料与11-01备课保留。D5代码按需从10-31学习册恢复到新路径，不覆盖已有文件。最终同步以local-sync-state.json及Git为准。
