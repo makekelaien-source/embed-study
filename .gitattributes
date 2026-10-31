@@ -75,3 +75,23 @@
 /02-logs/2026-10-30.md -text
 /04-notes/gdb-command-reference.md -text
 /01-plans/tools/enable-study-utf8.ps1 -text
+
+/03-code_codex/d5-breakpoint-review.c -text
+/03-code_codex/d5-input-status.c -text
+/03-code_codex/d5-reading-report.c -text
+/03-code_codex/d5-pointer-value.c -text
+/03-code_codex/d5-pointer-swap.c -text
+/03-code_codex/d5-pointer-sum-diff.c -text
+/03-code_codex/d5-array-adjust.c -text
+/03-code_codex/d5-char-token.c -text
+/04-notes/lesson-2026-10-31.md -text
+/04-notes/lesson-2026-10-31-addresses.md -text
+/04-notes/lesson-2026-10-31-array-pointers.md -text
+/04-notes/lesson-2026-10-31-char-arrays.md -text
+/04-notes/demo-2026-10-31-addresses.c -text
+/04-notes/d5-pointer-swap-answer.c -text
+/04-notes/next-day-demo/d5-breakpoint-review.c -text
+/04-notes/next-day-demo/d5-scanf-result.c -text
+/04-notes/next-day-demo/validation-2026-10-31.json -text
+/03-code_codex/dbg.bat -text
+/02-logs/2026-10-31.md -text

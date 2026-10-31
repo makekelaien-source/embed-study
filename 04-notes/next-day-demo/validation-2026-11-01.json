@@ -1,0 +1,24 @@
+[
+  {
+    "example": "d6-text-length-demo.c",
+    "compiler_exit": 0,
+    "diagnostics": "",
+    "run_exit": 0,
+    "assertions": "passed",
+    "actor": "teacher_not_student"
+  },
+  {
+    "example": "d6-copy-capacity-demo.c",
+    "compiler_exit": 0,
+    "diagnostics": "",
+    "run_exit": 0,
+    "assertions": "passed",
+    "actor": "teacher_not_student"
+  },
+  {
+    "example": "const-write-diagnostic",
+    "compiler_exit": 1,
+    "expected": "reject write through const char pointer",
+    "actor": "teacher_not_student"
+  }
+]

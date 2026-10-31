@@ -547,6 +547,77 @@
       "ended_at": "2026-10-30T20:21:28+08:00",
       "classroom_ended": true,
       "reason_ended": "学生明确结束D4，并要求明天复习断点。20:21:28后全为教师日终工作，排除。"
+    },
+    {
+      "id": "2026-10-31-d5-class-1",
+      "date": "2026-10-31",
+      "label": "D5",
+      "status": "paused",
+      "started_at": "2026-10-31T15:04:09+08:00",
+      "effective_minutes": null,
+      "timing_status": "paused_partial_effective_time_confirmed",
+      "segments": [
+        {
+          "category": "language_tools",
+          "topic": "GDB断点复习：暂停与结束",
+          "started_at": "2026-10-31T15:04:09+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-31T15:29:05+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "scanf单整数转换返回值",
+          "started_at": "2026-10-31T15:29:05+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-31T16:23:10+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "L2-1对象值地址与&",
+          "started_at": "2026-10-31T16:33:43+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "exclusion_note": "16:23:10至16:33:43为规则行政/备课，排除，不算学生学习",
+          "ended_at": "2026-10-31T17:50:20+08:00"
+        }
+      ],
+      "reason": "学生开始D5；15:03:53至15:04:09课前读取准备排除。后续教师处理按采样估算扣除，不将消息间隔全部算学习。",
+      "confirmed_practice_intervals": [
+        {
+          "started_at": "2026-10-31T15:36:23+08:00",
+          "ended_at": "2026-10-31T15:55:25+08:00",
+          "effective_minutes": 18,
+          "precision": "sampled_estimate",
+          "evidence": "学生确认一直写题；约19分钟采样窗口扣教师发题处理暂估18，其余未知不计入"
+        }
+      ],
+      "paused_at": "2026-10-31T17:50:20+08:00",
+      "pause_reason": "学生明确暂停吃饭；17:50:20起休息及教师收口测试排除，非日终；恢复重新采时。"
+    },
+    {
+      "id": "2026-10-31-d5-class-2",
+      "date": "2026-10-31",
+      "label": "D5饭后恢复",
+      "status": "ended",
+      "started_at": "2026-10-31T19:00:19+08:00",
+      "effective_minutes": null,
+      "timing_status": "ended_effective_time_unconfirmed",
+      "segments": [
+        {
+          "category": "c_mainline",
+          "topic": "指针参数短迁移检查，随后数组与指针",
+          "started_at": "2026-10-31T19:00:19+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-10-31T19:59:47+08:00"
+        }
+      ],
+      "reason": "17:50:20–18:59:56餐休1小时9分36秒排除；18:59:56–19:00:19教师读取与短例验证排除，当前开始恢复教学。",
+      "ended_at": "2026-10-31T19:59:47+08:00",
+      "classroom_ended": true,
+      "reason_ended": "学生明确日终；19:59:47起全部备课、规则更新、归档、Git处理排除。"
     }
   ]
 }
