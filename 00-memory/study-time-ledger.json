@@ -47,6 +47,76 @@
       "category": "terminal_encoding_diagnosis_and_repair",
       "count_as_student_learning": false,
       "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T11:47:48+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T11:48:10+08:00",
+      "category": "lesson_preparation_and_continuity",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T12:02:10+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T12:02:30+08:00",
+      "category": "review_and_compile",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T12:07:34+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T12:08:01+08:00",
+      "category": "teacher_verification_and_unit_records",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T12:12:26+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T12:12:26+08:00",
+      "category": "assignment_file_and_records",
+      "count_as_student_learning": false,
+      "precision": "tool_sample_only"
+    },
+    {
+      "started_at": "2026-11-01T12:56:03+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T12:56:31+08:00",
+      "category": "length_review_and_teacher_tests",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T13:06:33+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T13:06:50+08:00",
+      "category": "unit_validation_and_records",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T13:16:12+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T13:16:28+08:00",
+      "category": "const_validation_and_unit_records",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T14:05:50+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T14:06:07+08:00",
+      "category": "copy_boundary_verification_and_records",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T15:05:24+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T15:06:21+08:00",
+      "category": "authorized_teacher_core_fix_tests_records",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-01T18:39:23+08:00",
+      "end_sampled_before_reply_at": "2026-11-01T18:40:05+08:00",
+      "category": "cut_final_validation_and_unit_records",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
     }
   ],
   "policy": "../01-plans/daily-close-rules.md",
@@ -618,6 +688,193 @@
       "ended_at": "2026-10-31T19:59:47+08:00",
       "classroom_ended": true,
       "reason_ended": "学生明确日终；19:59:47起全部备课、规则更新、归档、Git处理排除。"
+    },
+    {
+      "id": "2026-11-01-d6-class-1",
+      "date": "2026-11-01",
+      "label": "D6",
+      "status": "paused",
+      "started_at": "2026-11-01T11:48:10+08:00",
+      "effective_minutes": null,
+      "timing_status": "paused_partial_effective_time_confirmed",
+      "segments": [
+        {
+          "category": "testing_review",
+          "topic": "D5新知复习：不同名指针形参与调用者对象",
+          "started_at": "2026-11-01T11:48:10+08:00",
+          "effective_minutes": null,
+          "status": "closed_partial_effective_time_confirmed",
+          "evidence": "日初预测及read_at提示后完成；三例教师断言通过；约12分钟确认连续练习另列，其他有效分钟未知。",
+          "ended_at": "2026-11-01T12:07:34+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "字符串长度与容量",
+          "started_at": "2026-11-01T12:08:01+08:00",
+          "effective_minutes": null,
+          "status": "closed_partial_effective_time_confirmed",
+          "evidence": "text_length H3指导后实现，教师主程序七例及函数六例通过；约12分钟连续练习另列，其余有效分钟未确认。",
+          "ended_at": "2026-11-01T13:06:33+08:00"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "const char*只读接口",
+          "started_at": "2026-11-01T13:06:50+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-01T13:16:12+08:00",
+          "evidence": "const接口带读后调整及局部解释通过；%s输出误答经补讲。教师当前版本编译及测试通过；有效分钟未分离。"
+        },
+        {
+          "category": "c_mainline",
+          "topic": "容量受限复制：长度加结束符所需空间",
+          "started_at": "2026-11-01T13:16:28+08:00",
+          "effective_minutes": null,
+          "status": "closed_partial_effective_time_confirmed",
+          "ended_at": "2026-11-01T14:05:50+08:00",
+          "evidence": "容量受限复制第三稿提示后完成，教师八边界断言通过；已确认写题30及13分钟另列，其余未确认。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "复制循环中缓存来源长度，避免重复扫描",
+          "started_at": "2026-11-01T14:06:07+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-01T14:07:51+08:00",
+          "evidence": "学生保存长度缓存改动，暂停后教师验证不计学习；有效分钟未知。"
+        }
+      ],
+      "reason": "学生要求开始D6；11:47:48起至本记录前读取规则、记忆及备课为教师处理，排除。计划300分钟不作为实际分钟。",
+      "confirmed_practice_intervals": [
+        {
+          "started_at": "2026-11-01T11:49:43+08:00",
+          "ended_at": "2026-11-01T12:02:10+08:00",
+          "effective_minutes": 12,
+          "precision": "sampled_estimate_rounded_down",
+          "evidence": "学生确认一直写题或思考；回复发出延迟无法精确分离，约12分钟。"
+        },
+        {
+          "started_at": "2026-11-01T12:43:59+08:00",
+          "ended_at": "2026-11-01T12:56:03+08:00",
+          "effective_minutes": 12,
+          "precision": "sampled_estimate",
+          "evidence": "学生确认一直修改或思考；端点含回复处理误差，暂估12分钟。"
+        },
+        {
+          "started_at": "2026-11-01T13:18:21+08:00",
+          "ended_at": "2026-11-01T13:48:45+08:00",
+          "effective_minutes": 30,
+          "precision": "sampled_estimate",
+          "evidence": "学生确认持续编写或思考复制函数；采样暂估30分钟，回复延迟无法精确分离。"
+        },
+        {
+          "started_at": "2026-11-01T13:48:45+08:00",
+          "ended_at": "2026-11-01T14:02:33+08:00",
+          "effective_minutes": 13,
+          "precision": "sampled_estimate",
+          "evidence": "学生确认持续修改或思考；端点含教师上一轮解释等待，暂估13分钟，非精确测量。"
+        }
+      ],
+      "paused_at": "2026-11-01T14:07:51+08:00",
+      "pause_reason": "学生明确暂停并要求呈现进度，非日终；此后教师验证/记录排除。"
+    },
+    {
+      "id": "2026-11-01-d6-class-2",
+      "date": "2026-11-01",
+      "label": "D6暂停后恢复",
+      "status": "interrupted",
+      "started_at": "2026-11-01T14:21:25+08:00",
+      "effective_minutes": null,
+      "timing_status": "interrupted_tail_time_unconfirmed",
+      "segments": [
+        {
+          "category": "computer_fundamentals",
+          "topic": "普通局部对象生命周期与返回地址有效性",
+          "started_at": "2026-11-01T14:21:25+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-01T14:27:32+08:00",
+          "evidence": "返回自身普通局部对象地址误判，经补讲；调用者reading经pass_address返回地址后仍存在且访问有效，学生对照判断正确。未记稳定独立。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "前缀复制：来源长度、前缀上限及目标容量的三者关系",
+          "started_at": "2026-11-01T14:27:32+08:00",
+          "effective_minutes": null,
+          "status": "closed_partial_effective_time_confirmed",
+          "ended_at": "2026-11-01T15:05:24+08:00",
+          "evidence": "前缀迁移min/sizeof/结束符仍有缺口，学生请求教师代修，HA参考；教师验证不计学生有效学习。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "学生请求同知识点变式：按分隔符原地截断",
+          "started_at": "2026-11-01T15:16:22+08:00",
+          "effective_minutes": null,
+          "status": "awaiting_student_revision",
+          "evidence": "核心截断动作正确；marker误作容量、扫描未在空字符停止，教师安全支架发现尾部被误改；已给H2/H3修订提示。"
+        }
+      ],
+      "reason": "学生明确继续；14:07:51至14:21:04暂停排除，14:21:04至本记录读取/准备排除。恢复不重复日初复习。",
+      "confirmed_practice_intervals": [
+        {
+          "started_at": "2026-11-01T14:29:56+08:00",
+          "ended_at": "2026-11-01T14:51:15+08:00",
+          "effective_minutes": 21,
+          "precision": "sampled_estimate",
+          "evidence": "学生确认持续写前缀复制或思考；端点含发题延迟，暂估。"
+        },
+        {
+          "started_at": "2026-11-01T15:16:22+08:00",
+          "ended_at": "2026-11-01T15:48:28+08:00",
+          "effective_minutes": 32,
+          "precision": "sampled_estimate",
+          "evidence": "学生确认持续写分隔符截断或思考；回复发出延迟无法精确分离，暂估32分钟。"
+        }
+      ],
+      "interruption_note": "学生转问磁性材料后于18:25重新请求继续；尾部区间缺采样，不追记为C有效学习，不虚构准确暂停起点。"
+    },
+    {
+      "id": "2026-11-01-d6-class-3",
+      "date": "2026-11-01",
+      "label": "D6晚间接续",
+      "status": "ended",
+      "started_at": "2026-11-01T18:26:22+08:00",
+      "effective_minutes": null,
+      "timing_status": "ended_partial_effective_time_confirmed",
+      "segments": [
+        {
+          "category": "algorithms",
+          "topic": "原地分隔符截断短修订：char marker、空字符停止、受限输入",
+          "started_at": "2026-11-01T18:26:22+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-01T18:39:23+08:00",
+          "evidence": "截断题经明确语句H3提示后通过教师八函数边界/四main输入；有效分钟未完整分离，不将整段墙钟当学习。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "GDB观察分号改空字符前后的数组",
+          "started_at": "2026-11-01T18:44:17+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-01T18:52:43+08:00",
+          "evidence": "指导下实际GDB断点、i4、内存前后及字符串显示观察，学生解释空字符；continue正常退出。教师处理需排除，有效分钟未完整分离。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "学生选例：无分号和多个分号的返回值/文本及检查目的",
+          "started_at": "2026-11-01T18:52:43+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-01T18:57:29+08:00",
+          "evidence": "学生自选两例预期正确，多个分号经覆盖目标提示补例；教师代跑通过。有效分钟未完整分离，非满30分钟。"
+        }
+      ],
+      "reason": "学生明确继续。18:25:42开始读取与备课排除，当前恢复教学；磁材问答及未确认中断区间不计作C练习。",
+      "current_state": "planned_content_covered_classroom_not_ended",
+      "ended_at": "2026-11-01T18:59:09+08:00",
+      "classroom_ended": true,
+      "reason_ended": "学生明确结束今天学习；此后备课、归档、测试、同步均教师工作排除。"
     }
   ]
 }

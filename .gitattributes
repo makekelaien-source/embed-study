@@ -95,3 +95,29 @@
 /04-notes/next-day-demo/validation-2026-10-31.json -text
 /03-code_codex/dbg.bat -text
 /02-logs/2026-10-31.md -text
+
+/03-code_codex/d6-pointer-review.c -text
+
+/03-code_codex/d6-text-length.c -text
+
+/03-code_codex/d6-copy-text.c -text
+
+/03-code_codex/d6-copy-prefix.c -text
+
+/03-code_codex/d6-cut-at-marker.c -text
+
+/04-notes/lesson-2026-11-01.md -text
+
+/04-notes/lesson-2026-11-01-taught.md -text
+
+/04-notes/d6-copy-prefix-teacher-tests.c -text
+
+/04-notes/next-day-demo/d6-text-length-demo.c -text
+
+/04-notes/next-day-demo/d6-copy-capacity-demo.c -text
+
+/04-notes/next-day-demo/validation-2026-11-01.json -text
+
+/00-memory/archive/d6-copy-prefix-before-teacher-fix-2026-11-01-150524.c -text
+
+/02-logs/2026-11-01.md -text
