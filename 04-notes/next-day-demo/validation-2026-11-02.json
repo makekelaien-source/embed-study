@@ -1,9 +1,0 @@
-{
-  "time": "2026-11-01T19:00:38+08:00",
-  "teacher_only": true,
-  "demo_exit": 0,
-  "demo_stdout": "PYTHON_DEMOS_PASS\n",
-  "pdb_exit": 0,
-  "pdb_transcript": "> d:\\apostgraduate\\opencode\\embed-study\\04-notes\\next-day-demo\\d7-python-pdb-demo.py(1)<module>()\n-> values = [4, -2, 7]\n(Pdb) Breakpoint 1 at d:\\apostgraduate\\opencode\\embed-study\\04-notes\\next-day-demo\\d7-python-pdb-demo.py:4\n(Pdb) > d:\\apostgraduate\\opencode\\embed-study\\04-notes\\next-day-demo\\d7-python-pdb-demo.py(4)<module>()\n-> total += value\n(Pdb) 4\n(Pdb) 0\n(Pdb) > d:\\apostgraduate\\opencode\\embed-study\\04-notes\\next-day-demo\\d7-python-pdb-demo.py(3)<module>()\n-> for value in values:\n(Pdb) 4\n(Pdb) ",
-  "student_ability_claim": false
-}
