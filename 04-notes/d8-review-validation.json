@@ -1,8 +1,0 @@
-{
-  "teacher_only": true,
-  "student_question": "Predict import side effect and wrapper missing return",
-  "stdout": "TOOLS\nNone\n",
-  "stderr": "",
-  "exit_code": 0,
-  "note": "Teacher preview only; no student result and no verification of student guard module."
-}

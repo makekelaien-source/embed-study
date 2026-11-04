@@ -1186,7 +1186,7 @@
       "started_at": "2026-11-04T16:13:39+08:00",
       "planned_capacity_minutes": 300,
       "effective_minutes": null,
-      "current_state": "ended_administrative_close_in_progress",
+      "current_state": "ended_book_verified_sources_archived",
       "classroom_ended": true,
       "segments": [
         {
@@ -1294,7 +1294,7 @@
       ],
       "note": "Teacher preclass work excluded. Student answer pending; plan is not actual time.",
       "break_confirmed": true,
-      "next_topic": "Follow user next instruction; daily close not requested",
+      "next_topic": "D9 prior-day append/return review, then continuous C fgets/read status; no Python new programming block",
       "paused_at": "2026-11-04T17:52:47+08:00",
       "breaks": [
         {
@@ -1310,7 +1310,8 @@
       "reason_ended": "Student explicitly ended today; all later preparation/archive/Git excluded.",
       "elapsed_wall_seconds": 13380,
       "wall_less_confirmed_meal_seconds": 10010,
-      "effective_time_note": "Wall less confirmed meal is only an upper bound, includes unseparated teacher work and possible unconfirmed gaps; do not treat as effective minutes or fill 300."
+      "effective_time_note": "Wall less confirmed meal is only an upper bound, includes unseparated teacher work and possible unconfirmed gaps; do not treat as effective minutes or fill 300.",
+      "administrative_work_excluded_from": "2026-11-04T19:56:39+08:00"
     }
   ]
 }

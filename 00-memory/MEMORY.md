@@ -12,7 +12,7 @@ D8已完成内容与证据：模块/包装入口本稿无改动通过；check_co
 
 时长：16:13:39–19:56:39墙钟223分钟，吃饭56分10秒明确排除，余166分50秒仍含教师等待，仅有效学习上限。精确有效分钟未知；至少比300少133分10秒，不能填满或推精确周余额。19:56:39后全教师工作排除。D8取消循环分析改模块扩展，算法未做；后五C日容量180/20/24/29/47，与D8调整0/200/0/35/65保持周1800五类预算，实际另计，假期/机动未变。
 
-日终原件快照/学习册校验/清理同步正在执行，只有本机local-sync-state.json和Git的最终核验为完成证据。公共go/dbg长期保留；裸.\go默认D8路径源归档后需恢复或显式指定新练习，D9默认给.\go filename.c；dbg支持.py且C/GDB回归过。原报警报告空题取消不记失败，历史03-code/d1.c不改不提交。
+日终原件快照5bdf19735a5839861de3c165d8e7e782b77a4caf已推送公开远程核对；28原件全文/字节/SHA与离线恢复通过，11恢复样例运行通过，25份日课源按清单清理。工具模块guard按学生要求不重复功能验证，仅字节保全；公共/长期/下一课/历史资料保留。最终同步结果看local-sync-state.json与Git。公共go/dbg长期保留；裸.\go默认D8路径源归档后需恢复或显式指定新练习，D9默认给.\go filename.c；dbg支持.py且C/GDB回归过。原报警报告空题取消不记失败，历史03-code/d1.c不改不提交。
 
 ## D7实际证据与复测
 
@@ -53,4 +53,4 @@ D6课堂窗口11:48:10–14:07:51；14:21:25恢复后中断尾部不完整；18:
 
 新题03-code_codex先建空白，已有文件不覆盖。GCC/GDB D:/embedded/mingw64/bin，Python D:/working software/python/python.exe；go.bat/dbg.bat公共保留。桌面任务desktop-continuity，终端GDB状态逐步观察。Git教学/作业/复测取消，教师保存上传，不计学时。makekelaien-source/embed-study公开已授权；禁止强推。网络优先当前系统代理单次配置，不永久写死端口。
 
-[D7学习册](../02-logs/2026-11-03.md) · [下一课](../04-notes/lesson-2026-11-04.md) · [L1周总结](../02-logs/weekly/L01-summary.md) · [教学规范](../01-plans/teaching-guide.md) · [日终规则](../01-plans/daily-close-rules.md) · [能力表](skill-matrix.md)
+[D8学习册](../02-logs/2026-11-04.md) · [下一课](../04-notes/lesson-2026-11-05.md) · [L1周总结](../02-logs/weekly/L01-summary.md) · [教学规范](../01-plans/teaching-guide.md) · [日终规则](../01-plans/daily-close-rules.md) · [能力表](skill-matrix.md)
