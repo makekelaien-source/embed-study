@@ -1,0 +1,97 @@
+{
+  "teacher_only": true,
+  "date": "2026-11-04",
+  "next_lesson_date": "2026-11-05",
+  "programs": 3,
+  "checks": [
+    {
+      "source": "d9-fgets-demo.c",
+      "case": "space",
+      "stdin": "A B\n",
+      "stdout": "TEXT=[A B\n]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-fgets-demo.c",
+      "case": "blank",
+      "stdin": "\n",
+      "stdout": "TEXT=[\n]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-fgets-demo.c",
+      "case": "eof",
+      "stdin": "",
+      "stdout": "READ_FAILED\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-fgets-demo.c",
+      "case": "capacity",
+      "stdin": "ABCDEFGH\n",
+      "stdout": "TEXT=[ABCDEFG]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-two-reads-demo.c",
+      "case": "same line remainder",
+      "stdin": "ABCDEFGH\nZ\n",
+      "stdout": "FIRST=[ABCDEFG]\nSECOND=[H\n]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-read-status-reference.c",
+      "case": "space",
+      "stdin": "A B\n",
+      "stdout": "STATUS=1\nTEXT=[A B]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-read-status-reference.c",
+      "case": "blank",
+      "stdin": "\n",
+      "stdout": "STATUS=1\nTEXT=[]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-read-status-reference.c",
+      "case": "eof",
+      "stdin": "",
+      "stdout": "STATUS=0\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-read-status-reference.c",
+      "case": "capacity",
+      "stdin": "ABCDEFGH\n",
+      "stdout": "STATUS=2\nTEXT=[ABCDEFG]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-read-status-reference.c",
+      "case": "eof without newline",
+      "stdin": "ABC",
+      "stdout": "STATUS=2\nTEXT=[ABC]\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    },
+    {
+      "source": "d9-read-status-reference.c",
+      "case": "capacity1 no read and no write",
+      "stdin": "ABC\n",
+      "stdout": "-1/Z/65\n",
+      "exit_code": 0,
+      "compile_diagnostics": ""
+    }
+  ],
+  "note": "Not taught, no student skill claim. Status2 means newline not seen, not proof of truncation; EOF-without-newline explicitly tested."
+}

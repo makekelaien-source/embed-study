@@ -1,0 +1,94 @@
+{
+  "student_entry": {
+    "time": "2026-11-04T16:27:17+08:00",
+    "cases": 3,
+    "checks": [
+      "threshold equality",
+      "empty input",
+      "all below"
+    ],
+    "source": "03-code_codex/d8-module-entry.py",
+    "result": "PASS",
+    "teacher_only": true
+  },
+  "return_wrapper": {
+    "time": "2026-11-04T16:33:43+08:00",
+    "cases": 5,
+    "checks": [
+      "new equality",
+      "persistent",
+      "missing previous",
+      "recovered",
+      "empty",
+      "no print",
+      "unchanged inputs"
+    ],
+    "source": "03-code_codex/d8-return-chain.py",
+    "result": "PASS",
+    "teacher_only": true
+  },
+  "configuration_check": {
+    "time": "2026-11-04T17:44:46+08:00",
+    "cases": 7,
+    "checks": [
+      "sample",
+      "identical",
+      "empty actual",
+      "empty expected",
+      "both empty",
+      "mixed order",
+      "only changed",
+      "no function print",
+      "unchanged inputs",
+      "distinct result lists"
+    ],
+    "source": "03-code_codex/d8-config-check.py",
+    "result": "PASS",
+    "teacher_only": true
+  },
+  "paths": {
+    "checks": [
+      "two working directories",
+      "cwd-relative target changes",
+      "script-relative target fixed"
+    ],
+    "source": "03-code_codex/d8-path-report.py",
+    "result": "PASS",
+    "teacher_only": true
+  },
+  "public_tools": {
+    "checks": [
+      "go Python default/explicit",
+      "C compile/run",
+      "compile failure does not run stale exe",
+      "dbg Python stack and exit",
+      "dbg C/GDB launch/quit",
+      "missing Python file error"
+    ],
+    "result": "PASS",
+    "teacher_only": true
+  },
+  "student_pdb": {
+    "checks": [
+      "launch",
+      "breakpoint",
+      "continue",
+      "where",
+      "up",
+      "read caller and callee params",
+      "query NameError",
+      "down",
+      "continue to target end",
+      "q"
+    ],
+    "evidence": "Student-pasted command transcripts; exact process state query confirmed target exited",
+    "status": "guided completion, independent diagnosis not tested"
+  },
+  "main_guard": {
+    "entry": "Student and teacher observed correct new dict output",
+    "early_direct_run": "No output due __main++ typo",
+    "later_source": "Student deliberately removed guard for own experiment and declined repeat verification",
+    "note": "No additional original-module verification performed or later output invented"
+  },
+  "provenance": "Aggregates actually executed tool results earlier in this chat; does not claim fresh reruns. Restored-byte/sample checks recorded separately."
+}

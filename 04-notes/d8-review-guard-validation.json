@@ -1,0 +1,6 @@
+{
+  "teacher_only": true,
+  "stdout": "ENTRY\nDEMO\n",
+  "exit_code": 0,
+  "note": "Independent teacher review example only; student module not run."
+}

@@ -1,0 +1,19 @@
+{
+  "teacher_only": true,
+  "exit_code": 0,
+  "commands": [
+    "b d8_alert_tools.py:4",
+    "c",
+    "where",
+    "p readings",
+    "up",
+    "p current",
+    "down",
+    "p threshold",
+    "q"
+  ],
+  "stdout": "> d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8-return-chain.py(1)<module>()\n-> import d8_alert_tools\n(Pdb) Breakpoint 1 at d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8_alert_tools.py:4\n(Pdb) > d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8_alert_tools.py(4)high_locations()\n-> sum = []\n(Pdb)   d:\\working software\\python\\lib\\bdb.py(627)run()\n-> exec(cmd, globals, locals)\n  <string>(1)<module>()\n  d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8-return-chain.py(9)<module>()\n-> a = new_positions(previous,current)\n  d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8-return-chain.py(4)new_positions()\n-> a = d8_alert_tools.new_alert(privious,current,30)\n  d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8_alert_tools.py(11)new_alert()\n-> group2 = high_locations(current,threshold)\n> d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8_alert_tools.py(4)high_locations()\n-> sum = []\n(Pdb) {'east': 36, 'west': 30}\n(Pdb) > d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8_alert_tools.py(11)new_alert()\n-> group2 = high_locations(current,threshold)\n(Pdb) {'east': 36, 'west': 30}\n(Pdb) > d:\\apostgraduate\\opencode\\embed-study\\03-code_codex\\d8_alert_tools.py(4)high_locations()\n-> sum = []\n(Pdb) 30\n(Pdb) ",
+  "stderr": "",
+  "student_source_sha256": "2e457a0a9b0d3150088bd193cfd216ab746615b5d3557a0120cbdf75fa777c6f",
+  "source_unchanged": true
+}
