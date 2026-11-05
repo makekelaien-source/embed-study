@@ -229,6 +229,19 @@
       "category": "pdb_runner_preparation_and_teacher_preflight",
       "count_as_student_learning": false,
       "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-05T11:30:57+08:00",
+      "end_sampled_before_reply_at": "2026-11-05T11:31:37+08:00",
+      "category": "D9_preclass_context_and_plan_reading",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-05T11:34:11+08:00",
+      "end_sampled_before_reply_at": "2026-11-05T11:34:37+08:00",
+      "category": "D9_review_checkpoint_and_C_preparation",
+      "count_as_student_learning": false
     }
   ],
   "policy": "../01-plans/daily-close-rules.md",
@@ -1312,6 +1325,175 @@
       "wall_less_confirmed_meal_seconds": 10010,
       "effective_time_note": "Wall less confirmed meal is only an upper bound, includes unseparated teacher work and possible unconfirmed gaps; do not treat as effective minutes or fill 300.",
       "administrative_work_excluded_from": "2026-11-04T19:56:39+08:00"
+    },
+    {
+      "date": "2026-11-05",
+      "day_label": "D9",
+      "learning_week": "L2",
+      "started_at": "2026-11-05T11:31:37+08:00",
+      "status": "closed_effective_time_unconfirmed",
+      "effective_minutes": null,
+      "segments": [
+        {
+          "category": "testing_review",
+          "topic": "D8 prior-day recall: list append object content versus return value",
+          "started_at": "2026-11-05T11:31:37+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 25,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T11:34:11+08:00",
+          "evidence": "First answer A/None: None correct, list brackets omitted. Student asked about direct assignment with invalid group brace syntax; teacher explained dictionary creation versus subscription (H2). Direct retrieval contrast answered [A] with quotes/brackets correctly. Immediate post-explanation understanding only; no delayed mastery."
+        },
+        {
+          "category": "mainline",
+          "topic": "C fgets introduction and return guard, complete minimal example",
+          "started_at": "2026-11-05T11:34:37+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 50,
+          "status": "paused_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T11:35:10+08:00",
+          "evidence": "Teacher explained complete fgets example, arguments, capacity-1, newline retention and NULL return guard. Student paused before answering storage prediction for A B plus newline. No student C code or understanding evidence yet."
+        },
+        {
+          "category": "mainline",
+          "topic": "Resume fgets: distinguish newline and string terminator, then reading entry practice",
+          "started_at": "2026-11-05T11:43:39+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Brief post-H2 transfer only; original storage question not repeated. No new 50-minute capacity added.",
+          "evidence": "学生对char text[12]且sizeof text的最大输入字符数答11正确，记已讲后的即时容量迁移。第一读取入口参照完整示例完成，教师严格编译无诊断，四例读取/保护行为符合预期；显示文字差异保留，不记独立设计。删printf仍写数组判断正确；stdin与sizeof机制经追问H2澄清。",
+          "ended_at": "2026-11-05T11:53:42+08:00"
+        },
+        {
+          "category": "mainline",
+          "topic": "Capacity and newline: one fgets need not consume a physical line",
+          "started_at": "2026-11-05T11:53:42+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 45,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "容量预测：学生答ABCDEFG加结束符正确。教师说明H和换行留输入流，以及恰好7字符仍不见换行，未见换行不是超长证明。第二次读取学生答H\\N\\'0'，内容意思正确，C转义拼写经教师明确纠正为H、\\n、\\0；不记独立语法准确。",
+          "ended_at": "2026-11-05T12:02:39+08:00",
+          "additional_evidence": "学生在ROOM A/整数转换对照补讲后，完整姓名Zhang Boxuan含空格场景选fgets正确。记H2换讲法后的即时用途判断，不扩大为独立掌握scanf/fgets全部行为。回到read_text既有任务，不要求重抄main或旧函数。"
+        },
+        {
+          "category": "mainline",
+          "topic": "read_text status contract and student implementation; existing helper and main prepared",
+          "started_at": "2026-11-05T12:02:39+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 50,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T12:15:44+08:00",
+          "evidence": "read_text最终稿教师提取原函数严格编译C11 -Wall -Wextra -Wpedantic -Werror无诊断，12例全部通过：含空格、空行、无输入、超容量、恰好7字符、EOF前短文本且旧尾部换行、单字符EOF、容量1/0/负数不读不写且输入未消费、容量2普通/空行。原文件未改，含空main的原文件未作为完整运行入口编译。学生自行起稿、return2提前退出H2提示、字符串结束边界H2、两状态区分H2、括号/默认返回局部H3示范后修正；记提示/局部示范后完成，非H0独立设计或7天闭环。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Explain status2 and design capacity boundary input; no duplicate function writing",
+          "started_at": "2026-11-05T12:15:44+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T12:32:59+08:00",
+          "evidence": "学生自主补main接status并用status!=-1 && status!=0保护打印，在当前四状态约定下正确。教师直接原源严格编译无诊断，5例输出/退出通过；未打印status属观察需求未落实，不作为功能失败逼格式返工。read_text核心H2/H3历史不改记独立。 Status2 explanation and physical input/storage distinction needed H2 clarification; scanf width questions teacher extension."
+        },
+        {
+          "category": "foundations",
+          "topic": "Input stream: two read_text calls and retained newline",
+          "started_at": "2026-11-05T12:32:59+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 29,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T12:35:53+08:00",
+          "evidence": "Second read first consumes retained newline: student prediction correct. Teacher explained status1/empty string, Z remains unread."
+        },
+        {
+          "category": "language_tools",
+          "topic": "GDB two-read state observation; guided student operation pending",
+          "started_at": "2026-11-05T12:36:35+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 20,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Teacher preflight GDB successfully exited; no live teacher debugger left running.",
+          "evidence": "学生先误输.\\gdb，PowerShell未找到命令；教师纠正公共脚本为dbg。学生要求直接调试本人d9-line-reader.c，改为本人源码断点read_text，非强制教师双读演示。学生实际run断18行，print capacity为8；GDB 30492/inferior29408在运行且断住，经进程查询确认，尚未退出。dest显示G是未初始化旧内容，尚未fgets不能作有效输入。下一步break26、continue，stdin输入A B加回车后，观察dest和前5个字节，预期在去换行前断住。 学生GDB实际b26/c后输入A B回车，命中循环前断点；print desk无符号后自行改dest成功，dest字符串A B加换行。主动p dest[1]=32空格，p dest[3]=10换行，p dest[4]=0结束符；x/5cb dest确认为65A/32空格/66B/10换行/0结束符。记录指导下实际内存观察，额外单元素查询学生主动操作；不能升级独立诊断或延迟掌握。当前仍断26行，待观察换行写0及返回状态。 学生实际GDB断30行，p i=3，p dest[3]=10换行；next后停31行return1尚未执行，p dest显示A B无换行，x/5cb为65/32/66/0/0。去换行只把下标3改0，下标4原结束符仍在，字符串显示遇首0停止。指导下实际状态变化证据，尚未观察返回到main或进程退出。",
+          "ended_at": "2026-11-05T12:47:40+08:00",
+          "completion_evidence": "学生在read_text层p data无符号后主动up至main查data，down回read_text，实际复用已教观察层切换。finish实际执行返回，回main第7行Value returned 1；next至第8行后p status=1，p data为A B加结束符尾部。continue输出A B，inferior29408正常退出；quit已输入。12:47:40教师查询精确GDB30492/目标29408均不存在，确认整个调试器与目标退出。指导下端到端观察完成，局部up/down是学生主动操作，非全程独立诊断或延迟复测闭环。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "Bounded character search visits and sequential scans: counts add",
+          "started_at": "2026-11-05T12:48:03+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 24,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T12:50:32+08:00",
+          "evidence": "学生对两次顺序查找各7位置总量答14正确（前题结束符停止已H2补讲）。教师进一步概括：文本n个普通字符、容量足够时，未找到目标每次最多检查n+1个位置；两次顺序最多2(n+1)，检查量随长度线性增长，不把两个顺序循环误算平方。该增长规律刚讲，未独立验证。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Design distinguishing test for caller success condition OR versus AND",
+          "started_at": "2026-11-05T12:50:32+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T12:53:54+08:00",
+          "evidence": "学生无需输入即证明status==1&&status==2恒假，指出错误版无显示，逻辑诊断H0正确。不强迫补输入题；教师两临时版本A换行对照实际正确版A/错误版空输出，严格构建通过。返回值也可能为-1/0，核心是同一个值不能同时等1和2。"
+        },
+        {
+          "category": "mainline",
+          "topic": "L3 next unit advanced: fgetc consumes one character, int and EOF distinction",
+          "started_at": "2026-11-05T12:53:54+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Within existing day/week capacity, no extra budget; full recovery loop not yet taught.",
+          "evidence": "学生连续追问fgets是否既键入又取走字符、两次read_text是否共享stdin、什么动作让程序等待输入、第三次读取没现成字符时是否等待。教师区分键入/读取、共享输入流与不同数组、函数调用触发读取、暂时无数据与输入已结束。学生自述明白并继续fgetc，尚无独立迁移证据。接回已验证下一字符示例，讲状态2后取一个字符区分换行/更多正文/EOF，并检查状态1不额外读取的原因。 学生追问Z来源，教师明确它是预先提供的独立第二行；状态1后额外取字符可能提前消费下一行首字母，若尚未提供则等待。学生要求继续。按C L3顺序讲while循环丢弃未读行尾：仅status2时尝试读取，遇换行或EOF停止。教师示例d9-discard-tail-demo.c复用原read_text，严格编译和超长/恰满/短行/残余EOF四案例实测通过。学生尚未写循环，首个恰满条件预测待答。 学生问条件ch!=换行为何循环能取换行，教师按H/I/换行轨迹说明while检查旧ch、循环体才取下一字符。随后学生独立预测首个fgetc就是换行时循环体执行0次并说明原因，记讲解后的即时控制流理解。",
+          "ended_at": "2026-11-05T13:31:40+08:00",
+          "completion_evidence": "check_tail学生首稿独立写出首取字符/换行1/EOF0/普通字符后循环2结构，while误用||导致超长行超时。教师H2真值对照后学生只改为&&；教师入口复用学生原read_text，严格编译无诊断，五例全通过（恰满及超长保留下行OK、短末行首取EOF、超长末行EOF、短行不额外清理）。学生源未被教师修改。记H2后完成功能，约11-10至11-14保留条件及行尾短迁移，不重复整题。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Explain why EOF after observed extra content preserves the too-long classification",
+          "started_at": "2026-11-05T13:31:40+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-05T13:34:05+08:00",
+          "evidence": "学生解释超长末行H/I不触发首次EOF判断，读到EOF时已经进入else，最终返回2；独立解释本题控制流正确。教师精确化：首取H时已确定有额外正文，随后EOF仅让循环退出，不会回到先前if。实现仍是H2修正后通过，非整题H0或延迟掌握。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Student asks about C cross-file calls: declaration, header, separate C files and linking",
+          "started_at": "2026-11-05T13:35:37+08:00",
+          "effective_minutes": null,
+          "status": "closed_mixed_window_effective_time_unconfirmed",
+          "note": "Cross-file explanation and example plus incomplete C assessment occurred in this interval. No category minutes inferred from the mixed wall window.",
+          "ended_at": "2026-11-05T14:46:29+08:00"
+        }
+      ],
+      "note": "Wall clock less the confirmed pause is an upper bound. Additional teacher handling and unconfirmed gaps are not student effective time. No precise net time or weekly balance claimed.",
+      "paused_at": "2026-11-05T11:35:10+08:00",
+      "break_confirmed": true,
+      "breaks": [
+        {
+          "started_at": "2026-11-05T11:35:10+08:00",
+          "reason": "Student explicitly requested pause",
+          "count_as_student_learning": false,
+          "ended_at": "2026-11-05T11:43:39+08:00",
+          "duration_seconds": 509
+        }
+      ],
+      "next_topic": "D10 start with state-return recall, then continuous C EOF/error and module linkage; unfinished Python review retained for next Python block.",
+      "paused_interactions": [
+        {
+          "at": "2026-11-05T11:42:26+08:00",
+          "topic": "fgets storage prediction submitted while paused",
+          "evidence": "2026-11-05 11:42:26 暂停期间学生提交fgets预测：[A、空格、B、空格、多个空字符]，共列9项。首三字符正确；回车误当空格，误认为自动填满空字符，容量8与列项数不符。教师反馈：下标0至4为A、空格、B、换行、空字符；5至7未由本次读取写入，不保证为0。H2补讲，不记独立理解通过。不因一次补答自动恢复计时，保持暂停。",
+          "effective_minutes": null,
+          "resume_confirmed": false
+        }
+      ],
+      "resumed_at": "2026-11-05T11:43:39+08:00",
+      "ended_at": "2026-11-05T14:46:29+08:00",
+      "administrative_work_excluded_from": "2026-11-05T14:46:29+08:00",
+      "elapsed_wall_seconds": 11692,
+      "confirmed_break_seconds": 509,
+      "wall_less_confirmed_break_seconds": 11183,
+      "reason_ended": "Student explicitly ended learning. All subsequent work is teacher administration."
     }
   ]
 }

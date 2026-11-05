@@ -1,0 +1,7 @@
+{
+  "teacher_only": true,
+  "compile_exit_code": 0,
+  "gdb_exit_code": 0,
+  "stdout": "Breakpoint 1 at 0x140001880: file D:/Apostgraduate/opencode/embed-study/04-notes/d9-two-status-demo.c, line 11.\n[New Thread 2860.0x77a8 (id 2)]\n\nThread 1 hit Breakpoint 1, main () at D:/Apostgraduate/opencode/embed-study/04-notes/d9-two-status-demo.c:11\n11\t    int b = read_text(second, sizeof second);\n$1 = 2\n$2 = \"ABCDEFG\"\n12\t    printf(\"FIRST_STATUS=%d\\n\", a);\n$3 = 1\n$4 = \"\\000\\000\\000\\000\\001\\000\\000\"\nFIRST_STATUS=2\nFIRST=[ABCDEFG]\nSECOND_STATUS=1\nSECOND=[]\n[Thread 2860.0x77a8 (id 2) exited with code 0]\n[Inferior 1 (process 2860) exited normally]\n",
+  "stderr": ""
+}

@@ -1,0 +1,22 @@
+{
+  "teacher_only": true,
+  "cases": [
+    {
+      "case": "exact",
+      "stdout": "TAIL=1\nNEXT=1\nTEXT=[OK]\n",
+      "exit_code": 0
+    },
+    {
+      "case": "short_eof",
+      "stdout": "TAIL=0\nNEXT=0\n",
+      "exit_code": 0
+    },
+    {
+      "case": "overlong",
+      "timed_out_seconds": 1,
+      "teacher_test_process_terminated": true
+    }
+  ],
+  "compile_exit_code": 0,
+  "diagnostics": ""
+}

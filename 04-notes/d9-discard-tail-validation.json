@@ -1,0 +1,31 @@
+{
+  "teacher_only": true,
+  "cases": [
+    {
+      "case": "overlong",
+      "input": "ABCDEFGHI\nOK\n",
+      "stdout": "NEXT_STATUS=1\nNEXT_TEXT=[OK]\n",
+      "exit_code": 0
+    },
+    {
+      "case": "exact",
+      "input": "ABCDEFG\nOK\n",
+      "stdout": "NEXT_STATUS=1\nNEXT_TEXT=[OK]\n",
+      "exit_code": 0
+    },
+    {
+      "case": "short",
+      "input": "AB\nOK\n",
+      "stdout": "NEXT_STATUS=1\nNEXT_TEXT=[OK]\n",
+      "exit_code": 0
+    },
+    {
+      "case": "tail_at_eof",
+      "input": "ABCDEFGHI",
+      "stdout": "NEXT_STATUS=0\n",
+      "exit_code": 0
+    }
+  ],
+  "compile_exit_code": 0,
+  "diagnostics": ""
+}

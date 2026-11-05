@@ -1,0 +1,48 @@
+{
+  "teacher_only": true,
+  "method": "Extract student read_text verbatim into temporary harness; preserve original file including empty main.",
+  "cases": [
+    {
+      "case": "spaces",
+      "stdin": "A B\n",
+      "expected_status": 1,
+      "stdout": "STATUS=2\nTEXT=[A B\n]\n",
+      "exit_code": 0,
+      "status_matches": false
+    },
+    {
+      "case": "blank",
+      "stdin": "\n",
+      "expected_status": 1,
+      "stdout": "STATUS=1\nTEXT=[]\n",
+      "exit_code": 0,
+      "status_matches": true
+    },
+    {
+      "case": "no_input",
+      "stdin": "",
+      "expected_status": 0,
+      "stdout": "STATUS=0\n",
+      "exit_code": 0,
+      "status_matches": true
+    },
+    {
+      "case": "long",
+      "stdin": "ABCDEFGH\n",
+      "expected_status": 2,
+      "stdout": "STATUS=2\nTEXT=[ABCDEFG]\n",
+      "exit_code": 0,
+      "status_matches": true
+    },
+    {
+      "case": "no_newline",
+      "stdin": "ABC",
+      "expected_status": 2,
+      "stdout": "STATUS=2\nTEXT=[ABC]\n",
+      "exit_code": 0,
+      "status_matches": true
+    }
+  ],
+  "compile_exit_code": 0,
+  "diagnostics": ""
+}

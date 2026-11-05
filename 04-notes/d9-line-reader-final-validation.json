@@ -1,0 +1,118 @@
+{
+  "teacher_only": true,
+  "source_sha256": "b1b39aa385c35f0c7298fa4f36332ba0052a31a0681a739e76b4acb73d537480",
+  "method": "Verbatim student function in temp harness; student file unchanged.",
+  "cases": [
+    {
+      "case": "spaces",
+      "stdin": "A B\n",
+      "expected": "STATUS=1\nTEXT=[A B]\n",
+      "actual": "STATUS=1\nTEXT=[A B]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "blank",
+      "stdin": "\n",
+      "expected": "STATUS=1\nTEXT=[]\n",
+      "actual": "STATUS=1\nTEXT=[]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "eof",
+      "stdin": "",
+      "expected": "STATUS=0\n",
+      "actual": "STATUS=0\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "long",
+      "stdin": "ABCDEFGH\n",
+      "expected": "STATUS=2\nTEXT=[ABCDEFG]\n",
+      "actual": "STATUS=2\nTEXT=[ABCDEFG]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "exact7",
+      "stdin": "ABCDEFG\n",
+      "expected": "STATUS=2\nTEXT=[ABCDEFG]\n",
+      "actual": "STATUS=2\nTEXT=[ABCDEFG]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "short_eof_old_tail",
+      "stdin": "ABC",
+      "expected": "STATUS=2\nTEXT=[ABC]\n",
+      "actual": "STATUS=2\nTEXT=[ABC]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "one_eof",
+      "stdin": "A",
+      "expected": "STATUS=2\nTEXT=[A]\n",
+      "actual": "STATUS=2\nTEXT=[A]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "cap1",
+      "stdin": "ABC\n",
+      "expected": "STATUS=-1\nPRESERVED=1\nNEXT=65\n",
+      "actual": "STATUS=-1\nPRESERVED=1\nNEXT=65\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "cap0",
+      "stdin": "ABC\n",
+      "expected": "STATUS=-1\nPRESERVED=1\nNEXT=65\n",
+      "actual": "STATUS=-1\nPRESERVED=1\nNEXT=65\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "cap_negative",
+      "stdin": "ABC\n",
+      "expected": "STATUS=-1\nPRESERVED=1\nNEXT=65\n",
+      "actual": "STATUS=-1\nPRESERVED=1\nNEXT=65\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "cap2",
+      "stdin": "AB\n",
+      "expected": "STATUS=2\nTEXT=[A]\n",
+      "actual": "STATUS=2\nTEXT=[A]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "cap2_blank",
+      "stdin": "\n",
+      "expected": "STATUS=1\nTEXT=[]\n",
+      "actual": "STATUS=1\nTEXT=[]\n",
+      "stderr": "",
+      "exit_code": 0,
+      "passed": true
+    }
+  ],
+  "compile_exit_code": 0,
+  "diagnostics": "",
+  "passed": true
+}

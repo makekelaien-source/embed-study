@@ -1,0 +1,44 @@
+{
+  "teacher_only": true,
+  "source_sha256": "dd5829402626ce601ffb97226b207c0ad72d03b285c7757ba96e85585a4fa205",
+  "cases": [
+    {
+      "case": "exact",
+      "expected": "TAIL=1\nNEXT=1\nTEXT=[OK]\n",
+      "stdout": "TAIL=1\nNEXT=1\nTEXT=[OK]\n",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "overlong",
+      "expected": "TAIL=2\nNEXT=1\nTEXT=[OK]\n",
+      "stdout": "TAIL=2\nNEXT=1\nTEXT=[OK]\n",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "short_eof",
+      "expected": "TAIL=0\nNEXT=0\n",
+      "stdout": "TAIL=0\nNEXT=0\n",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "overlong_eof",
+      "expected": "TAIL=2\nNEXT=0\n",
+      "stdout": "TAIL=2\nNEXT=0\n",
+      "exit_code": 0,
+      "passed": true
+    },
+    {
+      "case": "short_line",
+      "expected": "NEXT=1\nTEXT=[OK]\n",
+      "stdout": "NEXT=1\nTEXT=[OK]\n",
+      "exit_code": 0,
+      "passed": true
+    }
+  ],
+  "compile_exit_code": 0,
+  "diagnostics": "",
+  "passed": true
+}
