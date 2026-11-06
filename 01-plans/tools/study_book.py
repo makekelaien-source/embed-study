@@ -40,7 +40,7 @@ def check_cleanup_path(name):
     parts = PurePosixPath(name)
     if parts.parts[0] not in ("03-code_codex", "04-notes"):
         raise ValueError(f"Protected source cannot be cleaned: {name}")
-    if parts.suffix not in (".c", ".py", ".md", ".json", ".txt") or parts.name == "knowledge-corrections.md":
+    if parts.suffix not in (".c", ".h", ".py", ".md", ".json", ".txt") or parts.name == "knowledge-corrections.md":
         raise ValueError(f"Shared/non-lesson file cannot be cleaned: {name}")
 
 

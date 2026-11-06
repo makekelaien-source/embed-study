@@ -153,6 +153,22 @@ class StudyBookTests(unittest.TestCase):
         self.assertFalse((self.root / "03-code_codex/practice.txt").exists())
         self.assertTrue((self.root / "03-code_codex/go.bat").exists())
 
+    def test_explicit_daily_c_header_can_be_cleaned_and_restored(self):
+        header = "03-code_codex/practice.h"
+        content = b"int read_value(void);\r\n"
+        self.write(header, content)
+        self.git("add", header)
+        self.git("commit", "-m", "Preserve daily C header")
+        self.snapshot = self.git("rev-parse", "HEAD").strip()
+        self.git("push", "origin", "main")
+        self.entries.append({"path": header, "group": "C", "role": "Daily header", "cleanup": True})
+
+        self.build()
+        self.assertIn(header, study_book.clean(self.root, self.book))
+        self.assertFalse((self.root / header).exists())
+        restored = study_book.restore(self.root, self.book, header)
+        self.assertEqual(restored.read_bytes(), content)
+
 
 if __name__ == "__main__":
     unittest.main()
