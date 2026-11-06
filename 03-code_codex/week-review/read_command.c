@@ -4,14 +4,21 @@
 int main(void){
     char dest[8];
     int a = read_text(dest,sizeof dest);
-    while (a == 2)
+    if (a == -1 )
     {
-        if (check_tail() == 1 ){
-        a = read_text(dest,sizeof dest);
-    }}
-    if (a == 1)
+        return -1 ;
+    }else if (a == 0 )
+    {
+        return 0 ;
+    }else if (a == 1 )
     {
         printf ("%s",dest);
+    }else if (a == READ_TEXT_NEEDS_TAIL){
+        int tail_status = check_tail();
+        if (tail_status == CHECK_TAIL_NEWLINE)
+        {
+            printf ("%s",dest);
+        }
     }
     return 0;
 }

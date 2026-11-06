@@ -5,23 +5,24 @@
 int read_text(char *dest, int capacity){
     if (capacity < 2)
     {
-        return -1 ;
+        return -1 ; /*容量小于2*/
     }
     if (fgets(dest,capacity,stdin) == NULL)
     {
-        return 0 ;
+        return 0 ; /*什么都没有返回0*/
     }
     for (int i = 0; i < capacity; i++)
     {
         if (dest[i] == '\n')
         {
             dest[i] = '\0';
-            return 1 ;
+            return 1 ; /*取到换行，令换行=0结束*/
         }
         else if (dest[i] == '\0')
     {
-        return 2 ;  
+        return 2 ;  /*取到结束*/
     }
+    
     }
     return 2 ;  
 }
