@@ -1,0 +1,60 @@
+{
+  "teacher_only": true,
+  "attempts": [
+    {
+      "phase": "first saved interface extension, before correction",
+      "checks": [
+        {
+          "source": "03-code_codex\\d11-token-prefix.c",
+          "sha256": "eb2700651621bf64881026358e0ff183aac9e939c253e410a9b613f11f3a8505",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "03-code_codex\\d11-token-prefix.c:4:5: error: conflicting types for 'token_prefix_length'; have 'int(const char *, int,  int)'\n    4 | int token_prefix_length(const char *text, int capacity, int delimiter){\n      |     ^~~~~~~~~~~~~~~~~~~\nIn file included from 03-code_codex\\d11-token-prefix.c:1:\n03-code_codex\\d11-token-prefix.h:4:5: note: previous declaration of 'token_prefix_length' with type 'int(const char *, int,  char)'\n    4 | int token_prefix_length(const char *text, int capacity, char delimiter);\n      |     ^~~~~~~~~~~~~~~~~~~\n"
+        },
+        {
+          "source": "03-code_codex\\d11-prefix-preview.c",
+          "sha256": "a7168e4436d7e10319a5740a7a0963d04d2b2e8eeb0b7d1cdf6984c2dc29f8ee",
+          "exit": 1,
+          "stdout": "",
+          "stderr": "03-code_codex\\d11-prefix-preview.c: In function 'main':\n03-code_codex\\d11-prefix-preview.c:6:13: error: too few arguments to function 'token_prefix_length'; expected 3, have 2\n    6 |     int a = token_prefix_length(text,sizeof text);\n      |             ^~~~~~~~~~~~~~~~~~~\nIn file included from 03-code_codex\\d11-prefix-preview.c:2:\n03-code_codex\\d11-token-prefix.h:4:5: note: declared here\n    4 | int token_prefix_length(const char *text, int capacity, char delimiter);\n      |     ^~~~~~~~~~~~~~~~~~~\n"
+        }
+      ],
+      "functional_tests": "not run; implementation fails compilation"
+    },
+    {
+      "phase": "after student corrected delimiter type to char",
+      "checks": [
+        {
+          "case": "compile-implementation",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "compile-adapted-caller",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "link",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "run",
+          "exit": 0,
+          "stdout": "space-separated: expected=3 actual=3 PASS\nleading-space: expected=0 actual=0 PASS\nstring-terminator: expected=2 actual=2 PASS\nunterminated-fragment: expected=3 actual=3 PASS\nrange-before-space: expected=2 actual=2 PASS\nempty-string: expected=0 actual=0 PASS\nnull-zero-range: expected=0 actual=0 PASS\nnonnull-zero-range: expected=0 actual=0 PASS\none-character-range: expected=1 actual=1 PASS\none-space-range: expected=0 actual=0 PASS\nnul-before-tail: expected=1 actual=1 PASS\nspace-at-last-readable: expected=2 actual=2 PASS\nnewline-is-ordinary: expected=3 actual=3 PASS\ntab-is-ordinary: expected=3 actual=3 PASS\nstring-longer-than-range: expected=4 actual=4 PASS\nwritable-input: expected=2 actual=2 PASS\nslash-separator: expected=3 actual=3 PASS\nslash-not-selected: expected=8 actual=8 PASS\npipe-fragment: expected=1 actual=1 PASS\nnul-delimiter: expected=2 actual=2 PASS\nnewline-delimiter: expected=1 actual=1 PASS\ntab-delimiter: expected=1 actual=1 PASS\ndelimiter-first: expected=0 actual=0 PASS\nrange-before-slash: expected=2 actual=2 PASS\nfragment-nul-delimiter: expected=3 actual=3 PASS\nnull-zero-new-delimiter: expected=0 actual=0 PASS\nFAILURES=0\n",
+          "stderr": ""
+        }
+      ],
+      "tested_source_sha256": {
+        "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-token-prefix.h": "2fd7cd502a187c8fa7eb39ee452598fdaa1f7b7a820883bd0e691b4e075ed29f",
+        "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-token-prefix.c": "2cf4c92802aa6df3ef67fdd89fb90be42103ff7c54f170260395ba7c64f60fd1",
+        "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-prefix-preview.c": "a7168e4436d7e10319a5740a7a0963d04d2b2e8eeb0b7d1cdf6984c2dc29f8ee"
+      },
+      "student_files_unchanged": true
+    }
+  ]
+}

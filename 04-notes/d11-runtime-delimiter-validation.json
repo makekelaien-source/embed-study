@@ -1,0 +1,222 @@
+{
+  "teacher_only": true,
+  "attempts": [
+    {
+      "version": "student fgetc result stored in char",
+      "checks": [
+        {
+          "case": "compile-caller",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "compile-new-implementation",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "link",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "space",
+          "input": " ",
+          "exit": 0,
+          "stdout": "3",
+          "stderr": "",
+          "expected": "3"
+        },
+        {
+          "case": "slash",
+          "input": "/",
+          "exit": 0,
+          "stdout": "8",
+          "stderr": "",
+          "expected": "8"
+        },
+        {
+          "case": "first-letter",
+          "input": "R",
+          "exit": 0,
+          "stdout": "0",
+          "stderr": "",
+          "expected": "0"
+        },
+        {
+          "case": "end-with-no-character",
+          "input": "",
+          "exit": 0,
+          "stdout": "8",
+          "stderr": "",
+          "expected": null
+        }
+      ],
+      "source_sha256": {
+        "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-prefix-preview.c": "1717b3fe3ae24c829eb7b8a9b936bba08e6f97865fd7bb556d472e2bff4b77f8",
+        "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-token-prefix.c": "2cf4c92802aa6df3ef67fdd89fb90be42103ff7c54f170260395ba7c64f60fd1",
+        "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-token-prefix.h": "2fd7cd502a187c8fa7eb39ee452598fdaa1f7b7a820883bd0e691b4e075ed29f"
+      },
+      "student_files_unchanged": true
+    },
+    {
+      "version": "student changed receiver to int, no EOF branch yet; type interpretation probes",
+      "checks": [
+        {
+          "case": "fgetc_probe/digit",
+          "input": "7",
+          "exit": 0,
+          "stdout": "int: 55 7\nchar: 55 7\n"
+        },
+        {
+          "case": "fgetc_probe/letters",
+          "input": "A",
+          "exit": 0,
+          "stdout": "int: 65 A\nchar: 65 A\n"
+        },
+        {
+          "case": "scanf_integer/decimal",
+          "input": "123",
+          "exit": 0,
+          "stdout": "123\n"
+        },
+        {
+          "case": "current_int_caller/space",
+          "input": " ",
+          "exit": 0,
+          "stdout": "0"
+        },
+        {
+          "case": "current_int_caller/no-character",
+          "input": "",
+          "exit": 0,
+          "stdout": "8"
+        }
+      ]
+    },
+    {
+      "version": "student internal condition changed to delimiter == EOF; caller still lacks EOF branch",
+      "checks": [
+        {
+          "case": "compile",
+          "exit": 0,
+          "diagnostic": ""
+        },
+        {
+          "case": "space",
+          "input": " ",
+          "expected": "3",
+          "stdout": "3",
+          "exit": 0,
+          "matches_current_entry_requirement": true
+        },
+        {
+          "case": "slash",
+          "input": "/",
+          "expected": "8",
+          "stdout": "8",
+          "exit": 0,
+          "matches_current_entry_requirement": true
+        },
+        {
+          "case": "EOF-without-character",
+          "input": "",
+          "expected": "",
+          "stdout": "0",
+          "exit": 0,
+          "matches_current_entry_requirement": false
+        }
+      ],
+      "source_sha256": {
+        "d11-token-prefix.c": "076c1c1f5c47c02613f2b18dfa5856f4063b3068d52f6d4cdb6fe0ffe447b0b0",
+        "d11-token-prefix.h": "2fd7cd502a187c8fa7eb39ee452598fdaa1f7b7a820883bd0e691b4e075ed29f",
+        "d11-prefix-preview.c": "78ae32c89445c30cff6e6ed02f67bd02641d82a5d7461679d9fe99db68e8abf3"
+      },
+      "originals_modified_by_teacher": false
+    },
+    {
+      "version": "EOF branch correctly placed in caller; core comparison removed",
+      "checks": [
+        {
+          "case": "compile/d11-token-prefix.c",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "compile/d11-prefix-preview.c",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "compile/d11-delimiter-teacher-test.c",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "link-preview",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "link-tests",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "case": "space",
+          "input": " ",
+          "expected": "3",
+          "stdout": "3",
+          "exit": 0,
+          "pass": true
+        },
+        {
+          "case": "slash",
+          "input": "/",
+          "expected": "8",
+          "stdout": "8",
+          "exit": 0,
+          "pass": true
+        },
+        {
+          "case": "R",
+          "input": "R",
+          "expected": "0",
+          "stdout": "0",
+          "exit": 0,
+          "pass": true
+        },
+        {
+          "case": "empty-EOF",
+          "input": "",
+          "expected": "",
+          "stdout": "",
+          "exit": 0,
+          "pass": true
+        },
+        {
+          "case": "26-function-regression-cases",
+          "exit": 0,
+          "stdout": "space-separated: expected=3 actual=3 PASS\nleading-space: expected=0 actual=0 PASS\nstring-terminator: expected=2 actual=2 PASS\nunterminated-fragment: expected=3 actual=3 PASS\nrange-before-space: expected=2 actual=2 PASS\nempty-string: expected=0 actual=0 PASS\nnull-zero-range: expected=0 actual=0 PASS\nnonnull-zero-range: expected=0 actual=0 PASS\none-character-range: expected=1 actual=1 PASS\none-space-range: expected=0 actual=0 PASS\nnul-before-tail: expected=1 actual=1 PASS\nspace-at-last-readable: expected=2 actual=2 PASS\nnewline-is-ordinary: expected=3 actual=3 PASS\ntab-is-ordinary: expected=3 actual=3 PASS\nstring-longer-than-range: expected=4 actual=4 PASS\nwritable-input: expected=2 actual=2 PASS\nslash-separator: expected=3 actual=3 PASS\nslash-not-selected: expected=8 actual=8 PASS\npipe-fragment: expected=1 actual=1 PASS\nnul-delimiter: expected=2 actual=2 PASS\nnewline-delimiter: expected=1 actual=1 PASS\ntab-delimiter: expected=1 actual=1 PASS\ndelimiter-first: expected=0 actual=0 PASS\nrange-before-slash: expected=2 actual=2 PASS\nfragment-nul-delimiter: expected=3 actual=3 PASS\nnull-zero-new-delimiter: expected=0 actual=0 PASS\nFAILURES=0\n",
+          "stderr": "",
+          "pass_count": 26
+        }
+      ],
+      "source_sha256": {
+        "d11-token-prefix.c": "f4bca76ebcb4025c9aae2bde7d31b9552c4059f2c4641413f48f86e57ec0a3b8",
+        "d11-token-prefix.h": "2fd7cd502a187c8fa7eb39ee452598fdaa1f7b7a820883bd0e691b4e075ed29f",
+        "d11-prefix-preview.c": "9ae3a189187e146b8cc8a79cbac294b3c8d65d112d79a14e37ca142e73e92bb5",
+        "d11-delimiter-teacher-test.c": "8d0fe64de62c3d49e44785e01a583386590a7643b55849a283ee3923cec82667"
+      },
+      "student_sources_unchanged": true
+    }
+  ]
+}

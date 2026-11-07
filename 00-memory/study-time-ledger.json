@@ -452,6 +452,48 @@
       "category": "d10_line_draining_variant_teacher_diagnosis",
       "count_as_student_learning": false,
       "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-06T21:04:30+08:00",
+      "end_sampled_before_reply_at": "2026-11-06T21:04:50+08:00",
+      "category": "d10_supplemental_practice_preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-06T21:41:27+08:00",
+      "end_sampled_before_reply_at": "2026-11-06T21:42:40+08:00",
+      "category": "d10_supplemental_word_count_teacher_verification",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-07T12:17:32+08:00",
+      "end_sampled_before_reply_at": "2026-11-07T12:18:06+08:00",
+      "category": "d11_opening_context_and_plan_review",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate_not_exact_model_thinking_time"
+    },
+    {
+      "started_at": "2026-11-07T13:57:52+08:00",
+      "end_sampled_before_reply_at": "2026-11-07T13:58:41+08:00",
+      "category": "teacher_current_source_verification_and_checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate_not_exact_model_thinking_time"
+    },
+    {
+      "started_at": "2026-11-07T14:10:30+08:00",
+      "end_sampled_before_reply_at": "2026-11-07T14:12:05+08:00",
+      "category": "teacher_next_unit_plan_check_and_demo_preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate_not_exact_model_thinking_time"
+    },
+    {
+      "started_at": "2026-11-07T16:05:03+08:00",
+      "end_sampled_before_reply_at": "2026-11-07T16:06:07+08:00",
+      "category": "recap_verification_and_next_command_lesson_preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate_not_exact_model_thinking_time"
     }
   ],
   "policy": "../01-plans/daily-close-rules.md",
@@ -1859,7 +1901,236 @@
       "documented_excluded_seconds": 3842,
       "effective_upper_bound_seconds": 16784,
       "minimum_gap_to_300_seconds": 1216,
-      "note": "Documented break and sampled teacher wait union subtracted; remaining wall time is only an upper bound. Post-stop verification excluded."
+      "note": "Documented break and sampled teacher wait union subtracted; remaining wall time is only an upper bound. Post-stop verification excluded.",
+      "supplemental_practice": [
+        {
+          "category": "mainline",
+          "topic": "Count words in the first input line using fgetc",
+          "started_at": "2026-11-06T21:04:50+08:00",
+          "effective_minutes": null,
+          "status": "completed_with_hints_effective_time_unconfirmed",
+          "source": "03-code_codex/d10-word-count.c",
+          "note": "Student-requested after the D10 close. Track separately from the original stopped classroom window.",
+          "ended_at": "2026-11-06T21:41:27+08:00",
+          "evidence": "D10课后单词统计：学生将任务明确为统计全部输入，以空格、换行分词。初稿把单独的空格值用作条件且把空字符当流结束；随后把两个不等条件用或连接导致内层恒真。按提示改用且并检查EOF后，保存稿严格C11编译无诊断，教师验证7组有限输入通过。教师对照打开输入时等待，关闭后输出2并退出；PowerShell管道经go.bat实测输出4。学生本人终端状态未直接观察，有效分钟未知，按提示后完成记录。"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "day_label": "D11",
+      "actual_learning_day": 18,
+      "learning_week": "L2",
+      "started_at": "2026-11-07T12:17:32+08:00",
+      "status": "ended_by_student",
+      "planned_minutes": 300,
+      "effective_minutes": null,
+      "segments": [
+        {
+          "category": "testing_review",
+          "topic": "D10 review: fgets stream position and link inputs/output",
+          "started_at": "2026-11-07T12:18:06+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 25,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T12:23:30+08:00",
+          "evidence": "容量7首题H0误含换行，H2补讲后A换行变式正确识别结束符及未改尾格；链接输入输出学生正确识别，教师补全.o扩展名。非延迟闭环。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Shared function declarations and header guards",
+          "started_at": "2026-11-07T12:23:30+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 55,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T12:50:46+08:00",
+          "evidence": "头文件与共享声明讲解；显式范围核心经语法/API提示后学生实现，教师16例通过；学生独立解释零容量不入循环。讲解与实现未细分计时，不按计划倒填。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Translation units, header visibility, rebuild dependencies",
+          "started_at": "2026-11-07T12:50:46+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 29,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T12:57:09+08:00",
+          "evidence": "翻译单元按源文件而非函数划分、预处理包含而非链接、无头文件也可形成单元，经补讲；学生已按指引编译实现为.o，文件840字节且修改于12:56:57。本人编译操作与理论交叠，未另重复计时。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Student compiles caller, links object files, runs the module tests",
+          "started_at": "2026-11-07T12:57:09+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 20,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T12:58:28+08:00",
+          "evidence": "学生本人按指令分别编译调用端/实现、双目标链接并运行，16例PASS且FAILURES=0，回到提示符；教师支架，不记独立设计。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "Count inspected positions versus returned prefix length",
+          "started_at": "2026-11-07T12:58:28+08:00",
+          "planned_capacity_minutes": 24,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T13:04:03+08:00",
+          "evidence": "字符串与无结束符片段的检查次数3/2和返回2/2由学生H0解释正确。实际数组范围外与已初始化剩余格混淆经补讲，未定义行为已讲未独立验。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Select a deterministic case distinguishing < capacity from <= capacity",
+          "started_at": "2026-11-07T13:04:03+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 22,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T13:16:10+08:00",
+          "evidence": "首例GO范围3两版同为2未能区分；第二轮补充两格数组范围1可区分但预期反向，教师实测正确1错误2，学生确认理解。记提示后选例/解释，非H0完整测试设计。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Second caller reuses the shared module; separate executables and build targets",
+          "started_at": "2026-11-07T13:16:10+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Planned same-theme extension/remainder integration; no rewriting of existing core.",
+          "ended_at": "2026-11-07T13:27:06+08:00",
+          "evidence": "第二调用端参考类比示例后完成，print经提示修printf，教师验输出3；学生本人随后编译新入口、链接原实现.o、运行输出3。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Header guard name collisions across different headers",
+          "started_at": "2026-11-07T13:27:06+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Same-theme deepening; original core is retained.",
+          "ended_at": "2026-11-07T13:30:42+08:00",
+          "evidence": "保护宏重名补讲、学生改独有名、教师预处理两声明均可见、三源语法检查过；学生正确选出共享头改变需重编译三源。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Optional delimiter API extension and caller adaptation",
+          "started_at": "2026-11-07T13:30:42+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "可选分隔符经char/int类型纠正后26例过；运行时输入分隔符主动扩展，EOF职责H2帮助后自行补main分支、去核心EOF比较；教师最终26+4例通过。",
+          "ended_at": "2026-11-07T13:58:41+08:00"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Student rebuilds changed v2 implementation and input caller, then links and runs",
+          "started_at": "2026-11-07T13:58:41+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T14:00:28+08:00",
+          "evidence": "学生本人最后一轮重新编译当前v2实现和预览入口、链接运行，输入空格输出3；不是教师代跑。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Defined function symbols and unresolved references in object files",
+          "started_at": "2026-11-07T14:00:28+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Teacher nm read-only inspection; teach T/U meanings before question.",
+          "ended_at": "2026-11-07T14:05:53+08:00",
+          "evidence": "T/U首次未懂，H2从两源函数体重讲后，学生能说链接从实现端取得定义，并判断两份T为重复定义。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Student inspects object symbols with nm",
+          "started_at": "2026-11-07T14:05:53+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T14:10:30+08:00",
+          "evidence": "学生本人nm两目标输出正确，追问其他字母；区域类别和stdio声明/库实现归属经补讲，未独立迁移。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Pointer offsets and borrowed text views, following the next planned text-interface unit",
+          "started_at": "2026-11-07T14:12:05+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 50,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T14:35:37+08:00",
+          "evidence": "指针偏移、const、返回指针首讲，学生返回指针首轮未懂，经地址图补强能说+1到O、+0到G。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Implement after_delimiter by reusing the existing scanner and returning a borrowed address",
+          "started_at": "2026-11-07T14:35:37+08:00",
+          "ended_at": "2026-11-07T15:05:00+08:00",
+          "effective_minutes": null,
+          "planned_capacity_minutes": 60,
+          "status": "closed_effective_time_unconfirmed",
+          "evidence": "四轮含编译修正和功能补强，教师最终16项全过，函数体未代修；依赖接线由教师提供。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Caller-owned array lifetime and mutable source observed through a borrowed suffix pointer",
+          "started_at": "2026-11-07T15:05:00+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T15:55:53+08:00",
+          "evidence": "借用调用端经H2/H3局部补强完成，教师复用EOF支架和注释整理；学生非空保护最后补齐，教师入口5例及26+16回归过。概念补强持续，未据墙钟冒充有效。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Student builds and links suffix caller, borrowed-view module, and scanner dependency",
+          "started_at": "2026-11-07T15:55:53+08:00",
+          "planned_capacity_minutes": 25,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T15:57:12+08:00",
+          "evidence": "学生本人按指导两源严格编译、三.o链接，输入空格输出AUTOXUTO，无诊断。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Lifetime transfer: borrowed caller array versus automatic local array",
+          "started_at": "2026-11-07T15:57:12+08:00",
+          "planned_capacity_minutes": 20,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T16:01:54+08:00",
+          "evidence": "学生H0正确指出p来自main存活数组、q来自已结束函数的局部数组，解释寿命迁移正确。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Active recall connecting length, returned pointer, pointer difference, and dereference",
+          "started_at": "2026-11-07T16:01:54+08:00",
+          "planned_capacity_minutes": 15,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T16:05:03+08:00",
+          "evidence": "学生H0完整预测2 CD/X D和变量类型角色，教师实际运行匹配。"
+        },
+        {
+          "category": "mainline",
+          "topic": "strcmp content comparison as the next planned text-command prerequisite",
+          "started_at": "2026-11-07T16:06:07+08:00",
+          "planned_capacity_minutes": 15,
+          "effective_minutes": null,
+          "status": "deferred_by_student_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T16:08:01+08:00",
+          "evidence": "strcmp首讲后学生要求先不学，理解题未答；仅本单元暂缓，未暂停全天。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Student-requested consequences of returning a pointer to an expired automatic local array",
+          "started_at": "2026-11-07T16:08:01+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-07T16:09:40+08:00",
+          "evidence": "学生暂缓strcmp，主动追问局部数组寿命结束后果；已解释未定义行为，不运行无效指针。"
+        }
+      ],
+      "note": "L2课时窗口按L3知识顺序推进；开课读取记录属教师处理，不计学生有效学习。未作答，不升级能力。",
+      "ended_at": "2026-11-07T16:09:40+08:00",
+      "administrative_work_excluded_from": "2026-11-07T16:09:40+08:00",
+      "elapsed_wall_seconds": 13928,
+      "documented_excluded_seconds": 242,
+      "effective_upper_bound_seconds": 13686,
+      "minimum_gap_to_300_seconds": 4314,
+      "reason_ended": "Student explicitly ended D11; all following preparation/archive/sync is teacher work."
     }
   ]
 }

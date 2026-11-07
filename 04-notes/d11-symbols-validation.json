@@ -1,0 +1,23 @@
+{
+  "teacher_only": true,
+  "records": [
+    {
+      "file": "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-token-prefix.o",
+      "nm_exit": 0,
+      "selected_symbols": [
+        "0000000000000000 T token_prefix_length"
+      ],
+      "stderr": ""
+    },
+    {
+      "file": "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d11-prefix-preview.o",
+      "nm_exit": 0,
+      "selected_symbols": [
+        "0000000000000000 T main",
+        "                 U token_prefix_length"
+      ],
+      "stderr": ""
+    }
+  ],
+  "note": "Read-only inspection; neither source nor executable was run."
+}

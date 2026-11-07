@@ -1,0 +1,6 @@
+{
+  "teacher_only": true,
+  "exit": 0,
+  "stdout": "int token_prefix_length(const char *text, int capacity);\n",
+  "stderr": ""
+}

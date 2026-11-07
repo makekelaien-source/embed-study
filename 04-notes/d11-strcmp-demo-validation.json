@@ -1,0 +1,6 @@
+{
+  "teacher_only": true,
+  "compile_exit": 0,
+  "run_exit": 0,
+  "stdout": "address_same=0 content_same=1\nsame=0\nprefix-result=NEGATIVE\n"
+}

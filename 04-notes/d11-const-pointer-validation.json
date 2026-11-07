@@ -1,0 +1,46 @@
+{
+  "teacher_only": true,
+  "cases": [
+    {
+      "case": "readonly_via_pointer",
+      "source": "#include <stdio.h>\nint main(void){char line[]=\"SET TEMP\";const char *part = line + 4;part[0] = 'H';printf(\"%s\\n\",part);return 0;}\n",
+      "expected_to_compile": false,
+      "compile_exit": 1,
+      "diagnostic": "C:\\Users\\Admin\\AppData\\Local\\Temp\\d11-const-2ocbey37\\readonly_via_pointer.c: In function 'main':\nC:\\Users\\Admin\\AppData\\Local\\Temp\\d11-const-2ocbey37\\readonly_via_pointer.c:2:75: error: assignment of read-only location '*part'\n    2 | int main(void){char line[]=\"SET TEMP\";const char *part = line + 4;part[0] = 'H';printf(\"%s\\n\",part);return 0;}\n      |                                                                           ^\n"
+    },
+    {
+      "case": "original_array_can_change",
+      "source": "#include <stdio.h>\nint main(void){char line[]=\"SET TEMP\";const char *part = line + 4;line[4] = 'H';printf(\"%s\\n\",part);return 0;}\n",
+      "expected_to_compile": true,
+      "compile_exit": 0,
+      "diagnostic": "",
+      "run_exit": 0,
+      "stdout": "HEMP\n"
+    },
+    {
+      "case": "pointer_can_repoint",
+      "source": "#include <stdio.h>\nint main(void){char line[]=\"SET TEMP\";const char *part = line + 4;part = line + 5;printf(\"%s\\n\",part);return 0;}\n",
+      "expected_to_compile": true,
+      "compile_exit": 0,
+      "diagnostic": "",
+      "run_exit": 0,
+      "stdout": "EMP\n"
+    },
+    {
+      "case": "fixed_pointer_can_edit_chars",
+      "source": "#include <stdio.h>\nint main(void){char line[]=\"SET TEMP\";char *const part = line + 4;part[0] = 'H';printf(\"%s\\n\",part);return 0;}\n",
+      "expected_to_compile": true,
+      "compile_exit": 0,
+      "diagnostic": "",
+      "run_exit": 0,
+      "stdout": "HEMP\n"
+    },
+    {
+      "case": "fixed_pointer_cannot_repoint",
+      "source": "#include <stdio.h>\nint main(void){char line[]=\"SET TEMP\";char *const part = line + 4;part = line + 5;printf(\"%s\\n\",part);return 0;}\n",
+      "expected_to_compile": false,
+      "compile_exit": 1,
+      "diagnostic": "C:\\Users\\Admin\\AppData\\Local\\Temp\\d11-const-2ocbey37\\fixed_pointer_cannot_repoint.c: In function 'main':\nC:\\Users\\Admin\\AppData\\Local\\Temp\\d11-const-2ocbey37\\fixed_pointer_cannot_repoint.c:2:72: error: assignment of read-only variable 'part'\n    2 | int main(void){char line[]=\"SET TEMP\";char *const part = line + 4;part = line + 5;printf(\"%s\\n\",part);return 0;}\n      |                                                                        ^\n"
+    }
+  ]
+}

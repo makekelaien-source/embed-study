@@ -1,0 +1,29 @@
+{
+  "teacher_only": true,
+  "checks": [
+    {
+      "case": "compare.c",
+      "compile_exit": 0,
+      "stdout": "1 0 0\nprefix_negative=1\n",
+      "run_exit": 0,
+      "expected": "1 0 0\nprefix_negative=1\n",
+      "pass": true
+    },
+    {
+      "case": "compose.c",
+      "compile_exit": 0,
+      "stdout": "field=RUN equal_RUN=1\nchanged=XUN\n",
+      "run_exit": 0,
+      "expected": "field=RUN equal_RUN=1\nchanged=XUN\n",
+      "pass": true
+    },
+    {
+      "case": "empty-view.c",
+      "compile_exit": 0,
+      "stdout": "found_empty=1 missing=1\n",
+      "run_exit": 0,
+      "expected": "found_empty=1 missing=1\n",
+      "pass": true
+    }
+  ]
+}
