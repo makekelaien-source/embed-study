@@ -1,8 +1,0 @@
-{
-  "teacher_only": true,
-  "compile_exit": 0,
-  "run_exit": 0,
-  "stdout": "2 CD\nX D\n",
-  "stderr": "",
-  "student_prediction_matches": true
-}
