@@ -1,8 +1,0 @@
-{
-  "teacher_only": true,
-  "build_exit": 0,
-  "run_exit": 0,
-  "stdout": "NULL good=-1 bad=-1\nempty good=0 bad=1\nprefix_equal=1\n",
-  "stderr": "",
-  "pass": true
-}
