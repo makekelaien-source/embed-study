@@ -1,0 +1,64 @@
+{
+  "teacher_only": true,
+  "root_cause": "Earlier example used object basenames in a temporary directory, not the student working directory",
+  "build_directory": "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d12-build",
+  "compile": [
+    {
+      "source": "d12-tagged-command.c",
+      "object": "tagged.o",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "68464c5afb772d8595c8b10384d01b9079cd2e2ae759944ee280ec2f4edb4654"
+    },
+    {
+      "source": "shared-text/d11-after-delimiter.c",
+      "object": "after.o",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "5f47f451675242cad87d6e6eefa3b06957ef8f610ac65579180c4c8fab6c6ea7"
+    },
+    {
+      "source": "shared-text/d11-token-prefix.c",
+      "object": "prefix.o",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "9241aeba3587243eb28d71d8c7b51f4906a7a1f69d1e25e65d2b89403f2653f3"
+    },
+    {
+      "source": "d12-tagged-command-teacher-test.c",
+      "object": "test.o",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "75576f20e032db9899c2bd396f161f7de8d9b2cd810164b859e5bf77c02e5d49"
+    },
+    {
+      "source": "d12-command-kind.c",
+      "object": "kind.o",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "sha256": "7c42c19ca220c9dd1831f01f3e3ee3b25027b96cfbe68f14b5086fccb619c780"
+    }
+  ],
+  "link_command": [
+    "gcc",
+    "d12-build\\tagged.o",
+    "d12-build\\after.o",
+    "d12-build\\prefix.o",
+    "d12-build\\test.o",
+    "d12-build\\kind.o",
+    "-o",
+    "d12-build\\demo.exe"
+  ],
+  "link_exit": 0,
+  "link_stdout": "",
+  "link_stderr": "",
+  "run_exit": 0,
+  "run_stdout": "run: PASS (actual=1 expected=1)\nstop: PASS (actual=2 expected=2)\nempty-field: PASS (actual=0 expected=0)\nmissing-separator: PASS (actual=-1 expected=-1)\nextra-field: PASS (actual=0 expected=0)\narbitrary-label: PASS (actual=1 expected=1)\nempty-label: PASS (actual=2 expected=2)\nempty-input: PASS (actual=-1 expected=-1)\nlowercase: PASS (actual=0 expected=0)\ntrailing-space: PASS (actual=0 expected=0)\ncaller-array: PASS (actual=2 expected=2)\ninput-unchanged: PASS\nFAILURES=0\n",
+  "run_stderr": "",
+  "pass": true
+}

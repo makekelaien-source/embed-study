@@ -1,0 +1,29 @@
+{
+  "teacher_only": true,
+  "checked_at": "2026-11-08T14:30:16+08:00",
+  "sources_sha256": {
+    "03-code_codex\\d12-strict-command.c": "d65fabe3648f5373e4c923cb4d77c80bfba01aaf175574383eef177f079ea10f",
+    "03-code_codex\\d12-tagged-command.c": "d7c56975c64d6eb1c7caaa9a68b370a4ade3712bb4230b9397704bd797614e0b",
+    "03-code_codex\\d12-command-kind.c": "7c42c19ca220c9dd1831f01f3e3ee3b25027b96cfbe68f14b5086fccb619c780",
+    "03-code_codex\\shared-text\\d11-after-delimiter.c": "5f47f451675242cad87d6e6eefa3b06957ef8f610ac65579180c4c8fab6c6ea7",
+    "03-code_codex\\shared-text\\d11-token-prefix.c": "9241aeba3587243eb28d71d8c7b51f4906a7a1f69d1e25e65d2b89403f2653f3",
+    "03-code_codex\\d12-strict-command-teacher-test.c": "a2cd39927e03d73a9084bec2534dd5adbb57c887b32c611a5a824a9d67a8195a"
+  },
+  "flags": [
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Werror"
+  ],
+  "build_exit": 0,
+  "build_stderr": "",
+  "run_exit": 0,
+  "stdout": "run: PASS (actual=1 expected=1)\nstop: PASS (actual=2 expected=2)\nmissing: PASS (actual=-1 expected=-1)\nmissing-wrong-label: PASS (actual=-1 expected=-1)\nempty-input: PASS (actual=-1 expected=-1)\nempty-field: PASS (actual=-2 expected=-2)\nwrong-label: PASS (actual=-3 expected=-3)\nlong-label: PASS (actual=-3 expected=-3)\nempty-label: PASS (actual=-3 expected=-3)\nlowercase-label: PASS (actual=-3 expected=-3)\nwrong-label-empty-field: PASS (actual=-3 expected=-3)\nseparator-only: PASS (actual=-3 expected=-3)\nlabel-space: PASS (actual=-3 expected=-3)\nunknown-command: PASS (actual=0 expected=0)\nlowercase-command: PASS (actual=0 expected=0)\ntrailing-space: PASS (actual=0 expected=0)\nextra-field: PASS (actual=0 expected=0)\nspace-field: PASS (actual=0 expected=0)\ncaller-array: PASS (actual=2 expected=2)\ninput-unchanged: PASS\nFAILURES=0\n",
+  "stderr": "",
+  "classification_cases": 19,
+  "input_unchanged_check": true,
+  "source_unchanged": true,
+  "exact_output_matches": true,
+  "pass": true
+}

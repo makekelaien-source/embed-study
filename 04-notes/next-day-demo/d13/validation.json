@@ -1,0 +1,77 @@
+{
+  "teacher_only": true,
+  "checks": [
+    {
+      "case": "strlen-search.c",
+      "sources_sha256": {
+        "04-notes\\next-day-demo\\d13\\strlen-search.c": "f0cff46bc16efccb58c974b92a75e6505bb4753ec7e5597000f273929874d25d"
+      },
+      "flags": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-I03-code_codex"
+      ],
+      "build_exit": 0,
+      "stdout": "length=9 suffix=AUTO\nmissing=1 end=1 empty=0\n",
+      "stderr": "",
+      "run_exit": 0,
+      "expected_stdout": "length=9 suffix=AUTO\nmissing=1 end=1 empty=0\n",
+      "stdin": "",
+      "pass": true
+    },
+    {
+      "case": "cut-view.c",
+      "sources_sha256": {
+        "04-notes\\next-day-demo\\d13\\cut-view.c": "447bf3a90b0eb1dd8d3d6e4f53941075f9e283dcfbcb867ed838e0af6c4ad65d"
+      },
+      "flags": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-I03-code_codex"
+      ],
+      "build_exit": 0,
+      "stdout": "left=ZONE right=AUTO left_length=4\n",
+      "stderr": "",
+      "run_exit": 0,
+      "expected_stdout": "left=ZONE right=AUTO left_length=4\n",
+      "stdin": "",
+      "pass": true
+    },
+    {
+      "case": "trace-one.c",
+      "sources_sha256": {
+        "04-notes\\next-day-demo\\d13\\trace-one.c": "1c3d552028f456f2d6a07cfcf2955f1d3a36a839e1ad81b2819b76f70d73fdab",
+        "03-code_codex\\shared-command\\d12-line-reader.c": "f97cb394c41fa019633830698b725cad37cd86fe864d448cf12d85fe7ede28d3",
+        "03-code_codex\\shared-command\\d12-bounded-command.c": "f44c3bc9a8f584fae5f24a7a4467a31f04cbfecd2898fc8525106e5b9dd4d3ce",
+        "03-code_codex\\shared-command\\d12-strict-command.c": "d65fabe3648f5373e4c923cb4d77c80bfba01aaf175574383eef177f079ea10f",
+        "03-code_codex\\shared-command\\d12-tagged-command.c": "d7c56975c64d6eb1c7caaa9a68b370a4ade3712bb4230b9397704bd797614e0b",
+        "03-code_codex\\shared-command\\d12-command-kind.c": "7c42c19ca220c9dd1831f01f3e3ee3b25027b96cfbe68f14b5086fccb619c780",
+        "03-code_codex\\week-review\\review_input.c": "55f668c53d606ef7b63810a075b9e9faee480fac8477d2e6703ae994dcf3e736",
+        "03-code_codex\\shared-text\\d11-after-delimiter.c": "5f47f451675242cad87d6e6eefa3b06957ef8f610ac65579180c4c8fab6c6ea7",
+        "03-code_codex\\shared-text\\d11-token-prefix.c": "9241aeba3587243eb28d71d8c7b51f4906a7a1f69d1e25e65d2b89403f2653f3"
+      },
+      "flags": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-I03-code_codex"
+      ],
+      "build_exit": 0,
+      "stdout": "read=1\ntext=[CMD/STOP] kind=2\n",
+      "stderr": "",
+      "run_exit": 0,
+      "expected_stdout": "read=1\ntext=[CMD/STOP] kind=2\n",
+      "stdin": "CMD/STOP\n",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

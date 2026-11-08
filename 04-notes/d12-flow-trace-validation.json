@@ -1,0 +1,9 @@
+{
+  "teacher_only": true,
+  "input": "CMD/JUMP\n",
+  "build_exit": 0,
+  "run_exit": 0,
+  "stdout": "a=1\ntext=[CMD/JUMP]\nb=0\n",
+  "stderr": "",
+  "pass": true
+}

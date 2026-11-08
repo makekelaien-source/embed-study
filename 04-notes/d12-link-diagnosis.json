@@ -1,0 +1,45 @@
+{
+  "teacher_only": true,
+  "intentional_missing_dependency": true,
+  "compile": [
+    {
+      "source": "d12-tagged-command.c",
+      "object": "tagged.o",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "source": "shared-text/d11-after-delimiter.c",
+      "object": "after.o",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "source": "shared-text/d11-token-prefix.c",
+      "object": "prefix.o",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "source": "d12-tagged-command-teacher-test.c",
+      "object": "test.o",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "source": "d12-command-kind.c",
+      "object": "kind.o",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "link_inputs": [
+    "tagged.o",
+    "after.o",
+    "prefix.o",
+    "test.o"
+  ],
+  "link_exit": 1,
+  "link_stdout": "",
+  "link_stderr": "D:/embedded/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/16.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: <TEMP>\\tagged.o:d12-tagged-command.c:(.text+0x30): undefined reference to `command_kind'\ncollect2.exe: error: ld returned 1 exit status\n"
+}

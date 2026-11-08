@@ -1,0 +1,27 @@
+{
+  "teacher_only": true,
+  "student_source_sha256": "3f84aaca670a2c0f001e2f261d0a2706a74db9c524b441bb1eeaa9928f8d416e",
+  "student_source_unchanged": true,
+  "checks": [
+    {
+      "name": "one-line",
+      "input": "CMD/RUN\n",
+      "expected_correct_stdout": "1\n",
+      "actual_type_only_stdout": "",
+      "exit": 0,
+      "reproduces_skipped_input": true
+    },
+    {
+      "name": "two-lines",
+      "input": "CMD/RUN\nCMD/STOP\n",
+      "expected_correct_stdout": "1\n2\n",
+      "actual_type_only_stdout": "2\n",
+      "exit": 0,
+      "reproduces_skipped_input": true
+    }
+  ],
+  "original_build": {
+    "exit": 1,
+    "stderr": "03-code_codex\\d12-command-console.c: In function 'main':\n03-code_codex\\d12-command-console.c:8:14: error: initialization of 'int' from 'char *' makes integer from pointer without a cast [-Wint-conversion]\n    8 |     int ch = fgets(text,capacity,stdin);\n      |              ^~~~~\n03-code_codex\\d12-command-console.c:10:15: error: comparison between pointer and integer [-Werror]\n   10 |     while (ch != NULL)\n      |               ^~\n03-code_codex\\d12-command-console.c:17:16: error: assignment to 'int' from 'char *' makes integer from pointer without a cast [-Wint-conversion]\n   17 |             ch = fgets(text,capacity,stdin);\n      |                ^\n03-code_codex\\d12-command-console.c:25:16: error: assignment to 'int' from 'char *' makes integer from pointer without a cast [-Wint-conversion]\n   25 |             ch = fgets(text,capacity,stdin);\n      |                ^\ncc1.exe: all warnings being treated as errors\n"
+  }
+}

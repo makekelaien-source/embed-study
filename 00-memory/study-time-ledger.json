@@ -494,6 +494,83 @@
       "category": "recap_verification_and_next_command_lesson_preparation",
       "count_as_student_learning": false,
       "precision": "sampled_estimate_not_exact_model_thinking_time"
+    },
+    {
+      "started_at": "2026-11-08T12:15:55+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T12:16:52+08:00",
+      "category": "D12_opening_preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T12:40:00+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T12:40:34+08:00",
+      "category": "command_kind verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T13:00:59+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T13:01:37+08:00",
+      "category": "composition verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T13:16:37+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T13:17:32+08:00",
+      "category": "business contract verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T13:37:53+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T13:38:21+08:00",
+      "category": "comparison_count verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T14:30:15+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T14:30:36+08:00",
+      "category": "strict_command_kind verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T14:46:29+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T14:47:01+08:00",
+      "category": "bounded validation verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T14:47:56+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T14:50:20+08:00",
+      "category": "line reader reuse, verification, task preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T15:08:36+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T15:09:49+08:00",
+      "category": "console compile and duplicate-read reproduction",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T15:19:08+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T15:19:56+08:00",
+      "category": "console integration verification and checkpoint",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-08T15:33:03+08:00",
+      "end_sampled_before_reply_at": "2026-11-08T15:34:22+08:00",
+      "category": "program map source reading and preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
     }
   ],
   "policy": "../01-plans/daily-close-rules.md",
@@ -2131,6 +2208,238 @@
       "effective_upper_bound_seconds": 13686,
       "minimum_gap_to_300_seconds": 4314,
       "reason_ended": "Student explicitly ended D11; all following preparation/archive/sync is teacher work."
+    },
+    {
+      "date": "2026-11-08",
+      "lesson": "D12",
+      "learning_week": "L2",
+      "started_at": "2026-11-08T12:15:55+08:00",
+      "status": "closed",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "segments": [
+        {
+          "category": "testing_review",
+          "topic": "D11 recall: suffix address and dereference",
+          "started_at": "2026-11-08T12:16:52+08:00",
+          "planned_capacity_minutes": 25,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-08T12:26:01+08:00",
+          "evidence": "地址/解引用首题正确；空后缀首答错误，H2补讲及列原函数后能正确追踪NULL分支，指针/字符措辞补正。"
+        },
+        {
+          "category": "mainline",
+          "topic": "strcmp complete introduction and prediction",
+          "started_at": "2026-11-08T12:26:01+08:00",
+          "planned_capacity_minutes": 50,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-08T12:31:58+08:00",
+          "evidence": "负数预测正确，结束符称未定义补正；返回值直接作if条件经历H2补讲后能答非零进入。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Student implements command_kind with exact string comparison",
+          "started_at": "2026-11-08T12:31:58+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-08T12:44:58+08:00",
+          "evidence": "command_kind修订稿教师10检查过；NULL前置保护有H2，空串/指针表述继续补强，非整体H0。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Compose existing borrowed suffix module with command classifier",
+          "started_at": "2026-11-08T12:44:58+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "业务返回类别与指针归属基础先局部穿插；29分钟基础及20分钟诊断等日课预算仍保留，实际分类另记。",
+          "ended_at": "2026-11-08T13:03:30+08:00",
+          "evidence": "模块组合教师12检查过，类型修订有H2；学生H0解释返回地址与类别整数职责正确。"
+        },
+        {
+          "category": "language_tools",
+          "topic": "Independent diagnosis of intentionally omitted command_kind object during linking",
+          "started_at": "2026-11-08T13:03:30+08:00",
+          "planned_capacity_minutes": 20,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-08T13:07:35+08:00",
+          "evidence": "D12学生本人在03-code_codex运行d12-build/demo.exe，贴出11分类+输入不变共12项PASS、FAILURES=0。本人运行已证；未单独贴链接命令过程，不额外推定本人独立构建方案。此前H0指出漏command_kind实现目标文件仍单列。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Interface contracts: many input cases map to one status; preserve input for finer caller decisions",
+          "started_at": "2026-11-08T13:07:35+08:00",
+          "planned_capacity_minutes": 29,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-08T13:09:56+08:00",
+          "evidence": "学生H0提出查a[0]，用于细分同为0的空/未知输入。基础知识分散在前序单元，实际净分类分钟未知、29分钟为预算。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Caller validates missing versus empty field, classifier retains semantic recognition",
+          "started_at": "2026-11-08T13:09:56+08:00",
+          "planned_capacity_minutes": 40,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-08T13:17:32+08:00",
+          "evidence": "2026-11-08 D12业务验收版：学生补a==NULL早退-1后，教师五源严格C11构建无诊断，13分类例+输入不变共14检查全过，精确输出匹配、退出0、源SHA不变。区分缺分隔符-1、空字段-2、未知非空0、RUN1/STOP2。核心学生修改，NULL保护经H2提示，非整题H0；学生曾主动准确定位危险发生于a[0]读取而非后续command_kind。"
+        },
+        {
+          "category": "algorithms",
+          "topic": "Pairwise comparison counting: early-stop model and student comparison_count core",
+          "started_at": "2026-11-08T13:17:32+08:00",
+          "planned_capacity_minutes": 24,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "task_issued_at": "2026-11-08T13:21:09+08:00",
+          "ended_at": "2026-11-08T13:38:21+08:00",
+          "evidence": "2026-11-08 D12 comparison_count：学生按提示重构为单套循环，先计数再按不同/结束符返回。教师严格C11编译无诊断，14计数例+输入不变共15检查全部通过，精确输出匹配、退出0、源SHA不变；含100字符相同101次和末位不同100次。strcmp非长度、sizeof指针及for省略条件有H2/H3提示，非整题H0。空if分支不做格式返工。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Choose distinguishing and nondistinguishing inputs for intentional strcmp condition defect",
+          "started_at": "2026-11-08T13:38:21+08:00",
+          "planned_capacity_minutes": 22,
+          "effective_minutes": null,
+          "status": "paused_awaiting_test_design",
+          "ended_at": "2026-11-08T13:38:43+08:00",
+          "evidence": "测试设计题尚未作答；恢复后继续，不记完成。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Resume distinguishing tests for strcmp missing ==0 defect",
+          "started_at": "2026-11-08T13:53:35+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "note": "Continuation of original 22-minute test-design capacity, not a new additional budget.",
+          "ended_at": "2026-11-08T13:57:31+08:00",
+          "evidence": "学生澄清“不输入”指NULL，选例有效，两版均-1；RUN揭错1/0为H0，非揭错NULL经一次参数含义澄清后选择正确。STOP两版2的首答错误保留，教师H2曾解释错误版非RUN提前返回1。教师严格实际验证NULL=-1/-1、空串=0/1。测试设计单元完成，不泛化全部用例设计独立。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Same-theme extension: strncmp and exact CMD tag boundary",
+          "started_at": "2026-11-08T13:57:31+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "Unused D12 300-minute capacity; no new daily allocation",
+          "ended_at": "2026-11-08T14:30:36+08:00",
+          "evidence": "2026-11-08 D12固定标签版strict_command_kind：学生复用tagged分类，修正提前return、ch状态反向及重复比较的返回覆盖后，教师六源严格C11编译无诊断，19分类+输入不变共20检查全过，精确输出匹配/退出0/源SHA不变。核心学生写，复用与分支结构有H2/H3局部提示，非H0独立设计。优先级缺/为-1、标签错误-3、CMD空命令-2、未知0、RUN1/STOP2。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Bounded character buffer versus complete terminated string: preconditions for library comparison",
+          "started_at": "2026-11-08T14:30:36+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "Unused D12 capacity; no added allocation",
+          "ended_at": "2026-11-08T14:47:01+08:00",
+          "evidence": "有界缓冲概念讲解、核心首稿教师21检查过；前段含编程但净分类分钟未知。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "Explain zero-capacity branch in independently submitted bounded validation core",
+          "started_at": "2026-11-08T14:47:01+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "Unused D12 daily capacity",
+          "ended_at": "2026-11-08T14:50:20+08:00",
+          "evidence": "学生正确指出零范围由扫描返回0使等值条件成立；读取适配与预检为教师工作排除。"
+        },
+        {
+          "category": "mainline",
+          "topic": "L3 multi-line command console: student main connects provided complete-line reader with bounded classifier",
+          "started_at": "2026-11-08T14:50:20+08:00",
+          "effective_minutes": null,
+          "status": "task_deferred_for_interface_map",
+          "budget_source": "Unused D12 300-minute capacity",
+          "ended_at": "2026-11-08T14:52:34+08:00",
+          "evidence": "控制台main未开始；学生反馈函数套娃头晕，暂缓新题，先收束接口职责。"
+        },
+        {
+          "category": "foundations",
+          "topic": "Reduce cognitive load: module responsibilities and outer interface usage, no new functions",
+          "started_at": "2026-11-08T14:52:34+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "D12 unused capacity; local teaching adjustment",
+          "ended_at": "2026-11-08T15:09:49+08:00",
+          "evidence": "地图后学生主动写console并提交，区间含独立编程，准确分段未知；不将所有墙钟直接记学习。"
+        },
+        {
+          "category": "mainline",
+          "topic": "Console diagnosis: one input owner; reader returns status and fills buffer",
+          "started_at": "2026-11-08T15:09:49+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "Unused D12 capacity",
+          "ended_at": "2026-11-08T15:19:56+08:00",
+          "evidence": "2026-11-08 D12控制台修订稿：学生自行改while(1)，每轮int a接read_complete_line，只在READY分类、超长continue、EOF正常结束、读取/缓冲错误返回1。教师九源严格C11编译无诊断，8组真实stdin集成检查+2组读取状态注入共10检查全过，精确输出/退出码符合，源SHA不变。此前读取骨架、返回int与输出缓冲分离、间接调用读取经过H2/H3补讲，记提示后功能整合通过，不能据此称完全理解或独立设计。"
+        },
+        {
+          "category": "testing_review",
+          "topic": "EOF contract: old buffer contents are not new line data",
+          "started_at": "2026-11-08T15:19:56+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "Unused D12 capacity",
+          "note": "旧缓冲重复处理的解释已收口；EOF/NULL再讲过，未额外记独立复测通过。",
+          "ended_at": "2026-11-08T15:34:22+08:00",
+          "evidence": "EOF正常结束与返回NULL术语已讲，进度核对完成；教师审查/备图排除。"
+        },
+        {
+          "category": "foundations",
+          "topic": "User-requested program map: reader status, output array, classifier status; two targeted checks",
+          "started_at": "2026-11-08T15:34:22+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "budget_source": "D12 remaining capacity; no new function layer",
+          "ended_at": "2026-11-08T15:40:55+08:00",
+          "evidence": "学生指出只看main不能推具体值，教师按实际实现带读CMD/JUMP并观测a1/text/b0；本轮未独立预测，不记通过。"
+        }
+      ],
+      "note": "D12正式结束，累计第19个实际学习日；日课计划主线和扩展完成但独立掌握/净分钟不虚报。",
+      "paused_at": "2026-11-08T13:38:43+08:00",
+      "pause_reason": "Student explicitly requested a pause; not end of day",
+      "pause_intervals": [
+        {
+          "started_at": "2026-11-08T13:38:43+08:00",
+          "ended_at": "2026-11-08T13:53:35+08:00",
+          "reason": "student_requested_pause",
+          "count_as_student_learning": false,
+          "duration_seconds": 892
+        }
+      ],
+      "elapsed_wall_seconds_before_pause": 4968,
+      "documented_excluded_seconds_before_pause": 212,
+      "effective_upper_bound_seconds_before_pause": 4756,
+      "minimum_gap_to_300_seconds_before_pause": 13244,
+      "resumed_at": "2026-11-08T13:53:35+08:00",
+      "latest_progress_audit": {
+        "as_of": "2026-11-08T15:31:18+08:00",
+        "wall_seconds": 11723,
+        "pause_seconds": 892,
+        "recorded_teacher_seconds_outside_pause": 530,
+        "effective_upper_bound_seconds": 10301,
+        "minimum_gap_to_300_seconds": 7699,
+        "effective_net_minutes": null,
+        "core_planned_topics_and_deliverables": "covered; assistance levels preserved",
+        "independent_mastery": "not fully established; delayed transfer pending",
+        "day_status": "in_progress, not ended"
+      },
+      "ended_at": "2026-11-08T15:40:55+08:00",
+      "administrative_work_excluded_from": "2026-11-08T15:40:55+08:00",
+      "elapsed_wall_seconds": 12300,
+      "pause_seconds": 892,
+      "documented_teacher_excluded_seconds": 609,
+      "documented_excluded_seconds": 1501,
+      "effective_upper_bound_seconds": 10799,
+      "minimum_gap_to_300_seconds": 7201,
+      "reason_ended": "Student explicitly ended D12; all later work is teacher administration."
     }
   ]
 }

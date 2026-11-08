@@ -1,0 +1,26 @@
+{
+  "teacher_only": true,
+  "checked_at": "2026-11-08T13:37:54+08:00",
+  "sources_sha256": {
+    "03-code_codex\\d12-comparison-count.c": "631af362d4d496cdedba650b4f99e683e6d0eb97584642cda38ae4e55f6cc423",
+    "03-code_codex\\d12-comparison-count-teacher-test.c": "f25b404002fed91c72f2c59c418e4bf960e6c917f1c55f69ed0e16c276ada522"
+  },
+  "flags": [
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Werror"
+  ],
+  "build_exit": 0,
+  "build_stderr": "",
+  "run_exit": 0,
+  "stdout": "equal: PASS (actual=4 expected=4)\nfirst-difference: PASS (actual=1 expected=1)\nthird-difference: PASS (actual=3 expected=3)\nleft-prefix: PASS (actual=4 expected=4)\nright-prefix: PASS (actual=4 expected=4)\nlate-difference: PASS (actual=6 expected=6)\nboth-empty: PASS (actual=1 expected=1)\nleft-empty: PASS (actual=1 expected=1)\nright-empty: PASS (actual=1 expected=1)\none-equal: PASS (actual=2 expected=2)\nspace-mismatch: PASS (actual=4 expected=4)\nmaximum-equal: PASS (actual=101 expected=101)\nmaximum-last-difference: PASS (actual=100 expected=100)\nmutable-arrays: PASS (actual=3 expected=3)\ninputs-unchanged: PASS\nFAILURES=0\n",
+  "stderr": "",
+  "count_cases": 14,
+  "inputs_unchanged_check": true,
+  "source_unchanged": true,
+  "exact_output_matches": true,
+  "pass": true,
+  "executable": "D:\\Apostgraduate\\opencode\\embed-study\\03-code_codex\\d12-build\\count-demo.exe"
+}
