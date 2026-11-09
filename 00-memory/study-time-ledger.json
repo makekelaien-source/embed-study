@@ -2440,6 +2440,142 @@
       "effective_upper_bound_seconds": 10799,
       "minimum_gap_to_300_seconds": 7201,
       "reason_ended": "Student explicitly ended D12; all later work is teacher administration."
+    },
+    {
+      "date": "2026-11-09",
+      "lesson": "D13",
+      "learning_week": "L2",
+      "started_at": "2026-11-09T17:45:07+08:00",
+      "status": "closed",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "segments": [
+        {
+          "category": "testing_review",
+          "topic": "D12 recall: actual reader implementation and one CMD/STOP input path",
+          "started_at": "2026-11-09T17:45:36+08:00",
+          "planned_capacity_minutes": 25,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T17:56:27+08:00",
+          "evidence": "Student correctly traced newline replacement, inner return 1 and outer LINE_READY after narrowing the question. Initially mistook slash at index 3 for newline, then identified the misread after the array trace. Supported recall, no independent transfer claim."
+        },
+        {
+          "category": "mainline",
+          "topic": "strlen first lesson: string length, array capacity and first terminator",
+          "started_at": "2026-11-09T17:56:41+08:00",
+          "planned_capacity_minutes": 50,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T17:58:24+08:00",
+          "evidence": "H0 immediate prediction: strlen returns 2 and stops at text[2], the first terminator."
+        },
+        {
+          "category": "mainline",
+          "topic": "strchr first lesson: first match address and NULL",
+          "started_at": "2026-11-09T17:58:24+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T18:00:04+08:00",
+          "evidence": "H0 immediate prediction: missing '#' returns NULL and the guarded printf does not run."
+        },
+        {
+          "category": "mainline",
+          "topic": "trim_right_spaces: in-place string modification",
+          "started_at": "2026-11-09T18:00:04+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T18:49:50+08:00",
+          "evidence": "Student requested full solution. Teacher reference strictly built and passed 11 checks, HA. End is sampled from last pre-reply log write."
+        },
+        {
+          "category": "mainline",
+          "topic": "Resume D13: trace the reference solution on one space group",
+          "started_at": "2026-11-09T20:30:23+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T20:44:31+08:00",
+          "evidence": "Initially predicted text[2] rather than text[1]. With diagram and explanation, distinguished saved address, moving pointer and indexed character, then confirmed understanding. HA reference remains; independent transfer pending."
+        },
+        {
+          "category": "foundations",
+          "topic": "Writable arrays and borrowed views after writing a terminator",
+          "started_at": "2026-11-09T20:44:31+08:00",
+          "planned_capacity_minutes": 29,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T20:46:03+08:00",
+          "evidence": "H0 immediate prediction: suffix prints AUTO; slash points at the new terminator and prints an empty string."
+        },
+        {
+          "category": "language_tools",
+          "topic": "GDB next, step and finish across one C call",
+          "started_at": "2026-11-09T20:46:03+08:00",
+          "planned_capacity_minutes": 20,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T20:51:07+08:00",
+          "evidence": "First chose finish to enter; corrected step versus finish and explained up/down. Teacher GDB run observed the same address before and after; student correctly predicted puts has not executed at finish. No student-run evidence."
+        },
+        {
+          "category": "mainline",
+          "topic": "Integrate trim into the existing LINE_READY console path",
+          "started_at": "2026-11-09T20:51:07+08:00",
+          "planned_capacity_minutes": 40,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T20:53:22+08:00",
+          "evidence": "Student added one normalization call in the marked LINE_READY branch; strict build and seven-line stdin integration passed in teacher run. Integration used supplied scaffold and HA trim reference."
+        },
+        {
+          "category": "algorithms",
+          "topic": "Reverse tail scan stopping conditions and comparisons",
+          "started_at": "2026-11-09T20:53:22+08:00",
+          "planned_capacity_minutes": 24,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T21:12:35+08:00",
+          "evidence": "Student implemented signed reverse index with break at index zero. After hints on assignment, length vs NULL, void return, and brace mismatch, strict C11 build and teacher 11/11 checks passed."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Choose inputs that distinguish tail trim mistakes",
+          "started_at": "2026-11-09T21:12:35+08:00",
+          "planned_capacity_minutes": 22,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T21:14:54+08:00",
+          "evidence": "Student chose A plus two trailing spaces and distinguished correct output from a one-space-only defect. C literal notation corrected. Student requested skipping further similar oral checks; second check not assessed. D13 remains open."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Student-requested D11-D13 integrated review",
+          "started_at": "2026-11-09T21:19:56+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-09T22:19:59+08:00",
+          "evidence": "D11-D13 recall plus D9-D13 fresh two-file exercise. Student distinguished valid empty suffix; MODE drafts remained uncompilable. User requested teacher repair and end. All later tests and fixes are administrative."
+        }
+      ],
+      "teacher_preparation_excluded_until": "2026-11-09T17:45:36+08:00",
+      "pause_intervals": [
+        {
+          "started_at": "2026-11-09T18:49:50+08:00",
+          "ended_at": "2026-11-09T20:30:23+08:00",
+          "reason": "Student reported no learning after previous answer. Start approximated from last pre-reply log write. Includes teacher preparation before restart.",
+          "count_as_student_learning": false
+        }
+      ],
+      "resumed_at": "2026-11-09T20:30:09+08:00",
+      "ended_at": "2026-11-09T22:19:59+08:00",
+      "administrative_work_excluded_from": "2026-11-09T22:19:59+08:00",
+      "elapsed_wall_seconds": 16492,
+      "pause_seconds": 6033,
+      "documented_teacher_excluded_seconds": 29,
+      "effective_upper_bound_seconds": 10430,
+      "minimum_gap_to_300_seconds": 7570
     }
   ]
 }
