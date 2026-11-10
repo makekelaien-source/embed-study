@@ -11,6 +11,12 @@
   },
   "teacher_processing_intervals": [
     {
+      "started_at": "2026-11-10T13:31:20+08:00",
+      "ended_at": "2026-11-10T13:31:45+08:00",
+      "reason": "D14 teacher processing between recall and Python import unit",
+      "count_as_student_learning": false
+    },
+    {
       "started_at": "2026-10-28T21:59:51+08:00",
       "end_sampled_before_reply_at": "2026-10-28T22:25:24+08:00",
       "category": "learning_workflow_implementation_preparation_archive_and_sync",
@@ -2576,6 +2582,177 @@
       "documented_teacher_excluded_seconds": 29,
       "effective_upper_bound_seconds": 10430,
       "minimum_gap_to_300_seconds": 7570
+    },
+    {
+      "date": "2026-11-10",
+      "lesson": "D14",
+      "learning_week": "L3",
+      "started_at": "2026-11-10T13:25:28+08:00",
+      "status": "closed",
+      "ended_at": "2026-11-10T17:03:45+08:00",
+      "administrative_work_excluded_from": "2026-11-10T17:03:45+08:00",
+      "elapsed_wall_seconds": 13097,
+      "pause_seconds": 161,
+      "effective_upper_bound_seconds": 12906,
+      "minimum_gap_to_300_seconds": 5094,
+      "resumed_at": "2026-11-10T14:47:16+08:00",
+      "paused_at": "2026-11-10T14:44:35+08:00",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "teacher_preparation_excluded_until": "2026-11-10T13:25:58+08:00",
+      "segments": [
+        {
+          "category": "testing_review",
+          "topic": "D13 recall: one writable-array separator cut and borrowed suffix",
+          "started_at": "2026-11-10T13:25:58+08:00",
+          "planned_capacity_minutes": 25,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T13:31:20+08:00",
+          "evidence": "H0 oral prediction: suffix prints AUTO and points at A."
+        },
+        {
+          "category": "language_tools",
+          "topic": "Python modules, imports and entry guard",
+          "started_at": "2026-11-10T13:31:45+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T13:44:25+08:00",
+          "evidence": "Predicted guarded import and return value 10; teacher clarified definition versus call and full output order. Oral only."
+        },
+        {
+          "category": "language_tools",
+          "topic": "Working directory versus script directory",
+          "started_at": "2026-11-10T13:44:25+08:00",
+          "planned_capacity_minutes": 35,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T13:49:09+08:00",
+          "evidence": "Correct oral predictions for script-relative and cwd-relative path. Teacher verified demo from two working directories. Net minutes unconfirmed."
+        },
+        {
+          "category": "language_tools",
+          "topic": "Open UTF-8 text and read one line",
+          "started_at": "2026-11-10T13:49:26+08:00",
+          "planned_capacity_minutes": 45,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T13:52:43+08:00",
+          "evidence": "Asked whether EOF is a stored terminator. After clarification, correctly predicted AUTO then empty string for a file with no final newline."
+        },
+        {
+          "category": "language_tools",
+          "topic": "with and FileNotFoundError",
+          "started_at": "2026-11-10T13:52:43+08:00",
+          "planned_capacity_minutes": 55,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T14:20:58+08:00",
+          "evidence": "Student implemented first-line function after prompts. Teacher five fixtures and read-once, close, exception checks passed."
+        },
+        {
+          "category": "algorithms",
+          "topic": "Stopping at the first valid line versus reading to EOF",
+          "started_at": "2026-11-10T14:21:24+08:00",
+          "planned_capacity_minutes": 20,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T14:35:14+08:00",
+          "evidence": "Student selected skip-blank loop, fixed lifetime and try boundary after prompts. Five fixtures and two read-count checks passed in teacher run."
+        },
+        {
+          "category": "foundations",
+          "topic": "File resource lifetime on return and exception",
+          "started_at": "2026-11-10T14:35:40+08:00",
+          "planned_capacity_minutes": 35,
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T14:38:58+08:00",
+          "evidence": "Correctly predicted FileNotFoundError handler does not catch UnicodeDecodeError and with closes the file. Teacher real invalid UTF-8 fixture confirmed both."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Student-run file fixture and expected vs actual output",
+          "started_at": "2026-11-10T14:38:58+08:00",
+          "planned_capacity_minutes": 40,
+          "effective_minutes": null,
+          "status": "paused_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T14:44:35+08:00"
+        },
+        {
+          "category": "mainline",
+          "topic": "L3 C line reader and recovery, started on explicit request after D14 Python block",
+          "started_at": "2026-11-10T14:47:16+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T14:53:36+08:00",
+          "evidence": "Correctly traced next line after consuming newline; 15-character boundary and fgets return type corrected. Student acknowledged; independent recheck pending."
+        },
+        {
+          "category": "mainline",
+          "topic": "Standalone C stdout, stderr and process exit status",
+          "started_at": "2026-11-10T14:53:36+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T15:19:21+08:00",
+          "evidence": "Student fixed NULL branch and exact output after feedback; teacher strict build and three stream/exit checks passed."
+        },
+        {
+          "category": "mainline",
+          "topic": "Standalone C: normal EOF versus input error",
+          "started_at": "2026-11-10T15:19:21+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T15:35:27+08:00",
+          "evidence": "Student stopped revisions. The current saved draft was reproduced with an early return; updated three-way behavior not verified."
+        },
+        {
+          "category": "language_tools",
+          "topic": "Separating stdout and stderr from PowerShell",
+          "started_at": "2026-11-10T15:35:27+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T15:41:29+08:00",
+          "evidence": "Teacher observed separated stdout, stderr and exit code in PowerShell; student reported trying it, without output evidence."
+        },
+        {
+          "category": "language_tools",
+          "topic": "GCC warnings and strict build failures",
+          "started_at": "2026-11-10T15:41:29+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T15:45:26+08:00",
+          "evidence": "Student correctly distinguished stale executable after failed build and demo exit code from GCC exit code, orally."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Test design: identical diagnostic text sent to different streams",
+          "started_at": "2026-11-10T15:45:26+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T15:58:59+08:00",
+          "evidence": "After single-stream routing clarification, student correctly predicted stderr remains visible with 1>. Teacher compared otherwise identical programs; test-design independence unassessed."
+        },
+        {
+          "category": "algorithms",
+          "topic": "Recoverable bad line versus stopping the input loop",
+          "started_at": "2026-11-10T15:58:59+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T16:57:47+08:00",
+          "evidence": "Student fixed recovery with scaffold and localized hints. Teacher strict C11 build and eight tests passed. Original preserved."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Student-run strict build and long-line recovery regression",
+          "started_at": "2026-11-10T16:57:47+08:00",
+          "effective_minutes": null,
+          "status": "closed_effective_time_unconfirmed",
+          "ended_at": "2026-11-10T17:03:45+08:00",
+          "evidence": "Student strict build and long-line recovery regression passed; explained EOF loop condition after discussion."
+        }
+      ]
     }
   ]
 }
