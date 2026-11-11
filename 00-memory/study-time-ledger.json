@@ -2753,6 +2753,76 @@
           "evidence": "Student strict build and long-line recovery regression passed; explained EOF loop condition after discussion."
         }
       ]
+    },
+    {
+      "date": "2026-11-11",
+      "lesson": "D15",
+      "started_at": "2026-11-11T15:21:32+08:00",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "current_state": "ended_book_verified_sources_archived",
+      "classroom_ended": true,
+      "reason_ended": "Student said '收口' at ~16:45. Stop sampled 16:46:14. Post-stop archiving excluded.",
+      "elapsed_minutes_approximate": 85,
+      "effective_time_note": "Wall 15:21:32-16:46:14 = 84m42s. No declared pauses. Teacher processing estimated ~6m (open-context reading ~3m, in-class compile/test runs ~3m), estimate not exact. Effective upper bound ~79m; precise net unknown. Planned 9 units all covered; content finishing early does not fill 300.",
+      "segments": [
+        {
+          "started_at": "2026-11-11T15:21:32+08:00",
+          "ended_at": "2026-11-11T16:46:14+08:00",
+          "category": "mainline",
+          "activity": "D15: D14 boundary review, command-entry contract, fprintf first lecture, student core exercise, boundary test design, student-run build+streams, line counting, data journey, interactive stdin test",
+          "student_report": "Mixed; per-unit evidence in 02-logs/2026-11-11.md",
+          "window_minutes_approximate": 85,
+          "effective_minutes": null,
+          "note": "Single window; per-unit boundaries not sampled. Effective cap only, net unknown."
+        }
+      ],
+      "topics": [
+        {
+          "category": "review",
+          "topic": "D14 boundary: 15 chars exactly full then EOF",
+          "evidence": "Student first contradicted himself (NULL with output); after contradiction pointed out, corrected: 15 chars read, non-NULL, probe fgetc=EOF, no TOO_LONG. Concept confirmed after hint."
+        },
+        {
+          "category": "mainline",
+          "topic": "Command-entry contract + fprintf first lecture",
+          "evidence": "Three-question layering, line-number N contract taught; fprintf params/no-auto-newline taught with diagnostic.c; deletion prediction answered correctly."
+        },
+        {
+          "category": "mainline",
+          "topic": "Student core: d15-command-entry.c",
+          "evidence": "Round1: prefix-compare and counting-position root causes; strcmp stop-rule misconception fixed via prediction. Round2: text\\n syntax error; strip step given. Round3: strip+single N++ added, strict build clean, three acceptance cases pass; colon space still missing (logged, not blocking). Core structure independent."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Boundary: distinguishing early-exit variant",
+          "evidence": "Student independently designed RUN/on/STOP input; teacher ran both versions, results matched prediction exactly. Minimal-input lesson noted."
+        },
+        {
+          "category": "language_tools",
+          "topic": "Student-run strict build and stream separation",
+          "evidence": "Student executed gcc build, created case1.txt, cmd /c redirect, read both exit codes correctly attributed (gcc vs program)."
+        },
+        {
+          "category": "algorithms",
+          "topic": "Per-line counting",
+          "evidence": "Trace question four items all correct including final N=3 with no-newline last line."
+        },
+        {
+          "category": "computer_basics",
+          "topic": "Data journey and shell wrapping",
+          "evidence": "First answer 'do not understand'; after re-teaching with two-pipes analogy student correctly located RUN_OK in out.txt decided by shell via 1>."
+        },
+        {
+          "category": "testing_review",
+          "topic": "Interactive stdin + Ctrl+Z EOF test",
+          "evidence": "Student typed RUN/BAD/STOP plus unplanned OK line; line-4 diagnostic proved counting continuity; EOF exit 0; no NativeCommandError in direct console."
+        }
+      ],
+      "teacher_errors": [
+        "Claimed blank exercise file existed before actually creating it; student reported file missing. Prevention: verify creation before telling student the path."
+      ],
+      "next_lesson": "04-notes/lesson-2026-11-12.md (multi-file and header files; teacher demo compiled and verified)"
     }
   ]
 }
