@@ -4,6 +4,8 @@
 
 从第一批采购到装壳和整机验收，见[全流程建造清单](build-runbook.md)。
 
+真人等待时间优化、当前香橙派启动配置、回退和分段计时见[加速操作说明](speed-tuning.md)，本轮证据和未通过项见[加速实测](speed-results.md)。历史基准使用的音色、语速和计时口径不同，不能直接代替当前真人验收。
+
 已完成 64GB SD 系统卡写入与回读校验。接独立显示器、首次登录和 Wi-Fi 配置见[首次启动操作清单](first-boot-display.md)。
 
 车头视觉和表情屏见[视觉与表情屏执行清单](vision-face-runbook.md)。[视觉诊断](vision_check.py)支持回放图片和采样摄像头，[前进联锁](forward_guard.c)可在电脑上编译测试，[表情素材导出](face_screen.py)可将内置表情或自备角色 PNG 转为 240×320 彩屏素材。实车运行按清单上板联调。
@@ -30,7 +32,7 @@ Set-Location 'D:\Apostgraduate\opencode\embed-study\05-projects\desktop-robot'
 
 ## 分别设置中英文音色
 
-运行 `robot.py --list-voices` 列出音色。中文可选 `melo`、`zh-ll-0` 至 `zh-ll-4`，英文可选 `lessac`、`ryan`。编辑 `.local/voices.json` 里的 `zh` 和 `en` 可以分别保存默认值。安装脚本会在首次安装时复制 `voices.example.json`，已有设置会保留。改完重启程序生效。
+运行 `robot.py --list-voices` 列出音色。中文可选 `melo`、`zh-ll-0` 至 `zh-ll-4`、`theresa`，英文可选 `lessac`、`ryan`。编辑 `.local/voices.json` 里的 `zh` 和 `en` 可以分别保存默认值。安装脚本会在首次安装时复制 `voices.example.json`，已有设置会保留。改完重启程序生效。
 
 ```powershell
 .\.venv\Scripts\python.exe -X utf8 robot.py --language zh --voice zh-ll-2 --preview-voice zh-ll-2.wav

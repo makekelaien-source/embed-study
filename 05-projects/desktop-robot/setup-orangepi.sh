@@ -25,6 +25,7 @@ uv=.local/uv-aarch64-unknown-linux-gnu/uv
 for archive in asr tts tts-en tts-zh-ll; do
     tar -xjf ".local/$archive.tar.bz2" -C .local
 done
+tar -xjf .local/vits-zh-hf-theresa.tar.bz2 -C .local
 if [[ ! -e .local/voices.json ]]; then
     cp voices.example.json .local/voices.json
 fi

@@ -15,3 +15,6 @@ venv/
 /00-memory/local-sync-state.json
 
 /00-memory/local-close-work.json
+
+/.agents/
+/05-projects/desktop-robot/.arduino/

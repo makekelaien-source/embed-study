@@ -44,9 +44,9 @@ def check_cleanup_path(name):
         raise ValueError(f"Shared/non-lesson file cannot be cleaned: {name}")
 
 
-def git(root, *args):
+def git(root, *args, input=None):
     p = subprocess.run(["git", "-c", "http.version=HTTP/1.1", *args], cwd=root,
-                       capture_output=True, timeout=35,
+                       input=input, capture_output=True, timeout=35,
                        env=os.environ | {"GIT_TERMINAL_PROMPT": "0"})
     if p.returncode:
         raise ValueError(p.stderr.decode("utf-8", errors="replace").strip())
@@ -103,10 +103,34 @@ def snapshot_sources(root, data):
     snapshot = data["snapshot_commit"]
     if not re.fullmatch(r"[0-9a-f]{40}", snapshot):
         raise ValueError("A full snapshot commit is required")
-    for item in data["sources"]:
-        raw = git(root, "show", f"{snapshot}:{item['path']}")
+    sources = data["sources"]
+    if not sources:
+        return
+    specs = []
+    for item in sources:
+        safe(root, item["path"])
+        if "\n" in item["path"] or "\r" in item["path"]:
+            raise ValueError("Newlines are not supported in source paths")
+        specs.append(f"{snapshot}:{item['path']}")
+    # One binary batch avoids a new Git process per source on Windows. Read blob
+    # lengths, not text lines: student sources can contain any CR/LF sequence.
+    output = git(root, "cat-file", "--batch", input=("\n".join(specs) + "\n").encode())
+    offset = 0
+    for item in sources:
+        end = output.find(b"\n", offset)
+        fields = output[offset:end].split() if end >= 0 else []
+        if len(fields) != 3 or fields[1] != b"blob" or not fields[2].isdigit():
+            raise ValueError(f"Snapshot bytes unavailable: {item['path']}")
+        size = int(fields[2])
+        offset = end + 1
+        raw = output[offset:offset + size]
+        if len(raw) != size or output[offset + size:offset + size + 1] != b"\n":
+            raise ValueError(f"Snapshot bytes truncated: {item['path']}")
+        offset += size + 1
         if digest(raw) != item["sha256"]:
             raise ValueError(f"Snapshot bytes do not match source: {item['path']}")
+    if offset != len(output):
+        raise ValueError("Unexpected bytes after snapshot batch")
 
 
 def build(root, book, date, snapshot, entries, intro):

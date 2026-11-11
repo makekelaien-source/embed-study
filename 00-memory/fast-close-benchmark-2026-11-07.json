@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-07",
+  "scope": "Full isolated D11 replay with a real local bare remote; not a claim about WAN upload duration",
+  "previous_observed_close_seconds": 1248,
+  "prepared_inputs": true,
+  "sources": 65,
+  "offline_restored_sources": 65,
+  "restore_programs": 13,
+  "restore_process_runs": 17,
+  "restore_logical_checks": 72,
+  "next_lesson_programs": 3,
+  "cleaned_sources": 56,
+  "elapsed_seconds": 3.25,
+  "budget_seconds": 300,
+  "complete": true,
+  "local_final_equals_remote": true,
+  "byte_preservation": true,
+  "parallel_validation": true,
+  "uncontrolled_network_limit": "Online availability is not guaranteed; failed/deadline attempts return pending and keep originals.",
+  "github_read_only_probe": {
+    "seconds": 2.703,
+    "public_verified": true,
+    "remote_sha": "aff463144c44cf18659efefb57f005ddf824abdf",
+    "writes_performed": false,
+    "route_type": "previously_verified_loopback_proxy",
+    "credential_policy": "existing noninteractive credential in memory only when required"
+  },
+  "tool_suite": {
+    "tests": 42,
+    "passed": true,
+    "seconds": 23.891
+  }
+}

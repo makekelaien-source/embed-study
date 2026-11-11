@@ -1,0 +1,32 @@
+[Unit]
+Description=Offline bilingual desktop robot
+After=sound.target desktop-robot-frequency.service
+Requires=desktop-robot-frequency.service
+Wants=sound.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=notify
+NotifyAccess=all
+User=orangepi
+SupplementaryGroups=audio
+WorkingDirectory=/home/orangepi/desktop-robot
+Environment=PYTHONUNBUFFERED=1
+Environment=ROBOT_LANGUAGE=zh
+EnvironmentFile=-/home/orangepi/desktop-robot/.local/robot-service.env
+ExecStart=/home/orangepi/desktop-robot/.venv/bin/python -u /home/orangepi/desktop-robot/service_runner.py
+StandardInput=null
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=120
+TimeoutStopSec=10
+KillSignal=SIGINT
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+CPUAccounting=true
+MemoryAccounting=true
+
+[Install]
+WantedBy=multi-user.target

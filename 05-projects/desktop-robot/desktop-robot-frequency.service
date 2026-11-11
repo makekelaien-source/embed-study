@@ -1,0 +1,12 @@
+[Unit]
+Description=Restore Orange Pi board-advertised CPU maximum
+After=cpufrequtils.service
+Before=desktop-robot.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /home/orangepi/desktop-robot/restore_frequency.py
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

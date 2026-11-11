@@ -1,0 +1,24 @@
+{
+  "status": "candidate-awaiting-acceptance",
+  "common": {
+    "threads": 2,
+    "tts_threads": 8,
+    "batch_threads": 8,
+    "cpu_range": "6-7",
+    "batch_cpu_range": "0-7",
+    "server": ".local/llama/llama-server",
+    "prompt_mode": "original",
+    "first_clause_chars": 16
+  },
+  "language_overrides": {
+    "zh": {"speed": 0.9},
+    "en": {"speed": 1.0}
+  },
+  "microphone": {
+    "input_device": 0,
+    "output_device": 3,
+    "threshold": 0.004,
+    "silence": 0.55,
+    "vad": "rms"
+  }
+}

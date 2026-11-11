@@ -16,14 +16,18 @@ from typing import NamedTuple
 from urllib.error import URLError
 from urllib.request import ProxyHandler, Request, build_opener
 import wave
+from acceleration import split_first_clause, server_options, valid_speed, warmup_pipeline, SileroDetector, tts_model_path
+from service_runner import notify_ready
 
 
 ROOT = Path(__file__).resolve().parent
 ASR = "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17"
 TTS = "vits-melo-tts-zh_en"
 ZH_LL = "sherpa-onnx-vits-zh-ll"
+THERESA = "vits-zh-hf-theresa"
 VOICES = {
-    "zh": {"melo": (TTS, 0), **{f"zh-ll-{sid}": (ZH_LL, sid) for sid in range(5)}},
+    "zh": {"melo": (TTS, 0), **{f"zh-ll-{sid}": (ZH_LL, sid) for sid in range(5)},
+           "theresa": (THERESA, 0)},
     "en": {"lessac": ("vits-piper-en_US-lessac-medium", "en_US-lessac-medium.onnx"),
            "ryan": ("piper-ryan", "en_US-ryan-low.onnx")},
 }
@@ -55,6 +59,10 @@ EN_PROMPT = (
     "Do not add a closing question."
 )
 PROMPTS = {"zh": ZH_PROMPT, "en": EN_PROMPT}
+COMPACT_PROMPTS = {
+    "zh": "你是只能聊天和短距离移动的桌面机器人。用一句完整口语中文回答，不超过30字。沿用上下文的人名和物品名，追问给具体做法，不重复旧答案；听不清就确认。",
+    "en": "Reply in English as a desktop robot that only talks and moves short distances. Use one complete sentence within 16 words. Keep names and details from context; give concrete steps on follow-ups, without repeating or adding a closing question.",
+}
 CLAUSE_END = {"zh": "，。！？；", "en": ",.!?;"}
 
 
@@ -79,12 +87,15 @@ class SpokenAudio(NamedTuple):
 
 
 class Dialogue:
-    def __init__(self, reply, language="zh", reply_stream=None):
+    def __init__(self, reply, language="zh", reply_stream=None, prompt_mode="original", first_clause_chars=16):
         self.reply = reply
         self.reply_stream = reply_stream
         self.language = language
         self.history = deque(maxlen=8)
         self.last_answer = ""
+        self.prompt = (COMPACT_PROMPTS if prompt_mode == "compact" else PROMPTS)[language]
+        self.first_clause_chars = first_clause_chars if language == "zh" else 0
+        self.first_token_at = None
 
     def turn(self, text):
         kind, stream = self.turn_stream(text)
@@ -95,7 +106,7 @@ class Dialogue:
     def turn_stream(self, text):
         text = text.strip()
         command = " ".join(text.rstrip("。！？.!?").casefold().split())
-        if not text:
+        if not any(char.isalnum() for char in text):
             return "empty", None
         if command == END_COMMANDS[self.language]:
             self.history.clear()
@@ -103,7 +114,8 @@ class Dialogue:
         if command in COMMANDS[self.language]:
             return "command", COMMANDS[self.language][command]
         user = {"role": "user", "content": text}
-        messages = [{"role": "system", "content": PROMPTS[self.language]}, *self.history, user]
+        self.first_token_at = None
+        messages = [{"role": "system", "content": self.prompt}, *self.history, user]
         return "chat", self._clauses(messages, user)
 
     def _clauses(self, messages, user):
@@ -112,10 +124,12 @@ class Dialogue:
 
         def capture():
             for delta in deltas:
+                if self.first_token_at is None:
+                    self.first_token_at = time.perf_counter()
                 parts.append(delta)
                 yield delta
 
-        yield from split_clauses(capture(), CLAUSE_END[self.language])
+        yield from split_first_clause(capture(), CLAUSE_END[self.language], self.first_clause_chars)
         answer = "".join(parts).strip()
         if not answer:
             raise RuntimeError("对话模型返回了空回复")
@@ -124,7 +138,10 @@ class Dialogue:
 
 
 class Endpoint:
-    def __init__(self):
+    def __init__(self, silence_seconds=0.7):
+        if not 0.2 <= silence_seconds <= 1.5:
+            raise ValueError("结束静音须在 0.2 至 1.5 秒之间")
+        self.silence_seconds = silence_seconds
         self.first_voice = None
         self.last_voice = None
 
@@ -137,7 +154,7 @@ class Endpoint:
             self.last_voice = elapsed
         if self.first_voice is None:
             return "listen"
-        if elapsed - self.first_voice >= 12 or elapsed - self.last_voice >= 0.7:
+        if elapsed - self.first_voice >= 12 or elapsed - self.last_voice >= self.silence_seconds:
             return "done"
         return "listen"
 
@@ -156,8 +173,9 @@ def resolve_voice(assets, language, override=None):
 
 
 class Voice:
-    def __init__(self, assets, threads, language, name, tts_threads=None):
+    def __init__(self, assets, threads, language, name, tts_threads=None, speed=None):
         self.language = language
+        self.speed = valid_speed(speed if speed is not None else (0.9 if name == "theresa" else 1.0))
         threads = tts_threads or threads
         folder, voice = VOICES[language][name]
         tts = assets / folder
@@ -170,12 +188,13 @@ class Voice:
         import sherpa_onnx
 
         self.speaker_id = voice
-        for name in ("model.onnx", "tokens.txt", "lexicon.txt", "dict"):
+        model_path = tts_model_path(tts)
+        for name in ("tokens.txt", "lexicon.txt", "dict"):
             if not (tts / name).exists():
                 raise FileNotFoundError(tts / name)
         rules = ",".join(str(path) for path in sorted(tts.glob("*.fst")))
         model = sherpa_onnx.OfflineTtsVitsModelConfig(
-            model=str(tts / "model.onnx"), tokens=str(tts / "tokens.txt"),
+            model=str(model_path), tokens=str(tts / "tokens.txt"),
             lexicon=str(tts / "lexicon.txt"), dict_dir=str(tts / "dict"),
         )
         self.tts = sherpa_onnx.OfflineTts(sherpa_onnx.OfflineTtsConfig(
@@ -185,16 +204,17 @@ class Voice:
 
     def synthesize(self, text):
         if self.language == "en":
-            for chunk in self.tts.synthesize(text):
+            from piper.config import SynthesisConfig
+            for chunk in self.tts.synthesize(text, syn_config=SynthesisConfig(length_scale=1.0/self.speed)):
                 yield SpokenAudio(chunk.audio_float_array, chunk.sample_rate)
             return
         for sentence in re.split(r"(?<=[。！？；])", text):
             if sentence.strip():
-                yield self.tts.generate(sentence, sid=self.speaker_id, speed=1.0)
+                yield self.tts.generate(sentence, sid=self.speaker_id, speed=self.speed)
 
 
 class Speech:
-    def __init__(self, assets, threads, language="zh", voice=None, tts_threads=None):
+    def __init__(self, assets, threads, language="zh", voice=None, tts_threads=None, speed=None):
         import sherpa_onnx
 
         name = resolve_voice(assets, language, voice)
@@ -206,7 +226,7 @@ class Speech:
             model=str(asr / "model.int8.onnx"), tokens=str(asr / "tokens.txt"),
             language=language, use_itn=True, num_threads=threads,
         )
-        self.voice = Voice(assets, threads, language, name, tts_threads)
+        self.voice = Voice(assets, threads, language, name, tts_threads, speed)
 
     def recognize(self, samples):
         stream = self.recognizer.create_stream()
@@ -222,6 +242,7 @@ class LocalChat:
     def __init__(self, port):
         self.url = f"http://127.0.0.1:{port}"
         self.opener = build_opener(ProxyHandler({}))
+        self.metrics = {}
 
     def request(self, path, data=None, timeout=60):
         body = None if data is None else json.dumps(data).encode()
@@ -236,9 +257,12 @@ class LocalChat:
             "temperature": 0.5,
             "repeat_penalty": 1.1,
             "chat_template_kwargs": {"enable_thinking": False},
+            "cache_prompt": True,
         }
         if stream:
             body["stream"] = True
+        if getattr(self, "seed", None) is not None:
+            body["seed"] = self.seed
         return body
 
     def reply(self, messages):
@@ -249,6 +273,7 @@ class LocalChat:
         return answer
 
     def reply_stream(self, messages):
+        self.metrics = {}
         body = json.dumps(self.chat_body(messages, stream=True)).encode()
         request = Request(self.url + "/v1/chat/completions", body, {"Content-Type": "application/json"})
         with self.opener.open(request, timeout=60) as response:
@@ -258,14 +283,19 @@ class LocalChat:
                 payload = line[5:].strip()
                 if payload == b"[DONE]":
                     return
-                delta = json.loads(payload)["choices"][0]["delta"].get("content")
+                item = json.loads(payload)
+                if "timings" in item:
+                    self.metrics.update(item["timings"])
+                choices = item.get("choices", [])
+                delta = choices[0].get("delta", {}).get("content") if choices else None
                 if delta:
                     yield delta
 
 
 @contextmanager
-def local_server(executable, assets, port, threads):
-    model = assets / "chat.gguf"
+def local_server(executable, assets, port, threads, batch_threads=None, cpu_range=None,
+                 batch_cpu_range=None, model_path=None):
+    model = Path(model_path).resolve() if model_path else assets / "chat.gguf"
     for path in (executable, model):
         if not path.is_file():
             raise FileNotFoundError(path)
@@ -273,7 +303,8 @@ def local_server(executable, assets, port, threads):
     with log_path.open("wb") as log:
         process = subprocess.Popen([
             str(executable), "-m", str(model), "--host", "127.0.0.1",
-            "--port", str(port), "-c", "2048", "-np", "1", "-t", str(threads),
+            "--port", str(port), "-c", "2048", "-np", "1",
+            *server_options(threads, batch_threads, cpu_range, batch_cpu_range),
         ], stdout=log, stderr=subprocess.STDOUT,
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0)
         try:
@@ -362,12 +393,15 @@ def check_audio(input_device, output_device):
     play_audio(recording.mean(axis=1), rate, output_device)
 
 
-def listen(device, threshold):
+def listen(device, threshold, silence_seconds=0.7, detector=None):
     import numpy as np
     import sounddevice as sd
 
-    endpoint = Endpoint()
-    preroll = deque(maxlen=10)
+    endpoint = Endpoint(silence_seconds)
+    if detector is not None:
+        detector.reset()
+    # Silero's onset confirmation can exceed 200 ms; retain the word onset.
+    preroll = deque(maxlen=25 if detector is not None else 10)
     chunks = []
     voiced_blocks = 0
     rate, channels = device_format(device, "input", RATE)
@@ -380,7 +414,8 @@ def listen(device, threshold):
             if overflow:
                 raise RuntimeError("麦克风缓冲溢出，请重试")
             elapsed = time.perf_counter() - started
-            voiced = np.sqrt(np.mean(audio ** 2)) >= threshold
+            voiced = (detector.feed(resample_audio(audio.mean(axis=1), rate, RATE))
+                      if detector is not None else np.sqrt(np.mean(audio ** 2)) >= threshold)
             voiced_blocks = voiced_blocks + 1 if voiced else 0
             if endpoint.first_voice is None:
                 preroll.append(audio)
@@ -415,7 +450,7 @@ def save_wav(path, samples, rate):
         file.writeframes(pcm.tobytes())
 
 
-def run_turn(dialogue, speech, samples, speech_end, output=None, device=None):
+def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, metrics_path=None):
     start = time.perf_counter()
     text = speech.recognize(samples)
     recognized = time.perf_counter()
@@ -425,11 +460,13 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None):
         print(f"台架模拟动作  {stream}", flush=True)
     elif kind == "chat":
         clauses, clips = queue.Queue(), queue.Queue()
-        state = {"first": None, "last": None, "gen": None, "error": None}
+        state = {"first": None, "last": None, "gen": None, "text": None, "tts_start": None, "error": None}
 
         def generate():
             try:
                 for clause in stream:
+                    if state["text"] is None:
+                        state["text"] = time.perf_counter()
                     clauses.put(clause)
                 state["gen"] = time.perf_counter()
             except Exception as error:
@@ -443,6 +480,8 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None):
                     clause = clauses.get()
                     if clause is None:
                         break
+                    if state["tts_start"] is None:
+                        state["tts_start"] = time.perf_counter()
                     for audio in speech.synthesize(clause):
                         now = time.perf_counter()
                         if state["first"] is None:
@@ -483,7 +522,47 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None):
               f"首声 {state['first']-recognized:.2f}s | 整段 {state['last']-recognized:.2f}s | "
               f"{'文件输入到首声' if output else '说完到出声'} {first_ready-base:.2f}s | "
               f"整段等待 {state['last']-base:.2f}s", flush=True)
+        owner = getattr(dialogue.reply_stream, "__self__", None)
+        row = {
+            "event": "turn", "input_kind": "file" if output else "microphone",
+            "text": text, "answer": dialogue.last_answer,
+            "endpoint_wait_s": None if speech_end is None else start-speech_end,
+            "asr_s": recognized-start,
+            "first_token_s": None if dialogue.first_token_at is None else dialogue.first_token_at-recognized,
+            "first_clause_s": state["text"]-recognized,
+            "first_synthesis_s": state["first"]-state["tts_start"],
+            "first_audio_ready_s": state["first"]-recognized,
+            "playback_delay_s": None if playback_start is None else playback_start-state["first"],
+            "response_s": first_ready-base,
+            "total_s": time.perf_counter()-base,
+            "llm": getattr(owner, "metrics", {}),
+        }
+        if metrics_path:
+            with Path(metrics_path).open("a", encoding="utf8") as file:
+                file.write(json.dumps(row, ensure_ascii=False)+"\n")
+        print("阶段计时 " + json.dumps(row, ensure_ascii=False), flush=True)
     return kind
+
+
+def serve_conversations(args,chat,speech,detector):
+    import numpy as np
+    chime=(0.12*np.sin(2*np.pi*660*np.arange(4800)/48000)).astype('float32')
+    if args.auto_listen:
+        play_audio(chime,48000,args.output_device)
+    notify_ready(args.ready_file)
+    while True:
+        if not args.auto_listen:
+            input('按 Enter 模拟唤醒，Ctrl+C 退出。')
+            play_audio(chime,48000,args.output_device)
+        dialogue=Dialogue(chat.reply,args.language,chat.reply_stream,args.prompt_mode,args.first_clause_chars)
+        while True:
+            print('正在听……',flush=True)
+            samples,speech_end=listen(args.input_device,args.threshold,args.silence,detector)
+            if samples is None:
+                print('会话已超时，等待下一句。',flush=True)
+                break
+            kind=run_turn(dialogue,speech,samples,speech_end,device=args.output_device,metrics_path=args.metrics)
+            if kind=='end':break
 
 
 def main():
@@ -499,6 +578,20 @@ def main():
     parser.add_argument("--threshold", type=float, default=0.012, help="麦克风语音 RMS 门限")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--tts-threads", type=int, help="语音合成线程数，默认与 --threads 相同")
+    parser.add_argument("--speed", type=float, help="语速 0.5–1.5；Theresa 默认 0.9，其余 1.0")
+    parser.add_argument("--batch-threads", type=int)
+    parser.add_argument("--cpu-range")
+    parser.add_argument("--batch-cpu-range")
+    parser.add_argument("--model", type=Path, help="可选 GGUF，不覆盖默认模型")
+    parser.add_argument("--prompt-mode", choices=("original", "compact"), default="original")
+    parser.add_argument("--first-clause-chars", type=int, choices=(0, 16), default=16)
+    parser.add_argument("--no-warmup", action="store_true")
+    parser.add_argument("--silence", type=float, default=0.7)
+    parser.add_argument("--vad", choices=("rms", "silero"), default="rms")
+    parser.add_argument("--vad-model", type=Path)
+    parser.add_argument("--metrics", type=Path, help="追加 JSONL 分段计时日志")
+    parser.add_argument("--auto-listen", action="store_true", help="无屏模式：加载后直接听，空闲不读键盘、不重复提示音")
+    parser.add_argument("--ready-file", type=Path, help="模型和音频就绪后写入状态，供开机服务检查")
     parser.add_argument("--port", type=int, default=17860)
     parser.add_argument("--assets", type=Path, default=ROOT / ".local")
     parser.add_argument("--server", type=Path, help="llama-server 可执行文件")
@@ -521,7 +614,7 @@ def main():
     if args.preview_voice:
         import numpy as np
 
-        engine = Voice(assets, args.threads, args.language, voice, args.tts_threads)
+        engine = Voice(assets, args.threads, args.language, voice, args.tts_threads, args.speed)
         clips = list(engine.synthesize(VOICE_SAMPLE[args.language]))
         if not clips or not any(len(clip.samples) for clip in clips):
             raise RuntimeError("语音合成没有生成音频")
@@ -531,31 +624,24 @@ def main():
     binary = "llama-server.exe" if os.name == "nt" else "llama-server"
     executable = args.server.resolve() if args.server else assets / "llama" / binary
     print(f"正在加载离线模型（{args.language} / {voice}）……", flush=True)
-    speech = Speech(assets, args.threads, args.language, voice, args.tts_threads)
-    with local_server(executable, assets, args.port, args.threads) as chat:
+    speech = Speech(assets, args.threads, args.language, voice, args.tts_threads, args.speed)
+    detector = SileroDetector(args.vad_model or assets / "silero_vad.onnx") if args.vad == "silero" else None
+    prompt = (COMPACT_PROMPTS if args.prompt_mode == "compact" else PROMPTS)[args.language]
+    def dialogue_factory():
+        return Dialogue(chat.reply, args.language, chat.reply_stream, args.prompt_mode, args.first_clause_chars)
+    with local_server(executable, assets, args.port, args.threads, args.batch_threads,
+                      args.cpu_range, args.batch_cpu_range, args.model) as chat:
+        if not args.no_warmup:
+            print("静默预热 " + json.dumps(warmup_pipeline(speech, chat, args.language, prompt), ensure_ascii=False), flush=True)
         if args.wav:
-            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream)
+            dialogue = dialogue_factory()
             for index, path in enumerate(args.wav, 1):
                 prefix = "reply" if args.language == "zh" else "reply-en"
                 output = assets / f"{prefix}-{index:02d}.wav"
                 output.unlink(missing_ok=True)
-                run_turn(dialogue, speech, read_wav(path), None, output=output)
+                run_turn(dialogue, speech, read_wav(path), None, output=output, metrics_path=args.metrics)
             return
-        import numpy as np
-        chime = (0.12 * np.sin(2 * np.pi * 660 * np.arange(4800) / 48000)).astype("float32")
-        while True:
-            input("按 Enter 模拟唤醒，Ctrl+C 退出。")
-            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream)
-            play_audio(chime, 48000, args.output_device)
-            while True:
-                print("正在听……", flush=True)
-                samples, speech_end = listen(args.input_device, args.threshold)
-                if samples is None:
-                    print("会话已超时。")
-                    break
-                kind = run_turn(dialogue, speech, samples, speech_end, device=args.output_device)
-                if kind == "end":
-                    break
+        serve_conversations(args,chat,speech,detector)
 
 
 if __name__ == "__main__":

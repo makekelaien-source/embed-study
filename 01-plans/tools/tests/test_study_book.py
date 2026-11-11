@@ -66,6 +66,24 @@ class StudyBookTests(unittest.TestCase):
         with self.assertRaises(FileExistsError):
             study_book.restore(self.root, self.book, "03-code_codex/practice.py", "03-code_codex/restored.py")
 
+    def test_snapshot_verification_reads_all_binary_sources_in_one_git_batch(self):
+        sources = []
+        for entry in self.entries:
+            raw = (self.root / entry["path"]).read_bytes()
+            sources.append({"path": entry["path"], "sha256": study_book.digest(raw)})
+        data = {"snapshot_commit": self.snapshot, "sources": sources}
+        with patch.object(study_book, "git", wraps=study_book.git) as invoked:
+            study_book.snapshot_sources(self.root, data)
+        self.assertEqual(invoked.call_count, 1)
+        self.assertEqual(invoked.call_args.args[1:], ("cat-file", "--batch"))
+
+    def test_batch_snapshot_verification_rejects_a_changed_checksum(self):
+        data = {"snapshot_commit": self.snapshot, "sources": [
+            {"path": self.entries[0]["path"], "sha256": "0" * 64}
+        ]}
+        with self.assertRaisesRegex(ValueError, "Snapshot bytes"):
+            study_book.snapshot_sources(self.root, data)
+
     def test_cleanup_removes_only_listed_sources_after_real_remote_snapshot(self):
         self.build()
         removed = study_book.clean(self.root, self.book)
