@@ -2,7 +2,7 @@ import tempfile
 from pathlib import Path
 import unittest
 
-from robot import Dialogue, Endpoint, audio_format, resample_audio, resolve_voice
+from robot import Dialogue, Endpoint, audio_format, resample_audio, resolve_voice, split_clauses
 
 
 class VoiceSelectionTests(unittest.TestCase):
@@ -78,6 +78,34 @@ class DialogueTests(unittest.TestCase):
         self.assertEqual(dialogue.turn("前进。"), ("command", "FORWARD"))
         self.assertEqual(dialogue.turn("解释一下怎么前进。"), ("chat", "前进"))
         self.assertEqual(dialogue.turn("前进，右转"), ("chat", "前进"))
+
+
+class StreamingTests(unittest.TestCase):
+    def test_clauses_split_on_commas_and_stop_punctuation(self):
+        deltas = iter(["你好，", "今天", "天气", "不错。", "我们", "出门吧！"])
+        self.assertEqual(list(split_clauses(deltas, "，。！？；")),
+                         ["你好，", "今天天气不错。", "我们出门吧！"])
+
+    def test_english_clauses_keep_the_spaces_between_them(self):
+        deltas = iter(["Hello, ", "the robot is named ", "Willow."])
+        self.assertEqual(list(split_clauses(deltas, ",.!?;")),
+                         ["Hello,", " the robot is named Willow."])
+
+    def test_turn_stream_feeds_clauses_then_saves_the_full_answer(self):
+        def reply_stream(messages):
+            yield "好的，"
+            yield "它叫小蓝。"
+
+        dialogue = Dialogue(lambda messages: "", language="zh", reply_stream=reply_stream)
+        kind, stream = dialogue.turn_stream("它叫什么？")
+        self.assertEqual(kind, "chat")
+        self.assertEqual(list(stream), ["好的，", "它叫小蓝。"])
+        self.assertEqual(dialogue.last_answer, "好的，它叫小蓝。")
+        self.assertEqual(dialogue.history[-1]["content"], "好的，它叫小蓝。")
+
+    def test_turn_falls_back_to_the_plain_reply_when_no_stream_exists(self):
+        dialogue = Dialogue(lambda messages: "好的。它叫小蓝。")
+        self.assertEqual(dialogue.turn("它叫什么？"), ("chat", "好的。它叫小蓝。"))
 
 
 class EndpointTests(unittest.TestCase):

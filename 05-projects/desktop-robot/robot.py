@@ -7,8 +7,10 @@ import json
 from math import gcd
 import os
 from pathlib import Path
+import queue
 import re
 import subprocess
+import threading
 import time
 from typing import NamedTuple
 from urllib.error import URLError
@@ -53,6 +55,22 @@ EN_PROMPT = (
     "Do not add a closing question."
 )
 PROMPTS = {"zh": ZH_PROMPT, "en": EN_PROMPT}
+CLAUSE_END = {"zh": "，。！？；", "en": ",.!?;"}
+
+
+def split_clauses(deltas, enders):
+    buffer = ""
+    for delta in deltas:
+        buffer += delta
+        while buffer:
+            cut = min((buffer.find(ch) for ch in enders if ch in buffer), default=-1)
+            if cut < 0:
+                break
+            clause, buffer = buffer[:cut + 1], buffer[cut + 1:]
+            if clause.strip():
+                yield clause
+    if buffer.strip():
+        yield buffer
 
 
 class SpokenAudio(NamedTuple):
@@ -61,26 +79,48 @@ class SpokenAudio(NamedTuple):
 
 
 class Dialogue:
-    def __init__(self, reply, language="zh"):
+    def __init__(self, reply, language="zh", reply_stream=None):
         self.reply = reply
+        self.reply_stream = reply_stream
         self.language = language
         self.history = deque(maxlen=8)
+        self.last_answer = ""
 
     def turn(self, text):
+        kind, stream = self.turn_stream(text)
+        if kind != "chat":
+            return kind, stream or ""
+        return kind, "".join(stream)
+
+    def turn_stream(self, text):
         text = text.strip()
         command = " ".join(text.rstrip("。！？.!?").casefold().split())
         if not text:
-            return "empty", ""
+            return "empty", None
         if command == END_COMMANDS[self.language]:
             self.history.clear()
-            return "end", ""
+            return "end", None
         if command in COMMANDS[self.language]:
             return "command", COMMANDS[self.language][command]
         user = {"role": "user", "content": text}
         messages = [{"role": "system", "content": PROMPTS[self.language]}, *self.history, user]
-        answer = self.reply(messages)
+        return "chat", self._clauses(messages, user)
+
+    def _clauses(self, messages, user):
+        deltas = self.reply_stream(messages) if self.reply_stream else iter([self.reply(messages)])
+        parts = []
+
+        def capture():
+            for delta in deltas:
+                parts.append(delta)
+                yield delta
+
+        yield from split_clauses(capture(), CLAUSE_END[self.language])
+        answer = "".join(parts).strip()
+        if not answer:
+            raise RuntimeError("对话模型返回了空回复")
+        self.last_answer = answer
         self.history.extend((user, {"role": "assistant", "content": answer}))
-        return "chat", answer
 
 
 class Endpoint:
@@ -189,18 +229,38 @@ class LocalChat:
         with self.opener.open(request, timeout=timeout) as response:
             return json.load(response)
 
-    def reply(self, messages):
-        response = self.request("/v1/chat/completions", {
+    def chat_body(self, messages, stream=False):
+        body = {
             "messages": messages,
             "max_tokens": 48,
             "temperature": 0.5,
             "repeat_penalty": 1.1,
             "chat_template_kwargs": {"enable_thinking": False},
-        })
+        }
+        if stream:
+            body["stream"] = True
+        return body
+
+    def reply(self, messages):
+        response = self.request("/v1/chat/completions", self.chat_body(messages))
         answer = response["choices"][0]["message"]["content"].strip()
         if not answer:
             raise RuntimeError("对话模型返回了空回复")
         return answer
+
+    def reply_stream(self, messages):
+        body = json.dumps(self.chat_body(messages, stream=True)).encode()
+        request = Request(self.url + "/v1/chat/completions", body, {"Content-Type": "application/json"})
+        with self.opener.open(request, timeout=60) as response:
+            for line in response:
+                if not line.startswith(b"data:"):
+                    continue
+                payload = line[5:].strip()
+                if payload == b"[DONE]":
+                    return
+                delta = json.loads(payload)["choices"][0]["delta"].get("content")
+                if delta:
+                    yield delta
 
 
 @contextmanager
@@ -359,39 +419,70 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None):
     start = time.perf_counter()
     text = speech.recognize(samples)
     recognized = time.perf_counter()
-    kind, content = dialogue.turn(text)
-    generated = time.perf_counter()
+    kind, stream = dialogue.turn_stream(text)
     print(f"你  {text or '（未识别）'}", flush=True)
     if kind == "command":
-        print(f"台架模拟动作  {content}", flush=True)
+        print(f"台架模拟动作  {stream}", flush=True)
     elif kind == "chat":
-        print(f"机器人  {content}", flush=True)
-        clips = speech.synthesize(content)
+        clauses, clips = queue.Queue(), queue.Queue()
+        state = {"first": None, "last": None, "gen": None, "error": None}
+
+        def generate():
+            try:
+                for clause in stream:
+                    clauses.put(clause)
+                state["gen"] = time.perf_counter()
+            except Exception as error:
+                state["error"] = error
+            finally:
+                clauses.put(None)
+
+        def synthesize():
+            try:
+                while True:
+                    clause = clauses.get()
+                    if clause is None:
+                        break
+                    for audio in speech.synthesize(clause):
+                        now = time.perf_counter()
+                        if state["first"] is None:
+                            state["first"] = now
+                        state["last"] = now
+                        clips.put(audio)
+            except Exception as error:
+                state["error"] = state["error"] or error
+            finally:
+                clips.put(None)
+
+        threading.Thread(target=generate, daemon=True).start()
+        threading.Thread(target=synthesize, daemon=True).start()
+        collected = []
+        playback_start = None
+        while True:
+            audio = clips.get()
+            if audio is None:
+                break
+            collected.append(audio)
+            if output is None:
+                started = play_audio(audio.samples, audio.sample_rate, device)
+                if playback_start is None:
+                    playback_start = started
+        if state["error"] is not None:
+            raise state["error"]
+        if not collected:
+            raise RuntimeError("语音合成没有生成音频")
+        print(f"机器人  {dialogue.last_answer}", flush=True)
         if output:
             import numpy as np
 
-            clips = list(clips)
-            if not clips:
-                raise RuntimeError("语音合成没有生成音频")
-            synthesized = time.perf_counter()
-            save_wav(output, np.concatenate([clip.samples for clip in clips]), clips[0].sample_rate)
-        else:
-            first_synthesis = None
-            playback_start = None
-            for audio in clips:
-                synthesis_end = time.perf_counter()
-                started = play_audio(audio.samples, audio.sample_rate, device)
-                if first_synthesis is None:
-                    first_synthesis = synthesis_end
-                    playback_start = started
-            synthesized = first_synthesis
-            if playback_start is None:
-                raise RuntimeError("语音合成没有生成音频")
-        ready = synthesized if output else playback_start
-        print(f"识别 {recognized-start:.2f}s | 生成 {generated-recognized:.2f}s | "
-              f"{'合成整段' if output else '合成首句'} {synthesized-generated:.2f}s | "
-              f"{'文件输入到音频就绪' if output else '说完到提交播放'} "
-              f"{ready-(speech_end if speech_end is not None else start):.2f}s", flush=True)
+            save_wav(output, np.concatenate([audio.samples for audio in collected]),
+                     collected[0].sample_rate)
+        base = speech_end if speech_end is not None else start
+        first_ready = playback_start if output is None else state["first"]
+        print(f"识别 {recognized-start:.2f}s | 生成 {state['gen']-recognized:.2f}s | "
+              f"首声 {state['first']-recognized:.2f}s | 整段 {state['last']-recognized:.2f}s | "
+              f"{'文件输入到首声' if output else '说完到出声'} {first_ready-base:.2f}s | "
+              f"整段等待 {state['last']-base:.2f}s", flush=True)
     return kind
 
 
@@ -443,7 +534,7 @@ def main():
     speech = Speech(assets, args.threads, args.language, voice, args.tts_threads)
     with local_server(executable, assets, args.port, args.threads) as chat:
         if args.wav:
-            dialogue = Dialogue(chat.reply, args.language)
+            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream)
             for index, path in enumerate(args.wav, 1):
                 prefix = "reply" if args.language == "zh" else "reply-en"
                 output = assets / f"{prefix}-{index:02d}.wav"
@@ -454,7 +545,7 @@ def main():
         chime = (0.12 * np.sin(2 * np.pi * 660 * np.arange(4800) / 48000)).astype("float32")
         while True:
             input("按 Enter 模拟唤醒，Ctrl+C 退出。")
-            dialogue = Dialogue(chat.reply, args.language)
+            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream)
             play_audio(chime, 48000, args.output_device)
             while True:
                 print("正在听……", flush=True)

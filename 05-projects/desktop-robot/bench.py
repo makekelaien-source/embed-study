@@ -77,7 +77,7 @@ def main():
     executable = args.server.resolve() if args.server else assets / "llama" / binary
     with local_server(executable, assets, 17860, args.threads) as chat:
         for group, questions in enumerate(groups, 1):
-            dialogue = Dialogue(chat.reply, args.language)
+            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream)
             for turn, question in enumerate(questions, 1):
                 print(f"\n第 {group} 组第 {turn} 轮，合成输入  {question}", flush=True)
                 samples = np.concatenate([
