@@ -2823,6 +2823,48 @@
         "Claimed blank exercise file existed before actually creating it; student reported file missing. Prevention: verify creation before telling student the path."
       ],
       "next_lesson": "04-notes/lesson-2026-11-12.md (multi-file and header files; teacher demo compiled and verified)"
+    },
+    {
+      "date": "2026-11-11",
+      "lesson": "D16",
+      "started_at": "2026-11-11T17:48:02+08:00",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "current_state": "ended_daily_close_in_progress",
+      "classroom_ended": true,
+      "segments": [
+        {
+          "started_at": "2026-11-11T18:02:28+08:00",
+          "ended_at": "2026-11-11T18:03:40+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "Read OpenCode D15日 transcript read-only; confirmed D16 review completed and multi-file first lecture already presented. Verified header guard per-translation-unit demo. Prior 17:48 window net time unconfirmed."
+        }
+      ],
+      "topics": [
+        {
+          "category": "mainline",
+          "topic": "L4 struct type vs object and int-member value copy",
+          "evidence": "Two short predictions correct independently; student asked member-schema question; implementation pending."
+        },
+        {
+          "category": "mainline",
+          "topic": "enum exercise stopped at student request; continue static local storage duration",
+          "evidence": "No complete enum acceptance; static example teacher verified, student prediction pending."
+        },
+        {
+          "category": "mainline",
+          "topic": "static record_event H0 student core",
+          "evidence": "Teacher strict compile clean, 4 sequences / 117 calls match; explanation and delayed transfer pending."
+        }
+      ],
+      "note": "Second window of 2026-11-11, student asked to continue with D16. D15 restored to 03-code_codex/d15-command-entry-review.c from archive commit 4bfd08c (LF blob). Codex continuation: read latest source conversation; colon-space confirmed fixed there; no new actual study day. Next: header guards per translation unit, prediction pending.",
+      "teacher_errors": [
+        "Repeated previously taught header material as new knowledge; student corrected. Resume original-plan L4 struct; cross-check historical evidence before selecting new unit."
+      ],
+      "next_lesson": "04-notes/lesson-2026-11-12.md",
+      "ended_at": "2026-11-11T19:52:18+08:00",
+      "effective_time_note": "D16 same-date window 17:48:02-19:52:18 wall 124m16s. Codex sampled first clock18:02:28; prior window unconfirmed. Teacher tools/preparation and message gaps not fully separated; net unknown, not recorded as full300. D15 earlier wall84m42s separate; same actual study date, no additional day count."
     }
   ]
 }
