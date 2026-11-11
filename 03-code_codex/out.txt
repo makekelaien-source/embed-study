@@ -1,2 +1,0 @@
-RUN_OK
-STOP_OK
