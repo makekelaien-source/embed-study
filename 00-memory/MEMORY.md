@@ -4,6 +4,10 @@
 
 同日追加D16窗口已结束，不新增实际学习日。窗口墙钟124分16秒，净有效未知；D15早段另记。struct核心3例、static核心117调用、位开关10例教师验证，提示程度见当日册；enum按学生要求停改，未通过整体验收。set_switch_at空白，教师依赖已备，下一课先短复习后补该新增核心，再进入结构体指针->和实例enum状态/布局。明日300分钟教案04-notes/lesson-2026-11-12.md已更新，原重复头文件教案备份在00-memory/archive。复测约11-18，原11-14至11-16待项保留；板端未确认。日终同步结果以.git/study-close/2026-11-11.json为准。
 
+## 行政性收尾：2026-11-11 20:39（非学习日）
+
+20:14 桌面机器人对话只完成“提速可行性”结论，未做日终归档，本条由助手补做：当日新增的 05-projects/desktop-robot 提速材料（speed-tuning、speed-results、run_fast、speed_probe、TTS A/B、VAD 对比、offline-speed-check、两个 service 与 timer、requirements、.gitignore）与教师工具（01-plans/tools/fast_close.py、close_ledger.py、tests）已归档为 2eb2d76 并推送，远端 SHA 已核对；.agents/ 与 desktop-robot/.arduino/ 属本地缓存不入 Git。机器人服务当时为 active，已用 sudo shutdown -h now 关闭开发板，约 20:39 起 192.168.137.72 不再响应，板子已断电。本日不新增学生学习日、不记学时、不改能力表；11-11 学习册与账本保持 19:54 的 7bcc36b/2c6b792 不变。
+
 ## 最新断点：2026-11-11 18:56后，同日L4追加
 
 struct核心三例通过，输出顺序小待办；enum当前稿按学生明确要求停止修改，-1误判EOF及换行仍待，未记完整验收。学生要求按原计划继续新知识，static局部变量已首讲，见04-notes/lesson-l4-static-local.md；学生2/4/6预测正确，record_event首稿H0核心教师4序列117调用通过（严格编译0诊断）。static作用域短解释中学生曾误称函数结束对象消失，教师补讲后学生表示明白；独立解释待复测。位宽/位操作已讲：二进制、unsigned范围、&查询、|置位、~配合&清位。set_switch学生按根因反馈改==与返回flags后，教师严格编译0诊断、10例通过，属提示后功能完成。异或^已讲（重复翻转恢复原值第二步曾误答，经补讲，独立迁移待验）；flags/mask/选中位及四运算已按追问总结。<<、>>移位已首讲：学生左移16正确，右移误当左移答36，经方向补讲后表示明白，独立复测待验。当前新任务set_switch_at按bit0至2生成mask并复用旧set_switch，空白03-code_codex/l4-switch-at.c，头文件及main教师备好，学生核心待写。仍按L4顺序。约11-18位运算迁移待测。后续按原L4位宽/位操作推进。教师人为增加enum题结构的问题已记当日册。
