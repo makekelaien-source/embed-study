@@ -1,5 +1,7 @@
 # 香橙派 4 Pro 6GB 离线对话部署
 
+> 本文保留初次部署流程；其中Melo音色、按Enter启动等是早期默认值。已安装设备的当前使用方式与状态请先看[第一阶段主文档](phase-1-offline-bilingual.md)，开机服务见[自启动说明](autostart.md)。
+
 板端目标为 **Orange Pi 4 Pro（A733）、Debian 12 Bookworm Server ARM64、Python 3.11**。中英文复用 SenseVoice INT8 和 Qwen3-1.7B Q4_K_M，默认中文用 MeloTTS、英文用 Piper Lessac，每次只加载所选音色。主机切换后需要分别实测 USB 音频、内存和延迟。第一阶段按 Enter 开始会话，后续再接 ESP32-S3 做语音唤醒。
 
 ## 1. 写系统卡与首次连接

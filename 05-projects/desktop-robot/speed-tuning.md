@@ -1,5 +1,7 @@
 # 离线对话加速与验收
 
+> 当前阶段总览见[第一阶段主文档](phase-1-offline-bilingual.md)。下面的命令用于手动调试，执行前先`sudo systemctl stop desktop-robot.service`，结束后再恢复服务；日常开机自动运行，无需按Enter。旧长测使用1.716GHz条件，现已按用户要求解除人工上限，新配置长测尚待完成。
+
 本轮保持 Orange Pi 4 Pro A733、Qwen3-1.7B、SenseVoice 和 Theresa。
 所有时间均区分文件输入、麦克风输入和实际播放；文件测试不是真人验收。
 
