@@ -1,0 +1,131 @@
+{
+  "status": "passed",
+  "teacher_preparation_only": true,
+  "student_functionality_tested": false,
+  "created_at": "2026-11-12T04:18:44.293709+00:00",
+  "compiler": "gcc (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r3) 16.2.0",
+  "compile_flags": [
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-pedantic"
+  ],
+  "demos": [
+    {
+      "path": "04-notes/next-day-demo/l4-2026-11-12/pointer-demo.c",
+      "sha256": "4f0653ee975cd8b598ccb5c34baf4e94bc262015f56fdf9fd4641dd6ed709a59",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "stdout": "a=7,26 b=7,25\n",
+      "passed": true
+    },
+    {
+      "path": "04-notes/next-day-demo/l4-2026-11-12/copy-demo.c",
+      "sha256": "fb3e33522d627a8be1a6fd14bc8917c1d9f372e5ccc025f284169ee7b8c6cc7e",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "stdout": "inside=99\nafter_value=25\nafter_pointer=99\n",
+      "passed": true
+    },
+    {
+      "path": "04-notes/next-day-demo/l4-2026-11-12/layout-demo.c",
+      "sha256": "e73bd882bbd8b58f9b845a7adf54f8712562c7dfbcd22538d5434994433ac1f9",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "stdout": "size=12 align=4 offsets=0,4,8\n",
+      "passed": true
+    },
+    {
+      "path": "04-notes/next-day-demo/l4-2026-11-13/width-demo.c",
+      "sha256": "47088d50c216636abc73d0be32cba854d6fec3037e13ef8fabe235539855922f",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "stdout": "bits=8,16,32 values=0,1000,4096\n",
+      "passed": true
+    },
+    {
+      "path": "04-notes/next-day-demo/l4-2026-11-13/array-demo.c",
+      "sha256": "433f5098721ffef1360f3247d50053c9a4a447c256af735f4c8b47ae1c2de78c",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "stdout": "first=10 second=27 read=27\n",
+      "passed": true
+    },
+    {
+      "path": "04-notes/next-day-demo/l4-2026-11-13/multi-mask-demo.c",
+      "sha256": "aa3b65b8dc91f5be4259908e7485f9ef2b6bb4bc91721cfe5dffa5ed99c8ba20",
+      "compile_exit": 0,
+      "run_exit": 0,
+      "stdout": "partial=1,0\ncomplete=1,1\n",
+      "passed": true
+    }
+  ],
+  "harnesses": [
+    {
+      "path": "03-code_codex/l4-switch-at-main.c",
+      "sha256": "4bab1c295a89d65a99f1435208612e8e95c99d21f5001bc054117e81ba2ea3b0",
+      "compile_only": true,
+      "passed": true
+    },
+    {
+      "path": "03-code_codex/l4-2026-11-12/sample-main.c",
+      "sha256": "a1eba30851ad7841bffa9df9b69d6cb80d70da4d8759e336813e7dc0e871609c",
+      "compile_only": true,
+      "passed": true
+    },
+    {
+      "path": "03-code_codex/l4-2026-11-13/filter-main.c",
+      "sha256": "d6826a61c76047119f0b8a731cb22ab43b354a1171ee5affa06a60e480bb326a",
+      "compile_only": true,
+      "passed": true
+    }
+  ],
+  "cores": [
+    {
+      "path": "03-code_codex/l4-switch-at.c",
+      "bytes": 0,
+      "preserved_blank": true
+    },
+    {
+      "path": "03-code_codex/l4-2026-11-12/sample-set-value.c",
+      "bytes": 0,
+      "preserved_blank": true
+    },
+    {
+      "path": "03-code_codex/l4-2026-11-12/sample-refresh.c",
+      "bytes": 0,
+      "preserved_blank": true
+    },
+    {
+      "path": "03-code_codex/l4-2026-11-13/count-flagged.c",
+      "bytes": 0,
+      "preserved_blank": true
+    },
+    {
+      "path": "03-code_codex/l4-2026-11-13/sample-set-batch.c",
+      "bytes": 0,
+      "preserved_blank": true
+    }
+  ],
+  "const_write_rejected": {
+    "passed": true,
+    "compiler_exit": 1
+  },
+  "lessons": [
+    {
+      "path": "04-notes/lesson-2026-11-12.md",
+      "minutes": 300,
+      "units": 9,
+      "sha256": "96d7a071a8d70c3e2a471f12f8a0e0b06b129302ad6d3cfbf0b6fc679ef3eccb",
+      "links_verified": true
+    },
+    {
+      "path": "04-notes/lesson-2026-11-13.md",
+      "minutes": 300,
+      "units": 9,
+      "sha256": "e60c6292f96929836aa732779a90d87e986dfac7048eec557ca7a8d6cef3a769",
+      "links_verified": true
+    }
+  ]
+}
