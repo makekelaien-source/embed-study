@@ -25,15 +25,22 @@ def main():
     if len(wheels) != 19:
         raise RuntimeError("Expected 19 ARM64/universal wheels in .local/arm64-wheels")
     files = [ROOT / name for name in (
-        "robot.py", "acceleration.py", "test_robot.py", "test_acceleration.py", "bench.py", "requirements-arm64.txt",
+        "robot.py", "audio_capture.py", "capture_compare.py", "test_audio_capture.py", "wake_word.py", "wake_acceptance.py", "wake_confirmation.py", "wake_confirmation_bench.py", "test_wake_confirmation.py", "test_wake_word.py", "answer_quality.py", "quality_policy.py", "test_quality_policy.py", "test_answer_quality.py", "voice_controls.py", "test_voice_controls.py", "maintenance_check.py", "test_maintenance_check.py", "calibrate_input.py", "voice-upgrade-2026-11-12.md", "acceleration.py", "test_robot.py", "test_acceleration.py", "bench.py", "requirements-arm64.txt", "vision_check.py", "face_screen.py", "forward_guard.c", "forward_guard.h", "test_forward_guard.c",
         "run_fast.py", "fast-profile.json", "speed_probe.py", "vad_compare.py", "summarize_speed.py",
         "speed_acceptance.py", "offline-speed-check.sh", "speed-tuning.md",
         "service_runner.py", "restore_frequency.py", "test_service.py",
-        "desktop-robot.service", "desktop-robot-frequency.service", "autostart.md",
-        "setup-orangepi.sh", "orangepi-setup.md", "voices.example.json", ".local/asr.tar.bz2",
+        "desktop-robot.service", "desktop-robot-frequency.service", "desktop-robot-conservative.conf", "autostart.md",
+        "setup-orangepi.sh", "orangepi-setup.md", "voices.example.json", ".local/ikuzo.wav", ".local/farewell.wav", ".local/asr.tar.bz2",
         ".local/tts.tar.bz2", ".local/piper-ryan/en_US-ryan-low.onnx.json",
         ".local/piper-ryan/MODEL_CARD", *PINNED,
     )] + wheels
+    files += [ROOT / name for name in ("naruto_identity.py", "test_naruto_identity.py",
+                                      "test_dialogue_identity.py", "acceptance_rounds.py",
+                                      "test_acceptance_rounds.py")]
+    # Keep current operational notes and their local history alongside code.
+    files += [path for path in sorted(ROOT.glob("*.md")) if path not in files]
+    files += [path for path in sorted((ROOT / "framework").rglob("*"))
+              if path.is_file() and path.suffix in (".py", ".md", ".json")]
     sums = []
     for path in files:
         relative = path.relative_to(ROOT).as_posix()

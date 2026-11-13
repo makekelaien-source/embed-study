@@ -73,6 +73,7 @@ def main():
     parser.add_argument("--batch-cpu-range")
     parser.add_argument("--model", type=Path)
     parser.add_argument("--prompt-mode", choices=("original", "compact"), default="original")
+    parser.add_argument("--answer-prefix-policy", choices=("original", "guarded"), default="original")
     parser.add_argument("--first-clause-chars", type=int, choices=(0,16), default=16)
     parser.add_argument("--metrics", type=Path)
     parser.add_argument("--output-dir", type=Path)
@@ -95,7 +96,8 @@ def main():
             prompt = (COMPACT_PROMPTS if args.prompt_mode == "compact" else PROMPTS)[args.language]
             print("静默预热 " + json.dumps(warmup_pipeline(speech, chat, args.language, prompt), ensure_ascii=False), flush=True)
         for group, questions in enumerate(groups, 1):
-            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream, args.prompt_mode, args.first_clause_chars)
+            dialogue = Dialogue(chat.reply, args.language, chat.reply_stream, args.prompt_mode,
+                                args.first_clause_chars, answer_prefix_policy=args.answer_prefix_policy)
             for turn, question in enumerate(questions, 1):
                 print(f"\n第 {group} 组第 {turn} 轮，合成输入  {question}", flush=True)
                 def synthesize_input():

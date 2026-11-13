@@ -18,6 +18,10 @@ from urllib.request import ProxyHandler, Request, build_opener
 import wave
 from acceleration import split_first_clause, server_options, valid_speed, warmup_pipeline, SileroDetector, tts_model_path
 from service_runner import notify_ready
+from voice_controls import VolumeControl, dbfs_threshold, capability_clarification
+from answer_quality import check_answer
+from naruto_identity import identity_reply, identity_system_prompt
+from framework.human_intent import parse_motion_intent
 
 
 ROOT = Path(__file__).resolve().parent
@@ -46,13 +50,13 @@ COMMANDS = {
 }
 END_COMMANDS = {"zh": "结束对话", "en": "end chat"}
 ZH_PROMPT = (
-    "你是桌面机器人，功能只有语音对话和短距离移动。"
+    "你是语音助手鸣人。"
     "用一句完整的口语中文直接回答用户当前的问题，不超过 30 个字，句子要说完整。"
     "结合本次对话的信息，人名和物品名沿用用户说过的说法。"
     "用户追问怎么做时给出具体做法，不要照抄上一句回答。听不清时简短确认。"
 )
 EN_PROMPT = (
-    "You are a desktop robot. Your only abilities are talking and moving short distances. "
+    "You are Naruto, a voice assistant. "
     "Reply in English with ONE short spoken sentence of at most 16 words. "
     "Answer the user's current question directly, keeping names and details from this conversation. "
     "If the user asks how to do something, give a concrete step instead of repeating your last sentence. "
@@ -60,8 +64,8 @@ EN_PROMPT = (
 )
 PROMPTS = {"zh": ZH_PROMPT, "en": EN_PROMPT}
 COMPACT_PROMPTS = {
-    "zh": "你是只能聊天和短距离移动的桌面机器人。用一句完整口语中文回答，不超过30字。沿用上下文的人名和物品名，追问给具体做法，不重复旧答案；听不清就确认。",
-    "en": "Reply in English as a desktop robot that only talks and moves short distances. Use one complete sentence within 16 words. Keep names and details from context; give concrete steps on follow-ups, without repeating or adding a closing question.",
+    "zh": "用一句完整口语中文回答，不超过30字。沿用上下文的人名和物品名，追问给具体做法，不重复旧答案；听不清就确认。",
+    "en": "Reply in English. Use one complete sentence within 16 words. Keep names and details from context; give concrete steps on follow-ups, without repeating or adding a closing question.",
 }
 CLAUSE_END = {"zh": "，。！？；", "en": ",.!?;"}
 
@@ -87,23 +91,33 @@ class SpokenAudio(NamedTuple):
 
 
 class Dialogue:
-    def __init__(self, reply, language="zh", reply_stream=None, prompt_mode="original", first_clause_chars=16):
+    def __init__(self, reply, language="zh", reply_stream=None, prompt_mode="original", first_clause_chars=16, controls=None, quality_guard=False, answer_prefix_policy="original"):
+        if answer_prefix_policy not in ("original", "guarded"):
+            raise ValueError("answer_prefix_policy must be original or guarded")
+        self.answer_prefix_policy = answer_prefix_policy
+        self.quality_guard = quality_guard
+        self.quality_reason = None
+        self.quality_issues = []
+        self.controls = controls if controls is not None else VolumeControl()
+        self.last_tool = None
         self.reply = reply
         self.reply_stream = reply_stream
         self.language = language
         self.history = deque(maxlen=8)
         self.last_answer = ""
-        self.prompt = (COMPACT_PROMPTS if prompt_mode == "compact" else PROMPTS)[language]
+        self.prompt = identity_system_prompt(language) + (COMPACT_PROMPTS if prompt_mode == "compact" else PROMPTS)[language]
         self.first_clause_chars = first_clause_chars if language == "zh" else 0
         self.first_token_at = None
 
     def turn(self, text):
         kind, stream = self.turn_stream(text)
-        if kind != "chat":
+        if kind not in ("chat", "clarification"):
             return kind, stream or ""
         return kind, "".join(stream)
 
     def turn_stream(self, text):
+        self.quality_reason = None
+        self.quality_issues = []
         text = text.strip()
         command = " ".join(text.rstrip("。！？.!?").casefold().split())
         if not any(char.isalnum() for char in text):
@@ -111,25 +125,67 @@ class Dialogue:
         if command == END_COMMANDS[self.language]:
             self.history.clear()
             return "end", None
-        if command in COMMANDS[self.language]:
-            return "command", COMMANDS[self.language][command]
+        self.last_tool = self.controls.execute(text, self.language)
+        if self.last_tool is not None:
+            return "tool", self.last_tool
+        motion = parse_motion_intent(text, origin="asr")
+        if motion in COMMANDS[self.language].values():
+            return "command", motion
         user = {"role": "user", "content": text}
         self.first_token_at = None
+        clarification = identity_reply(text, self.language)
+        if clarification is None:
+            clarification = capability_clarification(text, self.language)
+        if clarification is not None:
+            return "clarification", self._clarification(user, clarification)
         messages = [{"role": "system", "content": self.prompt}, *self.history, user]
         return "chat", self._clauses(messages, user)
+
+    def _clarification(self, user, answer):
+        yield answer
+        self.last_answer = answer
+        self.history.extend((user, {"role": "assistant", "content": answer}))
 
     def _clauses(self, messages, user):
         deltas = self.reply_stream(messages) if self.reply_stream else iter([self.reply(messages)])
         parts = []
 
         def capture():
-            for delta in deltas:
-                if self.first_token_at is None:
-                    self.first_token_at = time.perf_counter()
-                parts.append(delta)
-                yield delta
+            try:
+                for delta in deltas:
+                    if self.first_token_at is None:
+                        self.first_token_at = time.perf_counter()
+                    parts.append(delta)
+                    yield delta
+            finally:
+                close = getattr(deltas, "close", None)
+                if close is not None:
+                    close()
 
-        yield from split_first_clause(capture(), CLAUSE_END[self.language], self.first_clause_chars)
+        if self.answer_prefix_policy == "guarded":
+            from quality_policy import guard_first_content
+            filtered = guard_first_content(capture(), user["content"], self.language,
+                                           issues=self.quality_issues)
+            if self.quality_guard:
+                # Keep the explicit full-buffer wait, but apply one checker:
+                # a second completed check would censor exempt repetition or
+                # conversational acknowledgements after the prefix gate.
+                filtered = iter(["".join(filtered)])
+            spoken = []
+            for clause in split_first_clause(filtered, CLAUSE_END[self.language], self.first_clause_chars):
+                spoken.append(clause)
+                yield clause
+            parts[:] = spoken
+            self.quality_reason = self.quality_issues[-1] if self.quality_issues else None
+        elif self.quality_guard:
+            raw = "".join(capture())
+            answer, self.quality_reason = check_answer(user["content"], raw, self.language)
+            if self.quality_reason is not None:
+                self.quality_issues.append(self.quality_reason)
+            parts[:] = [answer]
+            yield from split_first_clause(iter([answer]), CLAUSE_END[self.language], self.first_clause_chars)
+        else:
+            yield from split_first_clause(capture(), CLAUSE_END[self.language], self.first_clause_chars)
         answer = "".join(parts).strip()
         if not answer:
             raise RuntimeError("对话模型返回了空回复")
@@ -138,15 +194,16 @@ class Dialogue:
 
 
 class Endpoint:
-    def __init__(self, silence_seconds=0.7):
+    def __init__(self, silence_seconds=0.7, idle_seconds=15):
         if not 0.2 <= silence_seconds <= 1.5:
             raise ValueError("结束静音须在 0.2 至 1.5 秒之间")
+        self.idle_seconds = idle_seconds
         self.silence_seconds = silence_seconds
         self.first_voice = None
         self.last_voice = None
 
     def feed(self, voiced, elapsed):
-        if self.first_voice is None and elapsed >= 15:
+        if self.first_voice is None and elapsed >= self.idle_seconds:
             return "idle"
         if voiced:
             if self.first_voice is None:
@@ -287,6 +344,8 @@ class LocalChat:
                 if "timings" in item:
                     self.metrics.update(item["timings"])
                 choices = item.get("choices", [])
+                if choices and choices[0].get("finish_reason"):
+                    self.metrics["finish_reason"] = choices[0]["finish_reason"]
                 delta = choices[0].get("delta", {}).get("content") if choices else None
                 if delta:
                     yield delta
@@ -368,12 +427,12 @@ def device_format(device, kind, preferred_rate):
                         info[f"max_{kind}_channels"], supported)
 
 
-def play_audio(samples, source_rate, device):
+def play_audio(samples, source_rate, device, gain=1.0):
     import numpy as np
     import sounddevice as sd
 
     rate, channels = device_format(device, "output", source_rate)
-    samples = resample_audio(samples, source_rate, rate)
+    samples = resample_audio(samples, source_rate, rate) * gain
     if channels == 2:
         samples = np.repeat(samples[:, None], 2, axis=1)
     sd.play(samples, rate, device=device)
@@ -393,18 +452,19 @@ def check_audio(input_device, output_device):
     play_audio(recording.mean(axis=1), rate, output_device)
 
 
-def listen(device, threshold, silence_seconds=0.7, detector=None):
+def listen(device, threshold, silence_seconds=0.7, detector=None, min_voice_ms=120,
+           idle_seconds=15, preroll_ms=None):
     import numpy as np
     import sounddevice as sd
+    from audio_capture import UtteranceGate
 
-    endpoint = Endpoint(silence_seconds)
     if detector is not None:
         detector.reset()
-    # Silero's onset confirmation can exceed 200 ms; retain the word onset.
-    preroll = deque(maxlen=25 if detector is not None else 10)
-    chunks = []
-    voiced_blocks = 0
     rate, channels = device_format(device, "input", RATE)
+    # Preserve Silero's existing 500ms context unless explicitly configured.
+    context_ms = (500 if detector is not None else 200) if preroll_ms is None else preroll_ms
+    gate = UtteranceGate(threshold, min_voice_ms, context_ms, silence_seconds,
+                         idle_seconds, sample_rate=rate)
     block = round(rate * BLOCK / RATE)
     with sd.InputStream(samplerate=rate, channels=channels, dtype="float32",
                         blocksize=block, device=device) as stream:
@@ -414,22 +474,17 @@ def listen(device, threshold, silence_seconds=0.7, detector=None):
             if overflow:
                 raise RuntimeError("麦克风缓冲溢出，请重试")
             elapsed = time.perf_counter() - started
-            voiced = (detector.feed(resample_audio(audio.mean(axis=1), rate, RATE))
-                      if detector is not None else np.sqrt(np.mean(audio ** 2)) >= threshold)
-            voiced_blocks = voiced_blocks + 1 if voiced else 0
-            if endpoint.first_voice is None:
-                preroll.append(audio)
-                voiced = voiced_blocks >= 3
-                if voiced:
-                    chunks.extend(preroll)
-            else:
-                chunks.append(audio)
-            state = endpoint.feed(voiced, elapsed)
-            if state == "idle":
+            # Always feed VAD to preserve its state, then apply the level floor.
+            mono = audio.mean(axis=1)
+            speech_detected = detector.feed(resample_audio(mono, rate, RATE)) if detector is not None else True
+            result = gate.feed(mono, speech_detected, elapsed,
+                               level=float(np.sqrt(np.mean(audio ** 2))))
+            if result is None:
+                continue
+            if result.state == "idle":
                 return None, None
-            if state == "done":
-                mono = np.concatenate(chunks).mean(axis=1)
-                return resample_audio(mono, rate, RATE), started + endpoint.last_voice
+            if result.state == "done":
+                return resample_audio(result.samples, rate, RATE), started + result.last_voice_s
 
 
 def read_wav(path):
@@ -456,9 +511,15 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
     recognized = time.perf_counter()
     kind, stream = dialogue.turn_stream(text)
     print(f"你  {text or '（未识别）'}", flush=True)
+    tool_result = stream if kind == "tool" else None
+    if tool_result is not None:
+        dialogue.first_token_at = None
+        dialogue.last_answer = tool_result["answer"]
+        stream = iter([dialogue.last_answer])
+        print("TOOL " + json.dumps(tool_result, ensure_ascii=False), flush=True)
     if kind == "command":
         print(f"台架模拟动作  {stream}", flush=True)
-    elif kind == "chat":
+    elif kind in ("chat", "tool", "clarification"):
         clauses, clips = queue.Queue(), queue.Queue()
         state = {"first": None, "last": None, "gen": None, "text": None, "tts_start": None, "error": None}
 
@@ -482,7 +543,9 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
                         break
                     if state["tts_start"] is None:
                         state["tts_start"] = time.perf_counter()
-                    for audio in speech.synthesize(clause):
+                    for audio in (getattr(speech, "tool_audio", {}).get(dialogue.language)
+                                  if tool_result is not None and getattr(speech, "tool_audio", {}).get(dialogue.language)
+                                  else speech.synthesize(clause)):
                         now = time.perf_counter()
                         if state["first"] is None:
                             state["first"] = now
@@ -503,7 +566,7 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
                 break
             collected.append(audio)
             if output is None:
-                started = play_audio(audio.samples, audio.sample_rate, device)
+                started = play_audio(audio.samples, audio.sample_rate, device, dialogue.controls.gain)
                 if playback_start is None:
                     playback_start = started
         if state["error"] is not None:
@@ -514,7 +577,7 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
         if output:
             import numpy as np
 
-            save_wav(output, np.concatenate([audio.samples for audio in collected]),
+            save_wav(output, np.concatenate([audio.samples for audio in collected]) * dialogue.controls.gain,
                      collected[0].sample_rate)
         base = speech_end if speech_end is not None else start
         first_ready = playback_start if output is None else state["first"]
@@ -525,7 +588,11 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
         owner = getattr(dialogue.reply_stream, "__self__", None)
         row = {
             "event": "turn", "input_kind": "file" if output else "microphone",
-            "text": text, "answer": dialogue.last_answer,
+            "text": text, "answer": dialogue.last_answer, "kind": kind,
+            "tool": tool_result, "volume_percent": dialogue.controls.percent,
+            "quality_guard": dialogue.quality_guard, "quality_reason": dialogue.quality_reason,
+            "answer_prefix_policy": dialogue.answer_prefix_policy,
+            "quality_issues": dialogue.quality_issues,
             "endpoint_wait_s": None if speech_end is None else start-speech_end,
             "asr_s": recognized-start,
             "first_token_s": None if dialogue.first_token_at is None else dialogue.first_token_at-recognized,
@@ -533,9 +600,10 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
             "first_synthesis_s": state["first"]-state["tts_start"],
             "first_audio_ready_s": state["first"]-recognized,
             "playback_delay_s": None if playback_start is None else playback_start-state["first"],
-            "response_s": first_ready-base,
+            "response_s": first_ready-base if dialogue.controls.percent > 0 else None,
+            "muted": dialogue.controls.percent == 0,
             "total_s": time.perf_counter()-base,
-            "llm": getattr(owner, "metrics", {}),
+            "llm": {} if kind in ("tool", "clarification") else getattr(owner, "metrics", {}),
         }
         if metrics_path:
             with Path(metrics_path).open("a", encoding="utf8") as file:
@@ -547,22 +615,51 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
 def serve_conversations(args,chat,speech,detector):
     import numpy as np
     chime=(0.12*np.sin(2*np.pi*660*np.arange(4800)/48000)).astype('float32')
+    controls = VolumeControl()
+    wake = None
+    if getattr(args, "wake_model", None) or getattr(args, "wake_backend", "kws") == "sensevoice":
+        from wake_word import NarutoWake, SenseVoiceWake, load_acknowledgement
+        if getattr(args, "wake_backend", "kws") == "sensevoice":
+            wake = SenseVoiceWake(args.assets, getattr(args, "wake_threshold", 10**(-46/20)),
+                                  getattr(args, "wake_min_voice_ms", 120),
+                                  getattr(args, "wake_preroll_ms", 200),
+                                  getattr(args, "wake_silence", .56),
+                                  confirmation=getattr(args, "wake_confirmation", "none"))
+        else:
+            wake = NarutoWake(args.wake_model)
+        acknowledgement, acknowledgement_rate = load_acknowledgement(args.wake_ack)
+    sleep_audio = None
+    if wake is not None and getattr(args, "sleep_ack", None):
+        from wake_word import load_acknowledgement
+        sleep_audio = load_acknowledgement(args.sleep_ack)
     if args.auto_listen:
-        play_audio(chime,48000,args.output_device)
+        play_audio(chime,48000,args.output_device,controls.gain)
     notify_ready(args.ready_file)
     while True:
-        if not args.auto_listen:
+        if wake is not None:
+            print('WAKE: waiting for Naruto', flush=True)
+            wake.wait(args.input_device)
+            print('WAKE: Naruto detected', flush=True)
+            play_audio(acknowledgement, acknowledgement_rate, args.output_device, controls.gain)
+        elif not args.auto_listen:
             input('按 Enter 模拟唤醒，Ctrl+C 退出。')
-            play_audio(chime,48000,args.output_device)
-        dialogue=Dialogue(chat.reply,args.language,chat.reply_stream,args.prompt_mode,args.first_clause_chars)
+            play_audio(chime,48000,args.output_device,controls.gain)
+        dialogue=Dialogue(chat.reply,args.language,chat.reply_stream,args.prompt_mode,args.first_clause_chars,controls,quality_guard=getattr(args,"quality_guard",False),answer_prefix_policy=getattr(args,"answer_prefix_policy","original"))
+        last_valid = time.perf_counter()
         while True:
+            if time.perf_counter() - last_valid >= 15:
+                break
             print('正在听……',flush=True)
-            samples,speech_end=listen(args.input_device,args.threshold,args.silence,detector)
+            samples,speech_end=listen(args.input_device,args.threshold,args.silence,detector,getattr(args,"min_voice_ms",120),idle_seconds=max(.1,15-(time.perf_counter()-last_valid)),preroll_ms=getattr(args,"preroll_ms",None))
             if samples is None:
                 print('会话已超时，等待下一句。',flush=True)
                 break
             kind=run_turn(dialogue,speech,samples,speech_end,device=args.output_device,metrics_path=args.metrics)
             if kind=='end':break
+            if kind != 'empty':last_valid = time.perf_counter()
+        if wake is not None and sleep_audio is not None:
+            print('SLEEP: playing farewell before standby', flush=True)
+            play_audio(sleep_audio[0], sleep_audio[1], args.output_device, controls.gain)
 
 
 def main():
@@ -576,6 +673,9 @@ def main():
     parser.add_argument("--input-device", type=int)
     parser.add_argument("--output-device", type=int)
     parser.add_argument("--threshold", type=float, default=0.012, help="麦克风语音 RMS 门限")
+    parser.add_argument("--min-input-dbfs", type=dbfs_threshold, help="Digital RMS floor in dBFS, e.g. -38; overrides --threshold")
+    parser.add_argument("--min-voice-ms", type=int, default=120, help="Continuous above-floor onset, 60-500 ms")
+    parser.add_argument("--preroll-ms", type=int, help="Chat PCM history, 20-2000 ms; default 200 (Silero 500)")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--tts-threads", type=int, help="语音合成线程数，默认与 --threads 相同")
     parser.add_argument("--speed", type=float, help="语速 0.5–1.5；Theresa 默认 0.9，其余 1.0")
@@ -584,19 +684,46 @@ def main():
     parser.add_argument("--batch-cpu-range")
     parser.add_argument("--model", type=Path, help="可选 GGUF，不覆盖默认模型")
     parser.add_argument("--prompt-mode", choices=("original", "compact"), default="original")
-    parser.add_argument("--first-clause-chars", type=int, choices=(0, 16), default=16)
+    parser.add_argument("--first-clause-chars", type=int, choices=(0, 8, 12, 16), default=16)
+    parser.add_argument("--quality-guard", action="store_true", help="Experimental complete-answer check; buffers generation and increases first-audio latency")
+    parser.add_argument("--answer-prefix-policy", choices=("original", "guarded"), default="original", help="Optional finite placeholder/exact-echo prefix gate; not a factual checker")
     parser.add_argument("--no-warmup", action="store_true")
     parser.add_argument("--silence", type=float, default=0.7)
     parser.add_argument("--vad", choices=("rms", "silero"), default="rms")
     parser.add_argument("--vad-model", type=Path)
     parser.add_argument("--metrics", type=Path, help="追加 JSONL 分段计时日志")
     parser.add_argument("--auto-listen", action="store_true", help="无屏模式：加载后直接听，空闲不读键盘、不重复提示音")
+    parser.add_argument("--wake-backend", choices=("kws", "sensevoice"), default="kws")
+    parser.add_argument("--wake-confirmation", choices=("none", "auto-consensus"), default="none",
+                        help="Experimental bounded confirmation for rejected near-name transcripts")
+    parser.add_argument("--wake-threshold", type=float, default=10**(-46/20), help="Independent SenseVoice wake RMS floor")
+    parser.add_argument("--wake-min-voice-ms", type=int, default=120)
+    parser.add_argument("--wake-preroll-ms", type=int, default=200)
+    parser.add_argument("--wake-silence", type=float, default=.56)
+    parser.add_argument("--wake-model", type=Path, help="Offline Naruto KWS model folder")
+    parser.add_argument("--sleep-ack", type=Path, help="Fixed farewell PCM WAV before returning to wake standby")
+    parser.add_argument("--wake-ack", type=Path, help="Fixed ikuzo mono PCM WAV")
     parser.add_argument("--ready-file", type=Path, help="模型和音频就绪后写入状态，供开机服务检查")
     parser.add_argument("--port", type=int, default=17860)
     parser.add_argument("--assets", type=Path, default=ROOT / ".local")
     parser.add_argument("--server", type=Path, help="llama-server 可执行文件")
     parser.add_argument("--wav", nargs="+", type=Path, help="依次输入 WAV，模拟一次多轮会话")
     args = parser.parse_args()
+    if (args.wake_model or args.wake_backend == "sensevoice") and not args.wake_ack:
+        parser.error("--wake-model requires --wake-ack")
+    if args.sleep_ack and not (args.wake_model or args.wake_backend == "sensevoice"):
+        parser.error("--sleep-ack requires wake mode")
+    if args.min_input_dbfs is not None:
+        args.threshold = args.min_input_dbfs
+    from audio_capture import UtteranceGate
+    try:
+        UtteranceGate(args.threshold, args.min_voice_ms,
+                      args.preroll_ms if args.preroll_ms is not None else (500 if args.vad == "silero" else 200),
+                      args.silence)
+        UtteranceGate(args.wake_threshold, args.wake_min_voice_ms,
+                      args.wake_preroll_ms, args.wake_silence)
+    except ValueError as error:
+        parser.error(str(error))
     if args.list_voices:
         for language, voices in VOICES.items():
             print(f"{language} ({DEFAULT_VOICES[language]} 为默认): {', '.join(voices)}")
@@ -628,11 +755,14 @@ def main():
     detector = SileroDetector(args.vad_model or assets / "silero_vad.onnx") if args.vad == "silero" else None
     prompt = (COMPACT_PROMPTS if args.prompt_mode == "compact" else PROMPTS)[args.language]
     def dialogue_factory():
-        return Dialogue(chat.reply, args.language, chat.reply_stream, args.prompt_mode, args.first_clause_chars)
+        return Dialogue(chat.reply, args.language, chat.reply_stream, args.prompt_mode, args.first_clause_chars, quality_guard=args.quality_guard, answer_prefix_policy=args.answer_prefix_policy)
     with local_server(executable, assets, args.port, args.threads, args.batch_threads,
                       args.cpu_range, args.batch_cpu_range, args.model) as chat:
         if not args.no_warmup:
             print("静默预热 " + json.dumps(warmup_pipeline(speech, chat, args.language, prompt), ensure_ascii=False), flush=True)
+        # Precompute the fixed tool acknowledgement before ready; no LLM/TTS wait per tool.
+        speech.tool_audio = {args.language: list(speech.synthesize(
+            "音量已调整。" if args.language == "zh" else "Volume adjusted."))}
         if args.wav:
             dialogue = dialogue_factory()
             for index, path in enumerate(args.wav, 1):

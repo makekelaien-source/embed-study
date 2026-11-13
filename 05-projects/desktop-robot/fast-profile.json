@@ -1,5 +1,5 @@
 {
-  "status": "candidate-awaiting-acceptance",
+  "status": "experimental-wake-awaiting-human-acceptance",
   "common": {
     "threads": 2,
     "tts_threads": 8,
@@ -8,17 +8,34 @@
     "batch_cpu_range": "0-7",
     "server": ".local/llama/llama-server",
     "prompt_mode": "original",
-    "first_clause_chars": 16
+    "first_clause_chars": 16,
+    "answer_prefix_policy": "guarded"
   },
   "language_overrides": {
-    "zh": {"speed": 0.9},
-    "en": {"speed": 1.0}
+    "zh": {
+      "speed": 0.9
+    },
+    "en": {
+      "speed": 1.0
+    }
   },
   "microphone": {
     "input_device": 0,
     "output_device": 3,
-    "threshold": 0.004,
+    "threshold": 0.005011872336272725,
     "silence": 0.55,
-    "vad": "rms"
+    "vad": "rms",
+    "min_input_dbfs": -46,
+    "min_voice_ms": 200,
+    "preroll_ms": 500,
+    "wake_model": ".local/naruto-kws",
+    "wake_ack": ".local/ikuzo.wav",
+    "wake_backend": "sensevoice",
+    "wake_threshold": 0.005011872336272725,
+    "wake_min_voice_ms": 120,
+    "wake_preroll_ms": 200,
+    "wake_silence": 0.56,
+    "sleep_ack": ".local/farewell.wav",
+    "wake_confirmation": "auto-consensus"
   }
 }

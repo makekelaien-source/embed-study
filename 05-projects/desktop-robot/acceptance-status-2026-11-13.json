@@ -1,0 +1,16 @@
+{
+  "plan_sha256": "01611e0d60b1d0ee49f062a1b0b56e7d2566a0687c3ee4dd76bc2f3ed7ad692d",
+  "overall": "blocked",
+  "cpu_guard_c": 70,
+  "observed_c": [
+    70.092,
+    72.452,
+    38.018
+  ],
+  "all_tasks_blocked": 18,
+  "improvements_used": 0,
+  "may_improve": false,
+  "deployment_rolled_back": true,
+  "service_stopped": true,
+  "shutdown_cancelled": true
+}

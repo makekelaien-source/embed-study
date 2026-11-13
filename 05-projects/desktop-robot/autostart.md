@@ -1,8 +1,27 @@
-# 开机自动语音与额定频率
+# 开机自动语音与频率限制
+
+## 当前配置（2026-11-12）
+
+本机保留`desktop-robot-frequency.service`，并由其`conservative.conf`覆盖配置在启动后把A733大核policy6上限设为1716000kHz；内核调频和温度保护保持开启。源码中的`desktop-robot-conservative.conf`与已部署文件对应。不要在散热未解决时删除此限制或只安装基础频率恢复服务。
+
+当前开机进入Naruto待机，使用SenseVoice主路及试验性多视图复核，唤醒后播放固定回应，进入原中英文模式；结束口令或15秒无有效输入后播放一次轻笑并回待机。唤醒准确率仍待真人复测，不等于稳定验收完成。收音/回退见[最新专项记录](autonomous-work-2026-11-12.md)。
+
+新装系统部署开机服务时，同时安装基础单元与限频覆盖文件；以下针对当前A733板型、orangepi账号和固定目录，本机已在位，无需重装：
+
+```bash
+sudo install -Dm644 desktop-robot-frequency.service /etc/systemd/system/desktop-robot-frequency.service
+sudo install -Dm644 desktop-robot-conservative.conf /etc/systemd/system/desktop-robot-frequency.service.d/conservative.conf
+sudo install -Dm644 desktop-robot.service /etc/systemd/system/desktop-robot.service
+sudo systemctl daemon-reload
+sudo systemctl enable desktop-robot-frequency.service desktop-robot.service
+sudo systemctl start desktop-robot.service
+```
+
+本文件下方为早期额定频率和无唤醒阶段的历史记录，不作为当前操作指令。最新实验发现短文本负载也会触发70°C实验停止条件，主动散热和高负载稳定性尚未通过。
 
 > 本文为开机服务专项说明。第一阶段全部物料、操作、证据、未完成验收及其他MD索引见[阶段主文档](phase-1-offline-bilingual.md)。服务状态描述来自上次验证，当前是否在线需要重新上电检查。
 
-## 当前已部署
+## 历史部署记录（已由上方当前配置取代）
 
 `desktop-robot-frequency.service` 在启动时把每个CPU频率策略的上限恢复到硬件公布的默认最高值：大核2002000kHz，小核1794000kHz。
 没有超频，没有强制锁定performance调频，没有关闭内核温度保护；实际频率仍随负载和温度变化。
