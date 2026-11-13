@@ -111,6 +111,18 @@ class AcceptanceRoundsTests(unittest.TestCase):
         row.pop("blocker")
         self.assertEqual(evaluate(self.plan, [row])["overall"], "fail")
 
+    def test_updated_authorized_90c_limit_still_stops_further_trials(self):
+        row = self.round()
+        row['results'] = []
+        row['blocker'] = {'kind': 'thermal_limit', 'reason': 'authorized CPU ceiling',
+                          'evidence': 'thermal90.jsonl#3', 'observed_c': 90.1, 'threshold_c': 90}
+        self.assertFalse(evaluate(self.plan, [row])['may_improve'])
+        with self.assertRaises(ValueError):
+            evaluate(self.plan, [row, self.round(index=1)])
+        row['blocker'].update(observed_c=91.1, threshold_c=91)
+        with self.assertRaises(ValueError):
+            evaluate(self.plan, [row])
+
     def test_duplicate_unknown_results_and_reused_capture_rejected(self):
         row = self.round(); row["results"] *= 2
         with self.assertRaises(ValueError): evaluate(self.plan, [row])

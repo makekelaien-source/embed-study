@@ -85,8 +85,8 @@ def _blocker(blocker):
         raise ValueError("blocker needs reason and evidence")
     if blocker.get("kind") == "thermal_limit":
         observed, limit = blocker.get("observed_c"), blocker.get("threshold_c")
-        if not (_finite(observed) and _finite(limit) and 0 < limit <= 70 and observed >= limit):
-            raise ValueError("thermal block needs real observed_c >= threshold_c, threshold <=70C")
+        if not (_finite(observed) and _finite(limit) and 0 < limit <= 90 and observed >= limit):
+            raise ValueError("thermal block needs real observed_c >= threshold_c, threshold <=90C")
     elif blocker.get("kind") == "missing_hardware":
         if not _text(blocker.get("component")):
             raise ValueError("missing_hardware block needs component")

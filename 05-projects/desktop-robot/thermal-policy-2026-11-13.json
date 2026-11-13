@@ -1,0 +1,10 @@
+{
+  "authorization": "2026-11-13 user: continue at approximately 1.7GHz; temperature must not exceed 90C",
+  "cpu_stop_c": 90,
+  "skin_stop_c": 43,
+  "big_cluster_max_khz": 1716000,
+  "little_cluster_max_khz": 1794000,
+  "policy": "Keep kernel thermal trips, governors and protections unchanged; stop active experiments when any CPU reaches the ceiling, or the independent skin limit is reached.",
+  "historical_70c_block": "Preserved as the correct outcome under the previous experimental limit; resumed testing is a separate series, not a retroactive pass.",
+  "shutdown": "Cancelled by user; keep both devices on."
+}

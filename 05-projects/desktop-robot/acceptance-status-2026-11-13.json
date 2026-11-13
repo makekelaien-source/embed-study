@@ -1,16 +1,21 @@
 {
   "plan_sha256": "01611e0d60b1d0ee49f062a1b0b56e7d2566a0687c3ee4dd76bc2f3ed7ad692d",
-  "overall": "blocked",
-  "cpu_guard_c": 70,
-  "observed_c": [
-    70.092,
-    72.452,
-    38.018
-  ],
-  "all_tasks_blocked": 18,
+  "overall": "fail",
+  "execution_state": "interrupted_by_user: prepare optimization plan; no further experiments",
+  "attempted_chinese_tasks": 12,
+  "english_tasks_executed": 0,
   "improvements_used": 0,
-  "may_improve": false,
-  "deployment_rolled_back": true,
-  "service_stopped": true,
-  "shutdown_cancelled": true
+  "cpu_stop_c": 90,
+  "cpu_peaks_c": [
+    83.249,
+    83.013,
+    40.649
+  ],
+  "skin_stop_c": 43,
+  "first_task_acoustic_seconds_approx": 4.8,
+  "other_task_acoustic_review": "unmeasured pending independent review; software times not substituted",
+  "service_restored": "active/running, readyPID26150, MainPID26142, NRestarts0",
+  "both_devices": "on; shutdown cancelled",
+  "next_plan": "optimization-plan-2026-11-13.md",
+  "historical_70c_stop": "preserved in prior commit and local original rounds; does not represent resumed outcome"
 }
