@@ -18,6 +18,7 @@ from urllib.request import ProxyHandler, Request, build_opener
 import wave
 from acceleration import split_first_clause, server_options, valid_speed, warmup_pipeline, SileroDetector, tts_model_path
 from service_runner import notify_ready
+from device_status import DeviceStatus
 from voice_controls import VolumeControl, dbfs_threshold, capability_clarification
 from answer_quality import check_answer
 from naruto_identity import identity_reply, identity_system_prompt
@@ -31,7 +32,7 @@ ZH_LL = "sherpa-onnx-vits-zh-ll"
 THERESA = "vits-zh-hf-theresa"
 VOICES = {
     "zh": {"melo": (TTS, 0), **{f"zh-ll-{sid}": (ZH_LL, sid) for sid in range(5)},
-           "theresa": (THERESA, 0)},
+           "theresa": (THERESA, 0), "matcha": ("matcha-icefall-zh-baker", 0)},
     "en": {"lessac": ("vits-piper-en_US-lessac-medium", "en_US-lessac-medium.onnx"),
            "ryan": ("piper-ryan", "en_US-ryan-low.onnx")},
 }
@@ -63,6 +64,13 @@ EN_PROMPT = (
     "Do not add a closing question."
 )
 PROMPTS = {"zh": ZH_PROMPT, "en": EN_PROMPT}
+QUALITY_PROMPTS = {
+    "zh": "用中文直接准确回答当前问题。先说包含结论的完整短句，再补充必要条件和区别。不要为了简短删除否定、条件或关键概念。不确定就说明，不编造事实或设备状态。追问结合对话，不重复旧答案。",
+    "en": "Answer accurately in English. Start with a short complete sentence containing the answer, then necessary distinctions and conditions. Never remove a qualification or negation for brevity. Admit uncertainty. Never invent facts or device state. Use context on follow-ups.",
+}
+def select_prompt(mode, language):
+    return (QUALITY_PROMPTS if mode == "quality" else COMPACT_PROMPTS if mode == "compact" else PROMPTS)[language]
+
 COMPACT_PROMPTS = {
     "zh": "用一句完整口语中文回答，不超过30字。沿用上下文的人名和物品名，追问给具体做法，不重复旧答案；听不清就确认。",
     "en": "Reply in English. Use one complete sentence within 16 words. Keep names and details from context; give concrete steps on follow-ups, without repeating or adding a closing question.",
@@ -95,18 +103,23 @@ class Dialogue:
         if answer_prefix_policy not in ("original", "guarded"):
             raise ValueError("answer_prefix_policy must be original or guarded")
         self.answer_prefix_policy = answer_prefix_policy
+        self.quality_mode = prompt_mode == "quality"
         self.quality_guard = quality_guard
         self.quality_reason = None
         self.quality_issues = []
         self.controls = controls if controls is not None else VolumeControl()
         self.last_tool = None
+        self.device_status = DeviceStatus()
         self.reply = reply
         self.reply_stream = reply_stream
         self.language = language
         self.history = deque(maxlen=8)
         self.last_answer = ""
-        self.prompt = identity_system_prompt(language) + (COMPACT_PROMPTS if prompt_mode == "compact" else PROMPTS)[language]
+        self.prompt = identity_system_prompt(language) + select_prompt(prompt_mode, language)
         self.first_clause_chars = first_clause_chars if language == "zh" else 0
+        self.clause_end = ("。！？；" if language == "zh" else ".! ?;".replace(" ", "")) if prompt_mode == "quality" else CLAUSE_END[language]
+        if prompt_mode == "quality":
+            self.first_clause_chars = 0
         self.first_token_at = None
 
     def turn(self, text):
@@ -118,6 +131,8 @@ class Dialogue:
     def turn_stream(self, text):
         self.quality_reason = None
         self.quality_issues = []
+        self.last_answer = ""
+        self.last_tool = None
         text = text.strip()
         command = " ".join(text.rstrip("。！？.!?").casefold().split())
         if not any(char.isalnum() for char in text):
@@ -126,6 +141,8 @@ class Dialogue:
             self.history.clear()
             return "end", None
         self.last_tool = self.controls.execute(text, self.language)
+        if self.last_tool is None:
+            self.last_tool = self.device_status.execute(text, self.language)
         if self.last_tool is not None:
             return "tool", self.last_tool
         motion = parse_motion_intent(text, origin="asr")
@@ -157,6 +174,10 @@ class Dialogue:
                         self.first_token_at = time.perf_counter()
                     parts.append(delta)
                     yield delta
+                owner = getattr(self.reply_stream, "__self__", None)
+                if self.quality_mode and getattr(owner, "metrics", {}).get("finish_reason") == "length":
+                    self.quality_issues.append("generation_truncated")
+                    raise RuntimeError("Quality response exceeded token budget; unfinished sentence withheld")
             finally:
                 close = getattr(deltas, "close", None)
                 if close is not None:
@@ -172,7 +193,7 @@ class Dialogue:
                 # conversational acknowledgements after the prefix gate.
                 filtered = iter(["".join(filtered)])
             spoken = []
-            for clause in split_first_clause(filtered, CLAUSE_END[self.language], self.first_clause_chars):
+            for clause in split_first_clause(filtered, self.clause_end, self.first_clause_chars):
                 spoken.append(clause)
                 yield clause
             parts[:] = spoken
@@ -183,9 +204,9 @@ class Dialogue:
             if self.quality_reason is not None:
                 self.quality_issues.append(self.quality_reason)
             parts[:] = [answer]
-            yield from split_first_clause(iter([answer]), CLAUSE_END[self.language], self.first_clause_chars)
+            yield from split_first_clause(iter([answer]), self.clause_end, self.first_clause_chars)
         else:
-            yield from split_first_clause(capture(), CLAUSE_END[self.language], self.first_clause_chars)
+            yield from split_first_clause(capture(), self.clause_end, self.first_clause_chars)
         answer = "".join(parts).strip()
         if not answer:
             raise RuntimeError("对话模型返回了空回复")
@@ -234,6 +255,11 @@ class Voice:
         self.language = language
         self.speed = valid_speed(speed if speed is not None else (0.9 if name == "theresa" else 1.0))
         threads = tts_threads or threads
+        self.matcha = None
+        if name == "matcha":
+            from matcha_voice import MatchaVoice
+            self.matcha = MatchaVoice(assets, threads, self.speed)
+            return
         folder, voice = VOICES[language][name]
         tts = assets / folder
         if language == "en":
@@ -260,6 +286,9 @@ class Voice:
         ))
 
     def synthesize(self, text):
+        if getattr(self, "matcha", None) is not None:
+            yield from self.matcha.synthesize(text)
+            return
         if self.language == "en":
             from piper.config import SynthesisConfig
             for chunk in self.tts.synthesize(text, syn_config=SynthesisConfig(length_scale=1.0/self.speed)):
@@ -310,7 +339,7 @@ class LocalChat:
     def chat_body(self, messages, stream=False):
         body = {
             "messages": messages,
-            "max_tokens": 48,
+            "max_tokens": getattr(self, "max_tokens", 48),
             "temperature": 0.5,
             "repeat_penalty": 1.1,
             "chat_template_kwargs": {"enable_thinking": False},
@@ -505,11 +534,13 @@ def save_wav(path, samples, rate):
         file.writeframes(pcm.tobytes())
 
 
-def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, metrics_path=None):
+def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, metrics_path=None, on_response=None):
     start = time.perf_counter()
     text = speech.recognize(samples)
     recognized = time.perf_counter()
     kind, stream = dialogue.turn_stream(text)
+    if kind != "empty" and on_response is not None:
+        on_response()
     print(f"你  {text or '（未识别）'}", flush=True)
     tool_result = stream if kind == "tool" else None
     if tool_result is not None:
@@ -544,7 +575,7 @@ def run_turn(dialogue, speech, samples, speech_end, output=None, device=None, me
                     if state["tts_start"] is None:
                         state["tts_start"] = time.perf_counter()
                     for audio in (getattr(speech, "tool_audio", {}).get(dialogue.language)
-                                  if tool_result is not None and getattr(speech, "tool_audio", {}).get(dialogue.language)
+                                  if tool_result is not None and tool_result.get("tool") == "set_volume" and getattr(speech, "tool_audio", {}).get(dialogue.language)
                                   else speech.synthesize(clause)):
                         now = time.perf_counter()
                         if state["first"] is None:
@@ -645,18 +676,39 @@ def serve_conversations(args,chat,speech,detector):
             input('按 Enter 模拟唤醒，Ctrl+C 退出。')
             play_audio(chime,48000,args.output_device,controls.gain)
         dialogue=Dialogue(chat.reply,args.language,chat.reply_stream,args.prompt_mode,args.first_clause_chars,controls,quality_guard=getattr(args,"quality_guard",False),answer_prefix_policy=getattr(args,"answer_prefix_policy","original"))
-        last_valid = time.perf_counter()
-        while True:
-            if time.perf_counter() - last_valid >= 15:
-                break
-            print('正在听……',flush=True)
-            samples,speech_end=listen(args.input_device,args.threshold,args.silence,detector,getattr(args,"min_voice_ms",120),idle_seconds=max(.1,15-(time.perf_counter()-last_valid)),preroll_ms=getattr(args,"preroll_ms",None))
-            if samples is None:
-                print('会话已超时，等待下一句。',flush=True)
-                break
-            kind=run_turn(dialogue,speech,samples,speech_end,device=args.output_device,metrics_path=args.metrics)
-            if kind=='end':break
-            if kind != 'empty':last_valid = time.perf_counter()
+        if getattr(args, "continuous_capture", False):
+            from continuous_capture import ContinuousCapture
+            capture_context = ContinuousCapture(args.input_device)
+        else:
+            from contextlib import nullcontext
+            capture_context = nullcontext(None)
+        with capture_context as capture:
+            last_valid = time.perf_counter()
+            while True:
+                if time.perf_counter() - last_valid >= 15:
+                    break
+                print('正在听……', flush=True)
+                remaining = max(.1, 15 - (time.perf_counter() - last_valid))
+                if capture is not None:
+                    samples, speech_end = capture.listen(args.threshold, args.silence, detector,
+                        getattr(args, "min_voice_ms", 120), idle_seconds=remaining,
+                        preroll_ms=getattr(args, "preroll_ms", None))
+                else:
+                    samples, speech_end = listen(args.input_device, args.threshold, args.silence,
+                        detector, getattr(args, "min_voice_ms", 120), idle_seconds=remaining,
+                        preroll_ms=getattr(args, "preroll_ms", None))
+                if samples is None:
+                    print('会话已超时，等待下一句。', flush=True)
+                    break
+                kind = run_turn(dialogue, speech, samples, speech_end,
+                    device=args.output_device, metrics_path=args.metrics,
+                    on_response=capture.suspend_playback if capture is not None else None)
+                if kind == 'end':
+                    break
+                if kind != 'empty':
+                    last_valid = time.perf_counter()
+                    if capture is not None:
+                        capture.discard_playback()
         if wake is not None and sleep_audio is not None:
             print('SLEEP: playing farewell before standby', flush=True)
             play_audio(sleep_audio[0], sleep_audio[1], args.output_device, controls.gain)
@@ -683,15 +735,17 @@ def main():
     parser.add_argument("--cpu-range")
     parser.add_argument("--batch-cpu-range")
     parser.add_argument("--model", type=Path, help="可选 GGUF，不覆盖默认模型")
-    parser.add_argument("--prompt-mode", choices=("original", "compact"), default="original")
+    parser.add_argument("--prompt-mode", choices=("original", "compact", "quality"), default="original")
     parser.add_argument("--first-clause-chars", type=int, choices=(0, 8, 12, 16), default=16)
     parser.add_argument("--quality-guard", action="store_true", help="Experimental complete-answer check; buffers generation and increases first-audio latency")
     parser.add_argument("--answer-prefix-policy", choices=("original", "guarded"), default="original", help="Optional finite placeholder/exact-echo prefix gate; not a factual checker")
+    parser.add_argument("--max-tokens", type=int, default=160, help="Quality mode answer budget; legacy modes keep 48")
     parser.add_argument("--no-warmup", action="store_true")
     parser.add_argument("--silence", type=float, default=0.7)
     parser.add_argument("--vad", choices=("rms", "silero"), default="rms")
     parser.add_argument("--vad-model", type=Path)
     parser.add_argument("--metrics", type=Path, help="追加 JSONL 分段计时日志")
+    parser.add_argument("--continuous-capture", action="store_true", help="Keep timestamped capture open across empty ASR; discard self playback")
     parser.add_argument("--auto-listen", action="store_true", help="无屏模式：加载后直接听，空闲不读键盘、不重复提示音")
     parser.add_argument("--wake-backend", choices=("kws", "sensevoice"), default="kws")
     parser.add_argument("--wake-confirmation", choices=("none", "auto-consensus"), default="none",
@@ -753,11 +807,21 @@ def main():
     print(f"正在加载离线模型（{args.language} / {voice}）……", flush=True)
     speech = Speech(assets, args.threads, args.language, voice, args.tts_threads, args.speed)
     detector = SileroDetector(args.vad_model or assets / "silero_vad.onnx") if args.vad == "silero" else None
-    prompt = (COMPACT_PROMPTS if args.prompt_mode == "compact" else PROMPTS)[args.language]
+    if detector is not None:
+        # Import/inference initialization must finish before persistent capture.
+        import numpy as np
+        for _ in range(4):
+            detector.feed(np.zeros(BLOCK, dtype="float32"))
+        detector.reset()
+    prompt = identity_system_prompt(args.language) + select_prompt(args.prompt_mode, args.language)
     def dialogue_factory():
         return Dialogue(chat.reply, args.language, chat.reply_stream, args.prompt_mode, args.first_clause_chars, quality_guard=args.quality_guard, answer_prefix_policy=args.answer_prefix_policy)
     with local_server(executable, assets, args.port, args.threads, args.batch_threads,
                       args.cpu_range, args.batch_cpu_range, args.model) as chat:
+        if args.prompt_mode == "quality":
+            if not 48 <= args.max_tokens <= 512:
+                raise ValueError("max-tokens must be 48-512")
+            chat.max_tokens = args.max_tokens
         if not args.no_warmup:
             print("静默预热 " + json.dumps(warmup_pipeline(speech, chat, args.language, prompt), ensure_ascii=False), flush=True)
         # Precompute the fixed tool acknowledgement before ready; no LLM/TTS wait per tool.

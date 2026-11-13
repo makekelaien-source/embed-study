@@ -1,0 +1,38 @@
+{
+  "status": "rejected_pending_quality_and_acoustic_gates",
+  "production_enabled": false,
+  "hardware": "Allwinner A733",
+  "language_model_candidate": "qwen3-4b-q4_k_m.gguf",
+  "language_model_accepted": false,
+  "prompt_mode": "quality",
+  "first_clause_chars": 0,
+  "max_tokens": 160,
+  "vad": "silero",
+  "continuous_capture": true,
+  "voices": {
+    "zh": "matcha",
+    "en": "lessac"
+  },
+  "response_target_s": 2.0,
+  "preserve_audio": [
+    ".local/ikuzo.wav",
+    ".local/farewell.wav"
+  ],
+  "failed_gates": [
+    "asr_mixed_terminology",
+    "factual_answer_quality",
+    "first_meaningful_acoustic_response",
+    "automatic_acoustic_utterance_onset"
+  ],
+  "not_tested": [
+    "complete_wake_suite",
+    "bilingual_full_knowledge_suite",
+    "30_minute_thermal_soak",
+    "human_acceptance"
+  ],
+  "rejected_candidates": [
+    "Qwen3-4B-Q4_K_M",
+    "Qwen3.5-2B-Q5_K_M",
+    "zipformer-small-bilingual-hotwords"
+  ]
+}

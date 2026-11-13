@@ -37,6 +37,13 @@ def main():
     files += [ROOT / name for name in ("naruto_identity.py", "test_naruto_identity.py",
                                       "test_dialogue_identity.py", "acceptance_rounds.py",
                                       "test_acceptance_rounds.py")]
+    # New runtime adapters and their regressions must travel with robot.py.
+    files += [ROOT / name for name in (
+        "device_status.py", "test_device_status.py", "test_overhaul_integration.py",
+        "continuous_capture.py", "test_continuous_capture.py",
+        "matcha_voice.py", "test_matcha_voice.py", "test_quality_mode.py",
+        "replay_capture.py", "test_replay_capture.py", "overhaul-candidate.json",
+    )]
     # Keep current operational notes and their local history alongside code.
     files += [path for path in sorted(ROOT.glob("*.md")) if path not in files]
     files += [path for path in sorted((ROOT / "framework").rglob("*"))
