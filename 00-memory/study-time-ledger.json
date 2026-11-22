@@ -577,6 +577,41 @@
       "category": "program map source reading and preparation",
       "count_as_student_learning": false,
       "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-12T14:31:47.1801195+08:00",
+      "end_sampled_before_reply_at": "2026-11-12T14:34:18.2965438+08:00",
+      "category": "D16 startup source review and lesson preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-12T14:38:25.5454468+08:00",
+      "end_sampled_before_reply_at": "2026-11-12T14:39:11.7609931+08:00",
+      "category": "D16 static review feedback and evidence recording",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-12T14:40:45.9905733+08:00",
+      "end_sampled_before_reply_at": "2026-11-12T14:41:29.3075299+08:00",
+      "category": "static review closure and K1 setup",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-12T14:43:23.9758427+08:00",
+      "end_sampled_before_reply_at": "2026-11-12T14:43:54.9858754+08:00",
+      "category": "K1 physical meaning explanation preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
+    },
+    {
+      "started_at": "2026-11-12T14:53:15.5278037+08:00",
+      "end_sampled_before_reply_at": "2026-11-12T14:54:02.8924454+08:00",
+      "category": "student-authorized review replanning and struct preparation",
+      "count_as_student_learning": false,
+      "precision": "sampled_estimate"
     }
   ],
   "policy": "../01-plans/daily-close-rules.md",
@@ -2865,6 +2900,173 @@
       "next_lesson": "04-notes/lesson-2026-11-12.md",
       "ended_at": "2026-11-11T19:52:18+08:00",
       "effective_time_note": "D16 same-date window 17:48:02-19:52:18 wall 124m16s. Codex sampled first clock18:02:28; prior window unconfirmed. Teacher tools/preparation and message gaps not fully separated; net unknown, not recorded as full300. D15 earlier wall84m42s separate; same actual study date, no additional day count."
+    },
+    {
+      "session_id": "2026-11-12-d16-143147",
+      "date": "2026-11-12",
+      "lesson": "D16",
+      "started_at": "2026-11-12T14:31:47.1801195+08:00",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "current_state": "active_reteach_struct_prediction_pending",
+      "classroom_ended": false,
+      "segments": [
+        {
+          "started_at": "2026-11-12T14:31:47.1801195+08:00",
+          "ended_at": "2026-11-12T14:34:18.2965438+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "Source review and preparation excluded; also indexed in teacher_processing_intervals, do not deduct twice."
+        },
+        {
+          "started_at": "2026-11-12T14:34:18.2965438+08:00",
+          "ended_at": "2026-11-12T14:40:45.9905733+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "Review ended: original static persistence answer incorrect; H2 correction then automatic-local contrast correctly predicted 1/1. Elapsed includes separately recorded teacher waits; net unconfirmed."
+        },
+        {
+          "started_at": "2026-11-12T14:41:29.3075299+08:00",
+          "ended_at": "2026-11-12T14:53:15.5278037+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "K1 set_switch_at contract and acceptance presented; student writes only new core, pending."
+        },
+        {
+          "started_at": "2026-11-12T14:54:02.8924454+08:00",
+          "ended_at": null,
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "Student explicitly requests yesterday material retaught. Resume struct then enum/static/bit operations; replace remaining daily capacity, no extra300. First struct copy prediction pending."
+        }
+      ],
+      "topics": [
+        {
+          "category": "testing_review",
+          "topic": "static storage duration versus scope",
+          "evidence": "Student denied object persistence but correctly denied direct main access. H2 correction, automatic-local contrast prediction pending."
+        },
+        {
+          "category": "mainline",
+          "topic": "K1 bit map physical meaning",
+          "evidence": "After H2 explanation, student correctly predicted lights on/alarm off/fan off and 100. New function code pending."
+        }
+      ],
+      "note": "D16 requested by student on new actual study date; previous same-date D16-labelled 11-11 window remains historical, no duplicate actual day. L3 calendar window with authorized early L4 C content.",
+      "next_lesson": "04-notes/lesson-2026-11-12.md"
+    },
+    {
+  "session_id": "2026-11-22-l4-c-resume",
+  "date": "2026-11-22",
+  "lesson": "D17",
+  "started_at": "2026-11-22T14:12:28.8029628+08:00",
+  "planned_capacity_minutes": 300,
+  "effective_minutes": null,
+  "current_state": "ended",
+  "classroom_ended": true,
+  "segments": [
+    {
+      "started_at": "2026-11-22T14:12:28.8029628+08:00",
+      "ended_at": "2026-11-22T14:13:16.464013+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-22T14:13:16.464013+08:00",
+      "ended_at": "2026-11-22T14:18:15.4795225+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "Correct 18/30 after walkthrough. Net study time unconfirmed."
+    },
+    {
+      "category": "teacher_preparation",
+      "started_at": "2026-11-22T14:18:15.4795225+08:00",
+      "ended_at": "2026-11-22T14:18:32.2937305+08:00",
+      "effective_minutes": 0
+    },
+    {
+      "category": "mainline",
+      "started_at": "2026-11-22T14:18:32.2937305+08:00",
+      "ended_at": "2026-11-22T14:36:59.4423694+08:00",
+      "effective_minutes": null,
+      "note": "Correct RUN/SAFE. Gap over 10 minutes; net study time unconfirmed."
+    },
+    {
+      "category": "teacher_preparation",
+      "started_at": "2026-11-22T14:36:59.4423694+08:00",
+      "ended_at": "2026-11-22T14:37:22.1535796+08:00",
+      "effective_minutes": 0
+    },
+    {
+      "category": "mainline",
+      "started_at": "2026-11-22T14:37:22.1535796+08:00",
+      "ended_at": "2026-11-22T14:39:28.7976604+08:00",
+      "effective_minutes": null,
+      "note": "Predicted next=2; assignment affects shown only."
+    },
+    {
+      "category": "teacher_preparation",
+      "started_at": "2026-11-22T14:39:28.7976604+08:00",
+      "ended_at": "2026-11-22T14:39:45.3888831+08:00",
+      "effective_minutes": 0
+    },
+    {
+      "category": "mainline",
+      "started_at": "2026-11-22T14:39:45.3888831+08:00",
+      "ended_at": "2026-11-22T15:14:54.7207318+08:00",
+      "effective_minutes": null,
+      "note": "Bit index and mask: correct 010/111; syntax walkthrough requested. At 14:44:03+08:00 continued to set_switch_at exercise. Teacher preparation excluded; net unconfirmed. Student revised unsigned type; six cases and normal entry passed. Net unconfirmed."
+    },
+    {
+      "category": "teacher_preparation",
+      "started_at": "2026-11-22T15:14:54.7207318+08:00",
+      "ended_at": "2026-11-22T15:15:41.4373449+08:00",
+      "effective_minutes": 0
+    },
+    {
+      "category": "mainline",
+      "started_at": "2026-11-22T15:15:41.4373449+08:00",
+      "ended_at": "2026-11-22T15:56:59.6514556+08:00",
+      "effective_minutes": null,
+      "note": "Correct 26/30 at 15:16:47; now practicing sample_set_value. Net minutes unconfirmed."
+    },
+    {
+      "started_at": "2026-11-22T15:56:59.6514556+08:00",
+      "ended_at": "2026-11-22T15:57:17.3608665+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-22T15:57:17.3610807+08:00",
+      "ended_at": "2026-11-22T16:38:50.6347449+08:00",
+      "category": "foundations",
+      "effective_minutes": null,
+      "note": "Structure sizes; prediction pending."
+    },
+    {
+      "started_at": "2026-11-22T16:38:50.6347449+08:00",
+      "ended_at": "2026-11-22T18:19:22.4620834+08:00",
+      "category": "meal_break",
+      "effective_minutes": 0,
+      "note": "Paused at student request; resume pending average-value prediction. GDB last."
+    },
+    {
+      "started_at": "2026-11-22T18:19:22.4620834+08:00",
+      "ended_at": "2026-11-22T18:19:22.4793962+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-22T18:19:22.4793962+08:00",
+      "ended_at": "2026-11-22T19:21:55.1433914+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "C review: filtered average prediction pending; GDB last."
     }
+  ],
+  "ended_at": "2026-11-22T19:21:55.1433914+08:00",
+  "next_lesson": "04-notes/D18-c-sample-batch.md",
+  "note": "餐休排除；六轮及本人 GDB 已完成，净有效分钟未核实。"
+}
   ]
 }

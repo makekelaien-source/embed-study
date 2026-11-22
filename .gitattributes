@@ -421,3 +421,11 @@
 /03-code_codex/case1.txt -text
 /03-code_codex/out.txt -text
 /03-code_codex/err.txt -text
+/02-logs/D17-2026-11-22.md -text
+/03-code_codex/l4-2026-11-12/sample.h -text
+/03-code_codex/l4-2026-11-12/sample-main.c -text
+/03-code_codex/l4-2026-11-12/sample-set-value.c -text
+/03-code_codex/l4-2026-11-12/sample-refresh.c -text
+/04-notes/next-day-demo/l4-2026-11-12/pointer-demo.c -text
+/04-notes/next-day-demo/l4-2026-11-12/copy-demo.c -text
+/04-notes/next-day-demo/l4-2026-11-12/layout-demo.c -text
