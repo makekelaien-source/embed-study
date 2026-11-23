@@ -3067,6 +3067,133 @@
   "ended_at": "2026-11-22T19:21:55.1433914+08:00",
   "next_lesson": "04-notes/D18-c-sample-batch.md",
   "note": "餐休排除；六轮及本人 GDB 已完成，净有效分钟未核实。"
+},
+{
+  "session_id": "2026-11-23-l4-c-batch",
+  "date": "2026-11-23",
+  "lesson": "D18",
+  "started_at": "2026-11-23T13:35:40.8392192+08:00",
+  "planned_capacity_minutes": 300,
+  "effective_minutes": null,
+  "current_state": "ended",
+  "classroom_ended": true,
+  "segments": [
+    {
+      "started_at": "2026-11-23T13:35:40.8392192+08:00",
+      "ended_at": "2026-11-23T13:36:51.3616670+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T13:36:51.3616670+08:00",
+      "ended_at": "2026-11-23T13:43:02.0662493+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "Clear-bit recall correct. After feedback, ANY/ALL transfer correct. App settings and teacher work excluded; net minutes unconfirmed."
+    },
+    {
+      "started_at": "2026-11-23T13:43:02.0662493+08:00",
+      "ended_at": "2026-11-23T13:43:22.5779508+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T13:43:22.5779508+08:00",
+      "ended_at": "2026-11-23T13:52:01.4423485+08:00",
+      "category": "foundations",
+      "effective_minutes": null,
+      "note": "Fixed-width integer range and conversion."
+    },
+    {
+      "started_at": "2026-11-23T13:52:01.4423485+08:00",
+      "ended_at": "2026-11-23T14:11:34.4867388+08:00",
+      "category": "main_programming",
+      "effective_minutes": null,
+      "note": "Read-only count_flagged exercise. Teacher processing excluded from net time."
+    },
+    {
+      "started_at": "2026-11-23T14:11:34.4867388+08:00",
+      "ended_at": "2026-11-23T15:26:12.5727202+08:00",
+      "category": "break",
+      "effective_minutes": 0,
+      "note": "Paused by student. Resume from MATCH_ALL mask comparison."
+    },
+    {
+      "started_at": "2026-11-23T15:26:12.5727202+08:00",
+      "ended_at": "2026-11-23T15:26:47.5631394+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T15:26:47.5631394+08:00",
+      "ended_at": "2026-11-23T15:56:00.8331717+08:00",
+      "category": "main_programming",
+      "effective_minutes": null,
+      "note": "sample_set_batch using set_switch_at."
+    },
+    {
+      "started_at": "2026-11-23T15:56:00.8331717+08:00",
+      "ended_at": "2026-11-23T15:56:34.2689812+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T15:56:34.2689812+08:00",
+      "ended_at": "2026-11-23T15:58:36.2109278+08:00",
+      "category": "algorithm",
+      "effective_minutes": null,
+      "note": "Batch traversal time and additional storage."
+    },
+    {
+      "started_at": "2026-11-23T15:58:36.2109278+08:00",
+      "ended_at": "2026-11-23T15:58:57.5324172+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T15:58:57.5324172+08:00",
+      "ended_at": "2026-11-23T16:16:20.8177170+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "Design two-record case for incorrect source index in batch update."
+    },
+    {
+      "started_at": "2026-11-23T16:16:20.8177170+08:00",
+      "ended_at": "2026-11-23T19:33:36.6315103+08:00",
+      "category": "unconfirmed_interval",
+      "effective_minutes": null,
+      "note": "No confirmed study time. Includes D18 progress inquiry at 19:05; administrative activity excluded."
+    },
+    {
+      "started_at": "2026-11-23T19:33:36.6315103+08:00",
+      "ended_at": "2026-11-23T19:33:49.6627126+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T19:33:49.6627126+08:00",
+      "ended_at": "2026-11-23T19:37:06.7391212+08:00",
+      "category": "foundations",
+      "effective_minutes": null,
+      "note": "Empty mask vs empty input; reasoning about predicate formulas."
+    },
+    {
+      "started_at": "2026-11-23T19:37:06.7391212+08:00",
+      "ended_at": "2026-11-23T19:37:33.0189940+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-23T19:37:33.0189940+08:00",
+      "ended_at": "2026-11-23T19:48:01.6414991+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "Interpret teacher GDB trace of count_flagged."
+    }
+  ],
+  "ended_at": "2026-11-23T19:48:01.6414991+08:00",
+  "next_lesson": "04-notes/D19-c-ring-queue.md",
+  "note": "13:35:40 开课，19:48:01 收课。总跨度 6 小时 12 分。明确暂停 74 分 38 秒；16:16–19:33 的 197 分钟单列待确认。另扣台账明确标定的教师准备，已有课堂区间最多约 96.8 分钟，仍含未逐段分离的教师反馈和等待。净有效分钟未核实，300 分钟为计划预算。"
 }
   ]
 }
