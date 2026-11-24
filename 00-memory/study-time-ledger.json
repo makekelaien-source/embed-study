@@ -3194,6 +3194,263 @@
   "ended_at": "2026-11-23T19:48:01.6414991+08:00",
   "next_lesson": "04-notes/D19-c-ring-queue.md",
   "note": "13:35:40 开课，19:48:01 收课。总跨度 6 小时 12 分。明确暂停 74 分 38 秒；16:16–19:33 的 197 分钟单列待确认。另扣台账明确标定的教师准备，已有课堂区间最多约 96.8 分钟，仍含未逐段分离的教师反馈和等待。净有效分钟未核实，300 分钟为计划预算。"
+},
+{
+  "session_id": "2026-11-24-l4-l5-c-queue",
+  "date": "2026-11-24",
+  "lesson": "D19",
+  "started_at": "2026-11-24T14:16:36.1114556+08:00",
+  "planned_capacity_minutes": 300,
+  "effective_minutes": null,
+  "current_state": "ended",
+  "resumed_at": "2026-11-24T17:26:07.0423006+08:00",
+  "paused_at": "2026-11-24T16:04:59.0526884+08:00",
+  "classroom_ended": true,
+  "segments": [
+    {
+      "started_at": "2026-11-24T14:16:36.1114556+08:00",
+      "ended_at": "2026-11-24T14:17:06.7286869+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T14:17:06.7286869+08:00",
+      "ended_at": "2026-11-24T14:18:33.2477244+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "D18 recall: bit position, mask and read-only query."
+    },
+    {
+      "started_at": "2026-11-24T14:18:33.2477244+08:00",
+      "ended_at": "2026-11-24T14:18:49.7064230+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T14:18:49.7064230+08:00",
+      "ended_at": "2026-11-24T14:20:35.2392247+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "L4 PC assessment: predict a pointer write at a breakpoint and its effect on a struct copy."
+    },
+    {
+      "started_at": "2026-11-24T14:20:35.2392247+08:00",
+      "ended_at": "2026-11-24T14:20:49.4977743+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T14:20:49.4977743+08:00",
+      "ended_at": "2026-11-24T14:29:30.8487847+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "L4 assessment: design an ID test for width and source index."
+    },
+    {
+      "started_at": "2026-11-24T14:29:30.8487847+08:00",
+      "ended_at": "2026-11-24T14:29:54.2517820+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T14:29:54.2517820+08:00",
+      "ended_at": "2026-11-24T14:40:33.5063187+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "L5 FIFO, head/tail/count and wraparound."
+    },
+    {
+      "started_at": "2026-11-24T14:40:33.5063187+08:00",
+      "ended_at": "2026-11-24T14:40:45.4904295+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T14:40:45.4904295+08:00",
+      "ended_at": "2026-11-24T15:02:12.0868811+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "L5 queue_push implementation."
+    },
+    {
+      "started_at": "2026-11-24T15:02:12.0868811+08:00",
+      "ended_at": "2026-11-24T15:02:37.0165777+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:02:37.0165777+08:00",
+      "ended_at": "2026-11-24T15:15:09.4020704+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "L5 queue_pop contract and implementation."
+    },
+    {
+      "started_at": "2026-11-24T15:15:09.4020704+08:00",
+      "ended_at": "2026-11-24T15:15:24.7657631+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:15:24.7657631+08:00",
+      "ended_at": "2026-11-24T15:16:32.5917838+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "Locate first unexpected state in previous queue_pop revision."
+    },
+    {
+      "started_at": "2026-11-24T15:16:32.5917838+08:00",
+      "ended_at": "2026-11-24T15:16:53.6678324+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:16:53.6678324+08:00",
+      "ended_at": "2026-11-24T15:18:48.0145636+08:00",
+      "category": "algorithms",
+      "effective_minutes": null,
+      "note": "Compare per-pop copies of remaining queue items."
+    },
+    {
+      "started_at": "2026-11-24T15:18:48.0145636+08:00",
+      "ended_at": "2026-11-24T15:19:00.8356658+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:19:00.8356658+08:00",
+      "ended_at": "2026-11-24T15:21:43.3528813+08:00",
+      "category": "algorithms",
+      "effective_minutes": null,
+      "note": "Compare physical slots and FIFO sequences across two operation histories."
+    },
+    {
+      "started_at": "2026-11-24T15:21:43.3528813+08:00",
+      "ended_at": "2026-11-24T15:21:55.0654820+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:21:55.0654820+08:00",
+      "ended_at": "2026-11-24T15:25:21.8122522+08:00",
+      "category": "testing_review",
+      "effective_minutes": null,
+      "note": "Design an observable check after a failed push."
+    },
+    {
+      "started_at": "2026-11-24T15:25:21.8122522+08:00",
+      "ended_at": "2026-11-24T15:25:35.4673486+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:25:35.4673486+08:00",
+      "ended_at": "2026-11-24T15:58:08.8038607+08:00",
+      "category": "algorithms",
+      "effective_minutes": null,
+      "note": "Implement read-only FIFO sequence equality."
+    },
+    {
+      "started_at": "2026-11-24T15:58:08.8038607+08:00",
+      "ended_at": "2026-11-24T15:58:48.2447107+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T15:58:48.2447107+08:00",
+      "ended_at": "2026-11-24T16:04:59.0526884+08:00",
+      "category": "algorithms",
+      "effective_minutes": null,
+      "note": "Explain best and worst number of element pairs inspected in queue_equal."
+    },
+    {
+      "started_at": "2026-11-24T16:04:59.0526884+08:00",
+      "ended_at": "2026-11-24T17:26:07.0423006+08:00",
+      "category": "meal_break",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T17:26:07.0423006+08:00",
+      "ended_at": "2026-11-24T17:26:39.2253067+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T17:26:39.2253067+08:00",
+      "ended_at": "2026-11-24T17:42:02.2795842+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "L5 dynamic storage: allocating and releasing slots."
+    },
+    {
+      "started_at": "2026-11-24T17:42:02.2795842+08:00",
+      "ended_at": "2026-11-24T17:42:31.5274844+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T17:42:31.5274844+08:00",
+      "ended_at": "2026-11-24T17:51:51.7248229+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Implement dynamic queue initialization."
+    },
+    {
+      "started_at": "2026-11-24T17:51:51.7248229+08:00",
+      "ended_at": "2026-11-24T17:52:18.6503050+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T17:52:18.6503050+08:00",
+      "ended_at": "2026-11-24T17:55:28.4761076+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Reason about release order and free(NULL)."
+    },
+    {
+      "started_at": "2026-11-24T17:55:28.4761076+08:00",
+      "ended_at": "2026-11-24T17:55:46.5566508+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T17:55:46.5566508+08:00",
+      "ended_at": "2026-11-24T17:57:52.5854424+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Implement queue_destroy using the supplied declaration."
+    },
+    {
+      "started_at": "2026-11-24T17:57:52.5854424+08:00",
+      "ended_at": "2026-11-24T17:58:22.0914242+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T17:58:22.0914242+08:00",
+      "ended_at": "2026-11-24T18:20:31.0557763+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Struct assignment with an allocated slots member."
+    },
+    {
+      "started_at": "2026-11-24T18:20:31.0557763+08:00",
+      "ended_at": "2026-11-24T18:20:49.9253950+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-24T18:20:49.9253950+08:00",
+      "ended_at": "2026-11-24T18:53:12.0418280+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Implement an independent dynamic queue snapshot."
+    }
+  ],
+  "ended_at": "2026-11-24T18:53:12.0418280+08:00",
+  "next_lesson": "04-notes/D20-c-state-machine.md",
+  "note": "北京时间 14:16:36 开课，18:53:12 停表，总跨度 4 小时 36 分 36 秒。16:04:59–17:26:07 饭休 1 小时 21 分 08 秒。再扣台账中单列的教师处理，课堂区间上限约 189.0 分钟，仍含未拆分的教师回复、等待或无互动间隔。净有效时长待核实；与 300 分钟预算至少相差 111 分钟。"
 }
   ]
 }
