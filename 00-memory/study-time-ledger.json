@@ -3451,6 +3451,198 @@
   "ended_at": "2026-11-24T18:53:12.0418280+08:00",
   "next_lesson": "04-notes/D20-c-state-machine.md",
   "note": "北京时间 14:16:36 开课，18:53:12 停表，总跨度 4 小时 36 分 36 秒。16:04:59–17:26:07 饭休 1 小时 21 分 08 秒。再扣台账中单列的教师处理，课堂区间上限约 189.0 分钟，仍含未拆分的教师回复、等待或无互动间隔。净有效时长待核实；与 300 分钟预算至少相差 111 分钟。"
+},
+{
+  "session_id": "2026-11-25-l5-c-state-machine",
+  "date": "2026-11-25",
+  "lesson": "D20",
+  "started_at": "2026-11-25T10:47:57.3041742+08:00",
+  "planned_capacity_minutes": 300,
+  "effective_minutes": null,
+  "current_state": "ended",
+  "classroom_ended": true,
+  "segments": [
+    {
+      "started_at": "2026-11-25T10:47:57.3041742+08:00",
+      "ended_at": "2026-11-25T10:48:27.503151+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T10:48:27.503151+08:00",
+      "ended_at": "2026-11-25T10:56:05.7017019+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "D19 review: ownership after a successful deep copy."
+    },
+    {
+      "started_at": "2026-11-25T10:56:05.7017019+08:00",
+      "ended_at": "2026-11-25T10:56:55.881338+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T10:56:55.881338+08:00",
+      "ended_at": "2026-11-25T11:00:00.6528279+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Two-state lamp: one event and saved return value."
+    },
+    {
+      "started_at": "2026-11-25T11:00:00.6528279+08:00",
+      "ended_at": "2026-11-25T11:00:14.552342+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:00:14.552342+08:00",
+      "ended_at": "2026-11-25T11:02:40.6247159+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Four-state device transition rules and recovery path."
+    },
+    {
+      "started_at": "2026-11-25T11:02:40.6247159+08:00",
+      "ended_at": "2026-11-25T11:02:51.886146+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:02:51.886146+08:00",
+      "ended_at": "2026-11-25T11:13:05.2224452+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Implement the device_step transition function."
+    },
+    {
+      "started_at": "2026-11-25T11:13:05.2224452+08:00",
+      "ended_at": "2026-11-25T11:13:30.138065+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:13:30.138065+08:00",
+      "ended_at": "2026-11-25T11:22:09.5151970+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Design two-event test to detect discarded first return value."
+    },
+    {
+      "started_at": "2026-11-25T11:22:09.5151970+08:00",
+      "ended_at": "2026-11-25T11:22:24.073823+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:22:24.073823+08:00",
+      "ended_at": "2026-11-25T11:25:18.0635128+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Choose a breakpoint on the first divergent transition."
+    },
+    {
+      "started_at": "2026-11-25T11:25:18.0635128+08:00",
+      "ended_at": "2026-11-25T11:25:49.816432+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:25:49.816432+08:00",
+      "ended_at": "2026-11-25T11:29:33.2661086+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Compare two orderings of three device events."
+    },
+    {
+      "started_at": "2026-11-25T11:29:33.2661086+08:00",
+      "ended_at": "2026-11-25T11:30:16.000634+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:30:16.000634+08:00",
+      "ended_at": "2026-11-25T11:49:03.2394043+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "L6 single linked list: nodes, next, head, traversal. Includes enum Q&A and an unconfirmed interaction gap. Net time unknown."
+    },
+    {
+      "started_at": "2026-11-25T11:49:03.2394043+08:00",
+      "ended_at": "2026-11-25T11:49:31.644797+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T11:49:31.644797+08:00",
+      "ended_at": "2026-11-25T12:19:44.8098823+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Pointer notation and inserting an existing node at the head."
+    },
+    {
+      "started_at": "2026-11-25T12:19:44.8098823+08:00",
+      "ended_at": "2026-11-25T12:22:59.7798006+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0,
+      "note": "Teaching rule correction and verification."
+    },
+    {
+      "started_at": "2026-11-25T12:22:59.7798006+08:00",
+      "ended_at": "2026-11-25T12:23:32.500310+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0,
+      "note": "Preparing detach exercise and example."
+    },
+    {
+      "started_at": "2026-11-25T12:23:32.500310+08:00",
+      "ended_at": "2026-11-25T12:39:48.2496143+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Detach an existing front node and return the remaining list."
+    },
+    {
+      "started_at": "2026-11-25T12:39:48.2496143+08:00",
+      "ended_at": "2026-11-25T12:40:18.753209+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T12:40:18.753209+08:00",
+      "ended_at": "2026-11-25T12:59:47.0622504+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Detached node ownership, allocation lifetime and retaining its address."
+    },
+    {
+      "started_at": "2026-11-25T12:59:47.0622504+08:00",
+      "ended_at": "2026-11-25T13:00:07.116486+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T13:00:07.116486+08:00",
+      "ended_at": "2026-11-25T13:02:38.2796043+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "Combined list test: address identity before releasing the removed node."
+    },
+    {
+      "started_at": "2026-11-25T13:02:38.2796043+08:00",
+      "ended_at": "2026-11-25T13:03:06.921996+08:00",
+      "category": "teacher_preparation",
+      "effective_minutes": 0
+    },
+    {
+      "started_at": "2026-11-25T13:03:06.921996+08:00",
+      "ended_at": "2026-11-25T13:06:06.5520898+08:00",
+      "category": "mainline",
+      "effective_minutes": null,
+      "note": "L6 Make rule and freshness of source, header and object file."
+    }
+  ],
+  "ended_at": "2026-11-25T13:06:06.5520898+08:00",
+  "note": "北京时间 10:47:57 开课，13:06:06 停表，墙钟跨度 2 小时 18 分 09 秒。扣除台账已单列的教师操作和行政整理后，课堂区间上限 128.9 分钟；尚含未拆分的教师反馈和无互动区间。净有效分钟未确认，相对 300 分钟计划至少差 171 分钟。",
+  "next_lesson": "04-notes/D21-c-module-build.md"
 }
   ]
 }

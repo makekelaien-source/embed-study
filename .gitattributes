@@ -465,3 +465,25 @@
 /04-notes/D19-taught-review.md -text
 /04-notes/next-day-demo/D19-ring-demo.c -text
 /04-notes/next-day-demo/D19-close-check.c -text
+
+/03-code_codex/study-books/** -text
+/02-logs/D20-2026-11-25.md -text
+/03-code_codex/D20-device-state.h -text
+/03-code_codex/D20-device-step.c -text
+/03-code_codex/D20-list-detach-front-v1.c -text
+/03-code_codex/D20-list-detach-front-v2.c -text
+/03-code_codex/D20-list-detach-front.c -text
+/03-code_codex/D20-list-node.h -text
+/03-code_codex/D20-list-prepend-v1.c -text
+/03-code_codex/D20-list-prepend-v2.c -text
+/03-code_codex/D20-list-prepend.c -text
+/03-code_codex/D20-review/D19-dynamic-queue-clone.c -text
+/03-code_codex/D20-review/D19-dynamic-queue.h -text
+/04-notes/D20-c-linked-list.md -text
+/04-notes/D20-c-state-machine.md -text
+/04-notes/next-day-demo/D20-device.mk -text
+/04-notes/next-day-demo/D20-list-detach-check.c -text
+/04-notes/next-day-demo/D20-list-prepend-check.c -text
+/04-notes/next-day-demo/D20-list-round-trip.c -text
+/04-notes/next-day-demo/D20-state-demo.c -text
+/04-notes/D20-taught-review.md -text
