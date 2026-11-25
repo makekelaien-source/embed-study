@@ -80,7 +80,7 @@ def run_close(root, plan, budget_seconds=300, resume=False):
 
     def no_unrelated_index():
         staged = {p.decode("utf-8") for p in git("diff", "--cached", "--name-only", "-z").split(b"\0") if p}
-        if staged - set(stage_paths):
+        if staged - set(stage_paths) - {review_book}:
             raise CloseError("Unrelated staged work must stay outside daily close")
 
     def run_job(job, restored, work):
@@ -160,6 +160,9 @@ def run_close(root, plan, budget_seconds=300, resume=False):
             raise CloseError("Plan needs an ISO date")
         book = str(plan["book"]).replace("\\", "/")
         study_book.safe(root, book)
+        review_book = None
+        if re.fullmatch(r"02-logs/D[0-9]+-[0-9]{4}-[0-9]{2}-[0-9]{2}\.md", book):
+            review_book = "03-code_codex/study-books/" + Path(book).name
         visibility = plan.get("visibility", "private")
         if visibility not in ("private", "public"):
             raise CloseError("Plan needs explicit authorized visibility")
@@ -178,7 +181,7 @@ def run_close(root, plan, budget_seconds=300, resume=False):
             study_book.safe(root, item["path"])
             if item.get("cleanup", False):
                 study_book.check_cleanup_path(item["path"])
-                if item["path"] == book or item["path"].startswith("03-code_codex/shared-text/"):
+                if item["path"] == book or item["path"].startswith(("03-code_codex/shared-text/", "03-code_codex/study-books/")):
                     raise CloseError("Book and continuing modules are protected")
         stage_paths = sorted(set(plan.get("stage_paths", names) + names + [book, ".gitattributes"]))
         for name in stage_paths:
@@ -282,6 +285,17 @@ def run_close(root, plan, budget_seconds=300, resume=False):
                 cleanup = [item["path"] for item in manifest if item.get("cleanup", False)]
                 # Stage deletion only. Originals remain on disk through BOTH uploads.
                 git("add", "--", *[name for name in stage_paths if name not in cleanup])
+                if review_book:
+                    review = study_book.safe(root, review_book)
+                    review.parent.mkdir(parents=True, exist_ok=True)
+                    content = study_book.safe(root, book).read_bytes()
+                    if review.exists():
+                        if review.read_bytes() != content:
+                            raise CloseError("Existing review copy differs from the verified book")
+                    else:
+                        with review.open("xb") as stream:
+                            stream.write(content)
+                    git("add", "--", review_book)
                 if cleanup:
                     git("update-index", "--force-remove", "--", *cleanup)
                 no_unrelated_index()
@@ -302,6 +316,12 @@ def run_close(root, plan, budget_seconds=300, resume=False):
             if git("show", state["final_commit"] + ":" + book) != study_book.safe(root, book).read_bytes():
                 raise CloseError("Final remote commit does not contain the verified local book")
             checked_sources()
+            if review_book:
+                expected = study_book.safe(root, book).read_bytes()
+                if (study_book.safe(root, review_book).read_bytes() != expected
+                        or git("show", state["final_commit"] + ":" + review_book) != expected):
+                    raise CloseError("Review backup differs from the verified book")
+                state["review_book"] = review_book
             selected = [item for item in data["sources"] if item["cleanup"]]
             # Check ALL candidates before the first unlink; repeat each check against
             # concurrent editor saves. Source bytes are also in the verified book.
