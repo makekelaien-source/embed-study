@@ -1,0 +1,30 @@
+{
+  "role": "teacher_verification_of_student_repair",
+  "makefile_sha256": "428da2c238f3a759c88a4a989c19b2060f3bd22b7bd1c5b09abacc65c7835096",
+  "records": [
+    {
+      "phase": "student_fixed_dependency_live",
+      "build_stdout": "gcc -std=c11 -Wall -Wextra -Werror -pedantic -c sample.c -o sample.o\ngcc main.o sample.o -o limit-check.exe\n",
+      "build_stderr": "",
+      "run_exit": 0,
+      "run_stdout": "limit=32 actual=0 expected=0\nHEADER_DEP_CHECKS=PASS\n",
+      "run_stderr": ""
+    },
+    {
+      "phase": "student_rules_copy_baseline_32",
+      "build_stdout": "gcc -std=c11 -Wall -Wextra -Werror -pedantic -c main.c -o main.o\ngcc -std=c11 -Wall -Wextra -Werror -pedantic -c sample.c -o sample.o\ngcc main.o sample.o -o limit-check.exe\n",
+      "build_stderr": "",
+      "run_exit": 0,
+      "run_stdout": "limit=32 actual=0 expected=0\nHEADER_DEP_CHECKS=PASS\n",
+      "run_stderr": ""
+    },
+    {
+      "phase": "student_rules_next_header_change_30",
+      "build_stdout": "gcc -std=c11 -Wall -Wextra -Werror -pedantic -c main.c -o main.o\ngcc -std=c11 -Wall -Wextra -Werror -pedantic -c sample.c -o sample.o\ngcc main.o sample.o -o limit-check.exe\n",
+      "build_stderr": "",
+      "run_exit": 0,
+      "run_stdout": "limit=30 actual=1 expected=1\nHEADER_DEP_CHECKS=PASS\n",
+      "run_stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+limit-check.exe: main.o sample.o
+	gcc main.o sample.o -o limit-check.exe
+
+main.o: main.c limit.h
+	gcc -std=c11 -Wall -Wextra -Werror -pedantic -c main.c -o main.o
+
+sample.o: sample.c
+	gcc -std=c11 -Wall -Wextra -Werror -pedantic -c sample.c -o sample.o

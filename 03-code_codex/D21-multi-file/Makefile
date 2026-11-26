@@ -1,0 +1,6 @@
+message-demo.exe : main.o message.o
+	gcc main.o message.o -o message-demo.exe
+main.o: main.c message.h
+	gcc -c main.c -o main.o
+message.o: message.c message.h
+	gcc -c message.c -o message.o
