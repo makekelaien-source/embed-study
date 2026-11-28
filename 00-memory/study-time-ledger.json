@@ -4249,6 +4249,315 @@
       "ended_at": "2026-11-26T16:47:47+08:00",
       "note": "13:15:17开课，16:47:47停表，墙钟212.5分钟。排除台账已采样的教师处理及短暂停共29.5分钟后，课堂区间上限183.0分钟，仍含沟通与未确认长间隔。净有效分钟未确认，相对300分钟计划至少差117.0分钟。",
       "next_lesson": "04-notes/D22-c-integration.md"
+    },
+    {
+      "session_id": "2026-11-28-l6-c-integration",
+      "date": "2026-11-28",
+      "lesson": "D22",
+      "started_at": "2026-11-28T16:39:47+08:00",
+      "planned_capacity_minutes": 300,
+      "effective_minutes": null,
+      "current_state": "ended",
+      "classroom_ended": true,
+      "segments": [
+        {
+          "started_at": "2026-11-28T16:39:47+08:00",
+          "ended_at": "2026-11-28T16:40:24+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对 D21 证据、D22 讲义与本周计划。"
+        },
+        {
+          "started_at": "2026-11-28T16:40:24+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生选对 p，说明记不起出队实现，写入对象尚未作答。",
+          "ended_at": "2026-11-28T16:41:33+08:00"
+        },
+        {
+          "started_at": "2026-11-28T16:41:33+08:00",
+          "ended_at": "2026-11-28T16:41:45+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对并补贴出队原函数与队列定义。"
+        },
+        {
+          "started_at": "2026-11-28T16:41:45+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "看原实现并获地址跟踪提示后，正确指出 received。",
+          "ended_at": "2026-11-28T16:42:35+08:00"
+        },
+        {
+          "started_at": "2026-11-28T16:42:35+08:00",
+          "ended_at": "2026-11-28T16:42:47+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对已有 Makefile 并准备缺少 run_events 实现的变式。"
+        },
+        {
+          "started_at": "2026-11-28T16:42:47+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "独立判断链接阶段并指出遗漏 run-events.o。",
+          "ended_at": "2026-11-28T16:43:56+08:00"
+        },
+        {
+          "started_at": "2026-11-28T16:43:56+08:00",
+          "ended_at": "2026-11-28T16:44:12+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对旧解析器与设备枚举，保存复习单元证据。"
+        },
+        {
+          "started_at": "2026-11-28T16:44:12+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "学生正确预测 RUNx 返回 0，不入队。",
+          "ended_at": "2026-11-28T16:46:35+08:00"
+        },
+        {
+          "started_at": "2026-11-28T16:46:35+08:00",
+          "ended_at": "2026-11-28T16:47:13+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "准备提交函数空白文件与测试，复跑解析器断言。"
+        },
+        {
+          "started_at": "2026-11-28T16:47:13+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "学生询问 count 为 0 能否表示队满。",
+          "ended_at": "2026-11-28T16:54:07+08:00"
+        },
+        {
+          "started_at": "2026-11-28T16:54:07+08:00",
+          "ended_at": "2026-11-28T16:54:20+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对队列实现与答疑。"
+        },
+        {
+          "started_at": "2026-11-28T16:54:20+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "学生请求查看既有 queue_push 并随后提交首稿；含教师讲解，净学时未确认。",
+          "ended_at": "2026-11-28T16:59:38+08:00"
+        },
+        {
+          "started_at": "2026-11-28T16:59:38+08:00",
+          "ended_at": "2026-11-28T17:00:02+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "保全首稿，严格构建及仅补分号的隔离测试。"
+        },
+        {
+          "started_at": "2026-11-28T17:00:02+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "学生修订分号和 START 事件映射。",
+          "ended_at": "2026-11-28T17:02:08+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:02:08+08:00",
+          "ended_at": "2026-11-28T17:02:42+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "以原断言重建复验，准备并验证集成测试构建入口。"
+        },
+        {
+          "started_at": "2026-11-28T17:02:42+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生询问 assert 用法；此前超过十分钟的区间有效学时待确认。",
+          "ended_at": "2026-11-28T17:13:24+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:13:24+08:00",
+          "ended_at": "2026-11-28T17:13:40+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对 D21 的断言例与定义。"
+        },
+        {
+          "started_at": "2026-11-28T17:13:40+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生要求简明重述题目并提交集成入口；未采样间隔净学时未确认。",
+          "ended_at": "2026-11-28T17:30:28+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:30:28+08:00",
+          "ended_at": "2026-11-28T17:30:55+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "保全首稿及严格构建诊断，检查函数未调用问题。"
+        },
+        {
+          "started_at": "2026-11-28T17:30:55+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生修正字符串和消费函数调用，仍将有副作用的调用放在 assert 内；当前构建启用断言。",
+          "ended_at": "2026-11-28T17:32:55+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:32:55+08:00",
+          "ended_at": "2026-11-28T17:33:23+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "严格 C11 重建，原四步 12 条断言通过，退出码 0。"
+        },
+        {
+          "started_at": "2026-11-28T17:33:23+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生答放入 START 后检查，预期 count 为 0；教师明确为提交返回后、消费前。",
+          "ended_at": "2026-11-28T17:34:56+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:34:56+08:00",
+          "ended_at": "2026-11-28T17:35:10+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "保存诊断与短休息断点。"
+        },
+        {
+          "started_at": "2026-11-28T17:35:10+08:00",
+          "category": "scheduled_break",
+          "effective_minutes": 0,
+          "note": "学生请求重新讲解状态机，按恢复课堂处理；间隔 1 分 16 秒排除。",
+          "ended_at": "2026-11-28T17:36:26+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:36:26+08:00",
+          "ended_at": "2026-11-28T17:36:44+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对状态机与消费原函数。"
+        },
+        {
+          "started_at": "2026-11-28T17:36:44+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "重讲后学生正确答 SAFE 消费 START 后队列空且仍 SAFE，进一步解释返回 QUEUE_OK 因确实取到事件。含教师反馈间隔，净学时未确认。",
+          "ended_at": "2026-11-28T17:44:58+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:44:58+08:00",
+          "ended_at": "2026-11-28T17:45:31+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "用学生选择的 count 检查运行正确版与非法分支误入队的教师错误版。"
+        },
+        {
+          "started_at": "2026-11-28T17:45:31+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生独立预测只消费 A 后 A=0/RUN、B=1/SAFE。",
+          "ended_at": "2026-11-28T17:47:05+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:47:05+08:00",
+          "ended_at": "2026-11-28T17:47:19+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对原 main 的终态用于续写。"
+        },
+        {
+          "started_at": "2026-11-28T17:47:19+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生提交双实例独立 main，替换此前单实例入口；旧入口保存在 v2。末次消费 B 后仍期待 qb.count 为 1。",
+          "ended_at": "2026-11-28T17:51:24+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:51:24+08:00",
+          "ended_at": "2026-11-28T17:51:47+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "保全 test-isolation-v1，严格构建成功，实测第 28 行断言失败。"
+        },
+        {
+          "started_at": "2026-11-28T17:51:47+08:00",
+          "category": "testing_review",
+          "effective_minutes": null,
+          "note": "学生修正末次 qb.count 期望为 0。",
+          "ended_at": "2026-11-28T17:52:49+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:52:49+08:00",
+          "ended_at": "2026-11-28T17:53:30+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "双实例原 20 条断言全通过，原启停 12 条回归通过；验证 NDEBUG 对带副作用断言的影响。"
+        },
+        {
+          "started_at": "2026-11-28T17:53:30+08:00",
+          "category": "language_tools",
+          "effective_minutes": null,
+          "note": "学生把四次调用全部移出 assert，消费结果 result3/result4 误声明为 SubmitResult。",
+          "ended_at": "2026-11-28T17:55:55+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:55:55+08:00",
+          "ended_at": "2026-11-28T17:56:16+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "保全 v3，严格构建确认 enum-conversion 与 enum-compare 诊断。"
+        },
+        {
+          "started_at": "2026-11-28T17:56:16+08:00",
+          "category": "language_tools",
+          "effective_minutes": null,
+          "note": "学生已将 result3/result4 改为 enum QueueResult。",
+          "ended_at": "2026-11-28T17:58:54+08:00"
+        },
+        {
+          "started_at": "2026-11-28T17:58:54+08:00",
+          "ended_at": "2026-11-28T17:59:27+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "严格 C11 构建及原 20 条断言通过，保存 v4 与回执，核对已有复杂度授课记录。"
+        },
+        {
+          "started_at": "2026-11-28T17:59:27+08:00",
+          "category": "algorithms",
+          "effective_minutes": null,
+          "note": "三事件调用次数独立正确；说明变量复用后理解 O(n) 时间/O(1) 额外空间，含教师反馈，净学时未确认。",
+          "ended_at": "2026-11-28T18:03:46+08:00"
+        },
+        {
+          "started_at": "2026-11-28T18:03:46+08:00",
+          "ended_at": "2026-11-28T18:06:12+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "核对 G0 统计来源为 D2 旧 main；补测空消费、空闲 STOP 及故障/复位/START 顺序，严格构建和断言通过。"
+        },
+        {
+          "started_at": "2026-11-28T18:06:12+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "学生正确指出需先看 valid_count 才能解释 average。",
+          "ended_at": "2026-11-28T18:08:04+08:00"
+        },
+        {
+          "started_at": "2026-11-28T18:08:04+08:00",
+          "ended_at": "2026-11-28T18:09:48+08:00",
+          "category": "teacher_preparation",
+          "effective_minutes": 0,
+          "note": "从 D2 学习册原字节恢复旧统计；教师提取返回结构体函数，7例通过；准备状态控制的空白核心和断言支架。"
+        },
+        {
+          "started_at": "2026-11-28T18:09:48+08:00",
+          "category": "mainline",
+          "effective_minutes": null,
+          "note": "学生收课时明确最近统计接入测试未做。collect-samples.c 仍为空。此长间隔学习活动和分钟未确认。",
+          "ended_at": "2026-11-28T18:50:32+08:00"
+        }
+      ],
+      "ended_at": "2026-11-28T18:50:32+08:00",
+      "next_lesson": "04-notes/D23-statistics-integration.md",
+      "note": "16:39:47开课，18:50:32停表，墙钟130.8分钟；可观测教师处理及短暂停13.0分钟排除，课堂区间上限117.8分钟，仍含未确认长间隔及未采样讲解处理。净有效分钟未确认，相对300分钟计划至少差182.2分钟。"
     }
   ]
 }

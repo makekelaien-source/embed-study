@@ -1,0 +1,10 @@
+{
+  "source_sha256": "dd332b3d9145556d97fce7ffcb115608c797c818ee7f7432949fbe14fb8bb1da",
+  "build_exit": 0,
+  "build_stdout": "gcc -std=c11 -Wall -Wextra -Werror -pedantic -I../D21-queue-device test-pipeline.c submit-command.c ../D21-queue-device/consume-all.c ../D21-queue-device/D20-device-step.c ../D21-queue-device/D19-ring-queue.c ../shared-command/d12-command-kind.c -o pipeline-check.exe\n",
+  "build_stderr": "",
+  "run_exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "assert_count": 20
+}

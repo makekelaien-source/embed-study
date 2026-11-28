@@ -1,0 +1,23 @@
+gcc -std=c11 -Wall -Wextra -Werror -pedantic -I../D21-queue-device test-pipeline.c submit-command.c ../D21-queue-device/consume-all.c ../D21-queue-device/D20-device-step.c ../D21-queue-device/D19-ring-queue.c ../shared-command/d12-command-kind.c -o pipeline-check.exe
+In file included from test-pipeline.c:2:
+test-pipeline.c: In function 'main':
+test-pipeline.c:8:31: error: passing argument 2 of 'submit_command' makes pointer from integer without a cast [-Wint-conversion]
+    8 |     assert (submit_command(&q,RUN) == SUBMIT_OK);
+      |                               ^~~
+      |                               |
+      |                               int
+In file included from test-pipeline.c:1:
+submit-command.h:9:66: note: expected 'const char *' but argument is of type 'int'
+    9 | enum SubmitResult submit_command(struct IntQueue *q, const char *text);
+      |                                                      ~~~~~~~~~~~~^~~~
+test-pipeline.c:14:31: error: passing argument 2 of 'submit_command' makes pointer from integer without a cast [-Wint-conversion]
+   14 |     assert (submit_command(&q,STOP)== SUBMIT_OK);
+      |                               ^~~~
+      |                               |
+      |                               int
+submit-command.h:9:66: note: expected 'const char *' but argument is of type 'int'
+    9 | enum SubmitResult submit_command(struct IntQueue *q, const char *text);
+      |                                                      ~~~~~~~~~~~~^~~~
+mingw32-make: *** [makefile:13: pipeline-check.exe] Error 1
+
+BUILD_EXIT=2

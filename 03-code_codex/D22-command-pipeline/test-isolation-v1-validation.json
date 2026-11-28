@@ -1,0 +1,8 @@
+{
+  "build_exit": 0,
+  "build_stdout": "gcc -std=c11 -Wall -Wextra -Werror -pedantic -I../D21-queue-device test-pipeline.c submit-command.c ../D21-queue-device/consume-all.c ../D21-queue-device/D20-device-step.c ../D21-queue-device/D19-ring-queue.c ../shared-command/d12-command-kind.c -o pipeline-check.exe\n",
+  "build_stderr": "",
+  "run_exit": 3221226505,
+  "stdout": "",
+  "stderr": "Assertion failed: qb.count == 1, file test-pipeline.c, line 28\n"
+}

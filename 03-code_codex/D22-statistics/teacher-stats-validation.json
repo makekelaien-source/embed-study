@@ -1,0 +1,9 @@
+{
+  "role": "teacher_refactor_validation",
+  "case_count": 7,
+  "stdout": "D22_STATS_CHECKS=PASS\n",
+  "run_exit": 0,
+  "student_core_bytes": 0,
+  "source_sha256": "9ac5b972a80302ba308120a95921c6eede6d2917e14ca7a5be4f72d92c859ad2",
+  "reference_sha256": "0b808cb5be7e0d399d2c04ef3689f326ed660a0919f9037b2228c6a57b7ae4c8"
+}
